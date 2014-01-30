@@ -15,7 +15,7 @@
     "trailing": false,
     "smarttabs": true,
     "globals": {
-        "Emberchat": true,
+        "EmberChat": true,
         "jQuery": true,
         "Ember": true,
         "Handlebars": true,

@@ -12,6 +12,18 @@ EmberChat.Session = Ember.Object.create({
      * @type {EmberChat.User}
      */
     user: EmberChat.User.create(),
-    conversations: Ember.A(),
-    availableUsers: Ember.A()
+
+    conversation: Ember.A(),
+
+    availableUsers: Ember.A(),
+
+    findUserById: function(id) {
+        var users = this.get('availableUsers');
+        for(var i=0; i < users.length; i++) {
+            if(users.objectAt(i).get('id') === id){
+                return users.objectAt(i);
+            }
+        }
+        return null;
+    }
 });

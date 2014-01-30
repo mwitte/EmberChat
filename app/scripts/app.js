@@ -1,3 +1,4 @@
+/*global Ember */
 var EmberChat = window.EmberChat = Ember.Application.create({
     /**
      * log transitions in console

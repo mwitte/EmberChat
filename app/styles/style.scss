@@ -2,5 +2,12 @@
 
 /* Put your CSS here */
 html, body {
-    margin: 30px 0;
+    margin: 10px 0;
+}
+
+
+.conversation-content{
+  max-height: 150px;
+  height: 150px;
+  overflow: scroll;
 }

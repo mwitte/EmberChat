@@ -3,8 +3,8 @@ require('scripts/Objects/Messages/Abstract');
 /**
  * This class represents all settings messages
  *
- * @namespace EmberChat
  * @class SettingsMessage
+ * @namespace EmberChat
  */
 EmberChat.SettingsMessage = EmberChat.AbstractMessage.extend({
 
@@ -21,7 +21,9 @@ EmberChat.SettingsMessage = EmberChat.AbstractMessage.extend({
         }
 
         if(this.get('userName')){
-            user.set('name', this.get('userName'))
+            user.set('name', this.get('userName'));
+            // @TODO for debugging
+            Ember.$(document).attr('title', 'Chat:' + this.get('userName'));
         }
         return false;
     }

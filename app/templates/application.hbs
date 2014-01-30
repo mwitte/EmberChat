@@ -1,4 +1,5 @@
 <div>
+    {{!
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -9,32 +10,49 @@
             </button>
             <a class="navbar-brand" href="#">
                 EmberChat
-                {{#if isOnline}}
-                    <button {{action 'disconnect'}}type="button" class="btn btn-success btn-sm">online</button>
-                {{else}}
-                    <button {{action 'connect'}} type="button" class="btn btn-danger btn-sm">offline</button>
-                {{/if}}
 
-                Hallo {{user.name}}
+
+
             </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
         </div>
     </nav>
+    }}
     <div class="container" id="main">
         <div class="row">
-            <div>
-                <div class="col-md-3">
-                    <div class="well sidebar-nav">
-                        <strong>Colors</strong>
-                        <ul class="list-group">
-                        {{#each item in controller}}
-                            <li class="list-group-item">{{item}}</li>
-                        {{/each}}
-                        </ul>
+            <div class="col-xs-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h5>Available Users:</h5></div>
+                    <div class="panel-body">
+                        <div class="list-group">
+                            {{#each availableUsers}}
+                                {{#link-to 'conversation.user' id class="list-group-item"}}
+                                    {{name}}
+                                    {{#if newMessages}}
+                                        <span class="badge">{{newMessages}}</span>
+                                    {{/if}}
+                                {{/link-to}}
+                            {{/each}}
+                        </div>
+
+                        Hallo {{user.name}}
+                        <div class="btn-group">
+                            {{#if isOnline}}
+                                <button {{action 'disconnect'}}type="button" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-ok"></span> online
+                                </button>
+                            {{else}}
+                                <button {{action 'connect'}} type="button" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>offline
+                                </button>
+                            {{/if}}
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+            </div>
+            <div class="col-xs-8">
+                <div class="panel panel-default">
                     {{outlet}}
                 </div>
             </div>

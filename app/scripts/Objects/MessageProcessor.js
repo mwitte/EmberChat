@@ -15,16 +15,28 @@ EmberChat.MessageProcessor = Ember.Object.create({
      * @param {string} rawMessage
      * @returns {null}
      */
-    process: function(rawMessage) {
+    processIncoming: function(rawMessage) {
         var messageContent = JSON.parse(rawMessage.data);
         // determine type
         switch (messageContent.type) {
             case 'settings':
                 return EmberChat.SettingsMessage.create(messageContent).process();
-                break;
+            case 'userlist':
+                return EmberChat.UserListMessage.create(messageContent).process();
+            case 'conversation':
+                return EmberChat.ConversationMessage.create(messageContent).process();
             default :
-                Ember.warn("Unknown message type: " + rawMessage);
+                Ember.warn("Unknown message type: " + messageContent.type);
                 return false;
+        }
+    },
+
+    /**
+     * @param {EmberChat.AbstractMessage} message
+     */
+    processOutgoing: function(message) {
+        if(typeof message === 'object') {
+            EmberChat.Socket.sendMessage(JSON.stringify(message));
         }
     }
 });

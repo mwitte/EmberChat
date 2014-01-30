@@ -85,7 +85,6 @@ EmberChat.Socket = Ember.Object.create({
      * @event onOpen
      */
     onOpen: function() {
-        Ember.debug("Socket opend");
         this.set('online', true);
     },
 
@@ -103,7 +102,6 @@ EmberChat.Socket = Ember.Object.create({
      * @event onClose
      */
     onClose: function() {
-        Ember.debug("Socket closed");
         this.set('online', false);
     },
 
@@ -112,7 +110,6 @@ EmberChat.Socket = Ember.Object.create({
      * @param message
      */
     onMessage: function(message) {
-        EmberChat.MessageProcessor.process(message);
-        Ember.debug("Socket Message: " + message.data);
+        EmberChat.MessageProcessor.processIncoming(message);
     }
 });

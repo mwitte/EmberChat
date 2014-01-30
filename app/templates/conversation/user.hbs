@@ -1,0 +1,23 @@
+<div class="panel-heading">
+    <h5>{{user.name}}</h5>
+</div>
+<div class="panel-body conversation-content">
+
+    {{#each user.conversation}}
+        <p><strong>{{user}}</strong>: {{content}}</p>
+    {{/each}}
+
+
+</div>
+<div class="panel-footer">
+    <form {{action "send" on="submit"}} role="form">
+        <div class="form-group">
+            <div class="input-group">
+                {{input type="text" valueBinding='text' class="form-control"}}
+                <span class="input-group-btn">
+                    <button {{action 'send'}} class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
