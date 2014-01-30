@@ -1,0 +1,1 @@
+EmberChat.ApplicationAdapter = DS.FixtureAdapter;
