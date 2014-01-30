@@ -36,7 +36,7 @@ module.exports = function (grunt) {
                 tasks: ['compass:server']
             },
             neuter: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+                files: ['<%= yeoman.app %>/scripts/{,**/}*.js'],
                 tasks: ['neuter']
             },
             livereload: {

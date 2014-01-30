@@ -8,6 +8,8 @@ EmberChat.ApplicationController = Ember.ArrayController.extend({
      */
     isOnlineBinding: 'EmberChat.Socket.online',
 
+    userBinding: 'EmberChat.Session.user',
+
     actions: {
         connect: function() {
             EmberChat.Socket.connect();

@@ -1,3 +1,4 @@
+require('scripts/Objects/MessageProcessor');
 /**
  * The socket object is a singleton which provides the server connection
  *
@@ -111,6 +112,7 @@ EmberChat.Socket = Ember.Object.create({
      * @param message
      */
     onMessage: function(message) {
+        EmberChat.MessageProcessor.process(message);
         Ember.debug("Socket Message: " + message.data);
     }
 });
