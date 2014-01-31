@@ -3,14 +3,12 @@
     <div class="panel-body">
         <div class="list-group">
             {{#each conversations}}
-                {{#if user}}
                 {{#link-to 'conversation.user' id class="list-group-item"}}
-                    {{user.name}}
+                    {{name}}
                     {{#if newMessages}}
                         <span class="badge">{{newMessages}}</span>
                     {{/if}}
                 {{/link-to}}
-                {{/if}}
             {{/each}}
         </div>
     </div>
