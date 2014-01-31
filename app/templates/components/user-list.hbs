@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Available Users:</h5></div>
+    <div class="panel-body">
+        <div class="list-group">
+            {{#each users}}
+                {{#link-to 'conversation.user' id class="list-group-item"}}
+                    {{name}}
+                    {{#if newMessages}}
+                        <span class="badge">{{newMessages}}</span>
+                    {{/if}}
+                {{/link-to}}
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 require('scripts/Objects/Messages/Abstract');
 
 /**
- * This class represents all settings messages
+ * This class represents the user list messages.
  *
  * @class UserListMessage
  * @namespace EmberChat

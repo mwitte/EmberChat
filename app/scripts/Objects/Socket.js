@@ -11,19 +11,19 @@ EmberChat.Socket = Ember.Object.create({
      * @property host
      * @type {string}
      */
-    hostBinding: 'EmberChat.host',
+    hostBinding: 'EmberChat.server.host',
 
     /**
      * @property port
      * @type {string}
      */
-    portBinding: 'EmberChat.port',
+    portBinding: 'EmberChat.server.port',
 
     /**
      * @property path
      * @type {string}
      */
-    pathBinding: 'EmberChat.path',
+    pathBinding: 'EmberChat.server.path',
 
     /**
      * Determines the online state of the socket
@@ -74,8 +74,9 @@ EmberChat.Socket = Ember.Object.create({
 
     /**
      * Sends a message
-     * method sendMessage
+     *
      * @param message
+     * @method sendMessage
      */
     sendMessage: function(message) {
         this.get('socket').send(message);

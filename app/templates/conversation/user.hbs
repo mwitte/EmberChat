@@ -1,9 +1,9 @@
 <div class="panel-heading">
-    <h5>{{user.name}}</h5>
+    <h4>{{conversation.name}}</h4>
 </div>
 <div class="panel-body conversation-content">
 
-    {{#each user.conversation}}
+    {{#each conversation.content}}
         <p><strong>{{user}}</strong>: {{content}}</p>
     {{/each}}
 

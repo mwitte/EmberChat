@@ -12,6 +12,7 @@ EmberChat.MessageProcessor = Ember.Object.create({
     /**
      * Process the given raw message
      *
+     * @method processIncoming
      * @param {string} rawMessage
      * @returns {null}
      */
@@ -32,6 +33,9 @@ EmberChat.MessageProcessor = Ember.Object.create({
     },
 
     /**
+     * Process an outgoing message
+     *
+     * @method processOutgoing
      * @param {EmberChat.AbstractMessage} message
      */
     processOutgoing: function(message) {

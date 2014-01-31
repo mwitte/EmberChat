@@ -1,11 +1,17 @@
+/**
+ * Central application route
+ *
+ * @namespace EmberChat
+ * @class ApplicationRoute
+ */
 EmberChat.ApplicationRoute = Ember.Route.extend({
 
+    /**
+     * Connect to the server
+     *
+     * @method setupController
+     */
     setupController: function() {
         EmberChat.Socket.connect();
-    },
-    // admittedly, this should be in IndexRoute and not in the
-    // top level ApplicationRoute; we're in transition... :-)
-    model: function () {
-        return ['red', 'yellow', 'blue'];
     }
 });

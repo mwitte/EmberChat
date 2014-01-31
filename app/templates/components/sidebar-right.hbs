@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hallo {{user.name}}</h5></div>
+    <div class="panel-body">
+        <div class="btn-group">
+            {{#if isOnline}}
+                <button {{action 'disconnect'}}type="button" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok"></span> online
+                </button>
+            {{else}}
+                <button {{action 'connect'}} type="button" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span>offline
+                </button>
+            {{/if}}
+        </div>
+    </div>
+</div>

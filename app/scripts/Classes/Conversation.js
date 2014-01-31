@@ -11,5 +11,9 @@ EmberChat.Conversation = Ember.Object.extend({
      * @property name
      * @type {string}
      */
-    name: ''
+    name: null,
+
+    id: null,
+
+    newMessages: 0
 });

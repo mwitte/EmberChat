@@ -6,9 +6,15 @@ var EmberChat = window.EmberChat = Ember.Application.create({
      */
     LOG_TRANSITIONS: true,
 
-    host: 'localhost',
-    port: '61457',
-    path: ''
+    /**
+     * Connection Settings
+     * @property server
+     */
+    server: {
+        host: window.location.hostname,
+        port: '61457',
+        path: ''
+    }
 });
 
 require('scripts/Prototypes.js');
@@ -18,5 +24,6 @@ require('scripts/Controllers/*');
 require('scripts/store');
 require('scripts/Models/*');
 require('scripts/Routes/*');
+require('scripts/Components/*');
 require('scripts/Views/*');
 require('scripts/router');

@@ -1,9 +1,10 @@
 require('scripts/Objects/Messages/Abstract');
 
 /**
- * This class represents all settings messages
+ * This class represents a conversation message
  *
- * @class UserListMessage
+ * @class ConversationMessage
+ * @extends EmberChat.AbstractMessage
  * @namespace EmberChat
  */
 EmberChat.ConversationMessage = EmberChat.AbstractMessage.extend({
@@ -15,23 +16,52 @@ EmberChat.ConversationMessage = EmberChat.AbstractMessage.extend({
      * @returns {boolean}
      */
     process: function() {
-        var content = this.get('content');
-        var user = EmberChat.Session.findUserById(this.get('user'));
-        if(!user) {
-            return false;
+        var conversation = this.getConversationObject();
+        if(!conversation.get('isDisplayed')){
+            this.doBackgroundTasks(conversation);
         }
-        if(!user.get('isDisplayed')){
-            this.background(user);
-        }
-        if(!user.get('conversation')){
-            user.set('conversation', Ember.A(content));
-        }else{
-            user.get('conversation').pushObjects(content);
-        }
+        this.fillConversationObject(conversation);
         return true;
     },
 
-    background: function(user){
-        user.set('newMessages', parseInt(user.get('newMessages')) + 1);
+    /**
+     * Get always a valid Conversation object
+     *
+     * @method getConversationObject
+     * @returns {EmberChat.Conversation}
+     */
+    getConversationObject: function(){
+        var user = EmberChat.Session.findUserById(this.get('user'));
+        var conversation = EmberChat.Session.findConversationById(user.get('id'));
+        if(!conversation){
+            conversation = EmberChat.Conversation.create({id: user.get('id'), name: user.get('name')});
+            EmberChat.Session.get('conversations').pushObject(conversation);
+        }
+        return conversation;
+    },
+
+    /**
+     * Fill the conversion with the content of this message
+     *
+     * @method fillConversationObject
+     * @param {EmberChat.Conversation} conversation
+     */
+    fillConversationObject: function(conversation) {
+        var content = this.get('content');
+        if(conversation.get('content')){
+            conversation.get('content').pushObjects(content);
+        }else{
+            conversation.set('content', Ember.A(content));
+        }
+    },
+
+    /**
+     * Certain tasks which should processed when the conversion is not displayed
+     *
+     * @method doBackgroundTasks
+     * @param {EmberChat.Conversation} conversation
+     */
+    doBackgroundTasks: function(conversation){
+        conversation.set('newMessages', parseInt(conversation.get('newMessages')) + 1);
     }
 });
