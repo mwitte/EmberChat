@@ -16,15 +16,10 @@ EmberChat.SettingsMessage = EmberChat.AbstractMessage.extend({
      */
     process: function() {
         var user = EmberChat.Session.get('user');
-        if(this.get('userId')){
-            user.set('id', this.get('userId'))
-        }
-
-        if(this.get('userName')){
-            user.set('name', this.get('userName'));
-            // @TODO for debugging
-            Ember.$(document).attr('title', 'Chat:' + this.get('userName'));
-        }
-        return false;
+        Ember.assert('Settings message contains no user data!', this.get('user'));
+        EmberChat.Session.set('user', EmberChat.User.create(this.get('user')));
+        // @TODO for debugging
+        Ember.$(document).attr('title', 'EC: ' + EmberChat.Session.get('user').get('name'));
+        return true;
     }
 });

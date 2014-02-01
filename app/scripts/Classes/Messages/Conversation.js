@@ -32,6 +32,7 @@ EmberChat.ConversationMessage = EmberChat.AbstractMessage.extend({
      */
     getConversationObject: function(){
         var user = EmberChat.Session.findUserById(this.get('user'));
+        Ember.assert('ConversationMessage: Could not get user by id ' + this.get('user'), typeof user === 'object');
         var conversation = EmberChat.Session.findConversationById(user.get('id'));
         if(!conversation){
             conversation = EmberChat.Conversation.create({id: user.get('id'), name: user.get('name')});
@@ -48,6 +49,7 @@ EmberChat.ConversationMessage = EmberChat.AbstractMessage.extend({
      */
     fillConversationObject: function(conversation) {
         var content = this.get('content');
+        Ember.assert('ConversationMessage contains no content!', typeof content === 'object');
         if(conversation.get('content')){
             conversation.get('content').pushObjects(content);
         }else{
