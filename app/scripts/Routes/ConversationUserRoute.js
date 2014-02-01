@@ -4,19 +4,18 @@
  * @namespace EmberChat
  * @class ConversationUserRoute
  */
-EmberChat.ConversationUserRoute = Ember.Route.extend({
+EmberChat.ConversationUserRoute = EmberChat.ConversationUserRoute.extend({
 
     /**
      * Sets the needed data for the controller
      *
      * @method setupController
-     * @param controller
+     * @param {Ember.Controller} controller
+     * @param {EmberChat.Conversation} conversation
      * @param {EmberChat.User} user
      */
     setupController: function(controller, conversation) {
-        conversation.set('isDisplayed', true);
-        conversation.set('newMessages', 0);
-        controller.set('conversation', conversation);
+        this._super(controller, conversation);
         if(!conversation.get('content')){
             var message = EmberChat.SettingsMessage.create({
                 type: 'requestHistory',
@@ -27,18 +26,14 @@ EmberChat.ConversationUserRoute = Ember.Route.extend({
     },
 
     /**
-     * Fetches the User for the given id or transition to index route
+     * Fetches the EmberChat.Conversation for the given id or transition to index route
      *
      * @method model
      * @param {object} params
-     * @returns {EmberChat.User|void}
+     * @returns {EmberChat.Conversation|void}
      */
     model: function (params) {
-        if(typeof params !== 'object' || !params.id) {
-            this.transitionTo('index');
-            return null;
-        }
-        var conversation = EmberChat.Session.findConversationById(params.id);
+        var conversation = this._super(params);
 
         if(!conversation) {
             var user = EmberChat.Session.findUserById(params.id);
@@ -49,20 +44,10 @@ EmberChat.ConversationUserRoute = Ember.Route.extend({
             conversation = EmberChat.Conversation.create({id: params.id, name: user.get('name'), user: user});
             EmberChat.Session.get('conversations').pushObject(conversation);
         }
+        this.controllerFor('conversation').set('conversation', conversation);
         return conversation;
-    },
-
-
-    actions: {
-
-        /**
-         * Gets called when the route or the model changes
-         *
-         * @event willTransition
-         * @param transition
-         */
-        willTransition: function(transition) {
-            this.controller.get('conversation').set('isDisplayed', false);
-        }
     }
+
+
+
 });

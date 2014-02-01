@@ -7,10 +7,5 @@ require('scripts/Controllers/ConversationController');
  * @extends ConversationController
  */
 EmberChat.ConversationUserController = EmberChat.ConversationController.extend({
-    actions: {
-        send: function() {
-            EmberChat.MessageProcessor.processOutgoing({type: 'message', user: this.get('conversation').get('id'), content: this.get('text')});
-            this.set('text', '');
-        }
-    }
+
 });
