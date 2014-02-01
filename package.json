@@ -1,6 +1,9 @@
 {
   "name": "emberchat",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "A websocket based chat with ember.js",
+  "author": "Matthias Witte",
+  "homepage": "https://github.com/mwitte/EmberChat",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -16,6 +19,7 @@
     "grunt-contrib-htmlmin": "~0.1.3",
     "grunt-contrib-imagemin": "~0.2.0",
     "grunt-contrib-watch": "~0.5.2",
+    "grunt-contrib-yuidoc": "~0.5.0",
     "grunt-rev": "~0.1.0",
     "grunt-usemin": "~0.1.12",
     "grunt-mocha": "~0.4.1",
