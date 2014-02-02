@@ -20,9 +20,9 @@ EmberChat.MessageProcessor = Ember.Object.create({
         var messageContent = JSON.parse(rawMessage.data);
         // determine type
         switch (messageContent.type) {
-            case 'settings':
+            case 'Settings':
                 return EmberChat.SettingsMessage.create(messageContent).process();
-            case 'userlist':
+            case 'UserList':
                 return EmberChat.UserListMessage.create(messageContent).process();
             case 'conversation':
                 return EmberChat.ConversationMessage.create(messageContent).process();

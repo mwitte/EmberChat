@@ -12,12 +12,18 @@ var EmberChat = window.EmberChat = Ember.Application.create({
      */
     server: {
         host: window.location.hostname,
-        port: '61457',
-        path: ''
+        port: '8589',
+        path: window.location.pathname + 'socket'
     }
 });
 
-require('scripts/Prototypes.js');
+/**
+ * Create the properties.js file to overwrite settings above
+ */
+require('scripts/properties');
+
+
+require('scripts/Prototypes');
 require('scripts/Classes/*');
 require('scripts/Objects/*');
 require('scripts/Controllers/*');
