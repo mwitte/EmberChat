@@ -104,6 +104,7 @@ EmberChat.Socket = Ember.Object.create({
      */
     onClose: function() {
         this.set('online', false);
+        EmberChat.Session.offlineTasks();
     },
 
     /**

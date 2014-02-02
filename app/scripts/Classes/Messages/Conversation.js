@@ -31,7 +31,7 @@ EmberChat.ConversationMessage = EmberChat.AbstractMessage.extend({
      * @returns {EmberChat.Conversation}
      */
     getConversationObject: function(){
-        var user = EmberChat.Session.findUserById(this.get('user'));
+        var user = EmberChat.Session.findUserById(this.get('user').id);
         Ember.assert('ConversationMessage: Could not get user by id ' + this.get('user'), typeof user === 'object');
         var conversation = EmberChat.Session.findConversationById(user.get('id'));
         if(!conversation){

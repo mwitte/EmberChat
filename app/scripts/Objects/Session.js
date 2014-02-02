@@ -62,5 +62,11 @@ EmberChat.Session = Ember.Object.create({
             }
         }
         return null;
+    },
+
+    offlineTasks: function() {
+        this.get('availableUsers').forEach(function(item, index, enumerable) {
+            Ember.set(item, "online", false);
+        });
     }
 });
