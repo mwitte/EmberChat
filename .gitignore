@@ -9,3 +9,4 @@ dist
 /test/bower_components
 /doc/api
 /app/scripts/properties.js
+/test/coverage

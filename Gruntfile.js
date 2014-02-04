@@ -69,16 +69,6 @@ module.exports = function (grunt) {
                     }
                 }
             },
-            test: {
-                options: {
-                    middleware: function (connect) {
-                        return [
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test')
-                        ];
-                    }
-                }
-            },
             dist: {
                 options: {
                     middleware: function (connect) {
@@ -118,14 +108,6 @@ module.exports = function (grunt) {
                 '!<%= yeoman.app %>/scripts/vendor/*',
                 'test/spec/{,*/}*.js'
             ]
-        },
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://localhost:<%= connect.options.port %>/index.html']
-                }
-            }
         },
         compass: {
             options: {
@@ -328,6 +310,11 @@ module.exports = function (grunt) {
                     outdir: 'doc/api'
                 }
             }
+        },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
         }
     });
 
@@ -354,11 +341,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', [
         'clean:server',
-        'replace:app',
         'concurrent:test',
-        'connect:test',
-        'neuter:app'
-        //,'mocha'
+        'neuter:app',
+        'karma'
     ]);
 
     grunt.registerTask('build', [
