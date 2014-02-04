@@ -294,6 +294,8 @@ module.exports = function (grunt) {
                     filepathTransform: function (filepath) {
                         return 'app/' + filepath;
                     }
+                    // default template:
+                    //template: '(function() { \n {%= src %} \n})();'
                 },
                 src: '<%= yeoman.app %>/scripts/app.js',
                 dest: '.tmp/scripts/combined-scripts.js'
