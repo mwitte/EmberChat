@@ -4,7 +4,7 @@ module.exports = function(config) {
     config.set({
 
         // base path, that will be used to resolve files and exclude
-        basePath: '',
+        basePath: '../',
 
         // frameworks to use
         frameworks: ['qunit'],
@@ -43,7 +43,7 @@ module.exports = function(config) {
         // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
         // - PhantomJS
         // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome', 'PhantomJS'],
 
         preprocessors: {
             // source files, that you wanna generate coverage for

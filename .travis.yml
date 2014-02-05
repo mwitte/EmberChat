@@ -1,6 +1,22 @@
 language: node_js
 node_js:
   - "0.10"
+branches:
+    only:
+        - "master"
+env:
+    global:
+        # GH_TOKEN is the oauth token generated as described at
+        # https://help.github.com/articles/creating-an-oauth-token-for-command-line-use
+        #
+        # curl -u 'username' -d '{"scopes":["repo"],"note":"push to <%= destinationBranch %> from travis"}' https://api.github.com/authorizations
+        #
+        # You have to encrypt it with travis gem
+        # http://about.travis-ci.org/docs/user/build-configuration/#Secure-environment-variables
+        #
+        # travis encrypt GH_TOKEN=XYXYXYXYXY
+        #
+        - secure: "eBu4EQqbm/68t0E1I7d6LwVk5Kbqc4IvcJPsEVALsEv6XcPsDk5cqf9AaPFMQKKWgf9gf7FvRu6RDfOkX60qiUK2WoJGyjwncZBt0P2jMu5+tADoq1I93a2/+3pm1l03kMudz6z6JwtMZdzTnXCoFCaw1p+muzH33XRrql6/c1k="
 before_install:
   - "gem install compass"
   - "npm install"
@@ -9,3 +25,4 @@ install:
   - "bower install"
 script:
   - "grunt"
+after_success: ./utils/publishBuild.sh
