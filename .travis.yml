@@ -16,7 +16,7 @@ env:
         #
         # travis encrypt GH_TOKEN=XYXYXYXYXY
         #
-        - secure: "eBu4EQqbm/68t0E1I7d6LwVk5Kbqc4IvcJPsEVALsEv6XcPsDk5cqf9AaPFMQKKWgf9gf7FvRu6RDfOkX60qiUK2WoJGyjwncZBt0P2jMu5+tADoq1I93a2/+3pm1l03kMudz6z6JwtMZdzTnXCoFCaw1p+muzH33XRrql6/c1k="
+        - secure: "Sea9Szq1qc54fHnvWE5gMs2Uenbb0g+Rf7bURk30TTndsWRyhbAnM3Dj1gqN3oTW3+1ZUL4Vmh9UAx55lL8YGMrql3D6Fo4WnHsOkDWJFM42CCyusApsI+8zoApbwpph1cYWkdSCmCmCAeodyMFw5v3aGFWKzgtG50OlAGD1h98="
 before_install:
   - "gem install compass"
   - "npm install"
