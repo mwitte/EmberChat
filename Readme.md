@@ -1,13 +1,4 @@
-# EmberChat #
+# EmberChat builds [![Build Status](https://travis-ci.org/mwitte/EmberChat.png?branch=builds)](https://travis-ci.org/mwitte/EmberChat)#
 
-This is a webapp chat client for [EmberChatAppServer](https://github.com/mwitte/EmberChatAppServer) based on ember.js
-
-[![Build Status](https://travis-ci.org/mwitte/EmberChat.png)](https://travis-ci.org/mwitte/EmberChat)
-
-### Build ###
-
-```
-npm install
-bower install
-grunt
-```
+This branch contains only the compiled builds provided by Travis CI.
+Look into [EmberChat](https://github.com/mwitte/EmberChat) for further information.
