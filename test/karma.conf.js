@@ -43,7 +43,7 @@ module.exports = function(config) {
         // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
         // - PhantomJS
         // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-        browsers: ['Chrome', 'PhantomJS'],
+        browsers: ['PhantomJS'],
 
         preprocessors: {
             // source files, that you wanna generate coverage for
