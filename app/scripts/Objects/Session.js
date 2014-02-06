@@ -38,13 +38,7 @@ EmberChat.Session = Ember.Object.create({
      * @returns {EmberChat.User|null}
      */
     findConversationById: function(id) {
-        var conversations = this.get('conversations');
-        for(var i=0; i < conversations.length; i++) {
-            if(conversations.objectAt(i).get('id') === id){
-                return conversations.objectAt(i);
-            }
-        }
-        return null;
+        return this.get('conversations').findBy('id', id);
     },
 
     /**
@@ -55,13 +49,7 @@ EmberChat.Session = Ember.Object.create({
      * @returns {EmberChat.User|null}
      */
     findUserById: function(id) {
-        var users = this.get('availableUsers');
-        for(var i=0; i < users.length; i++) {
-            if(users.objectAt(i).get('id') === id){
-                return users.objectAt(i);
-            }
-        }
-        return null;
+        return this.get('availableUsers').findBy('id', id);
     },
 
     offlineTasks: function() {

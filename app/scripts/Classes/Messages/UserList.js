@@ -17,11 +17,36 @@ EmberChat.UserListMessage = EmberChat.AbstractMessage.extend({
     process: function() {
         var users = this.get('content');
         Ember.assert('UserList message contains no content!', typeof users === 'object');
-        var userObjects = Ember.A();
-        for(var i=0; i < users.length; i++){
-            userObjects.push(EmberChat.User.create(users[i]));
-        }
-        EmberChat.Session.set('availableUsers', userObjects);
+        this.updateAvailableUsers(users);
         return true;
+    },
+
+    /**
+     * Updates the available users by reference
+     *
+     * @method updateAvailableUsers
+     * @param {Ember.Array} messageUsers
+     * @return {void}
+     */
+    updateAvailableUsers: function(messageUsers){
+        var availableUsers = EmberChat.Session.get('availableUsers');
+        for(var ia=0; ia < availableUsers.length; ia++){
+            var messageUser = messageUsers.findBy('id', availableUsers[ia].get('id'));
+            // could not find a messageUser for this available User
+            if(!messageUser){
+                // the user is not existing in message so remove him
+                availableUsers.removeObject(availableUsers[ia]);
+                continue;
+            }
+            // set properties
+            availableUsers[ia].setProperties(messageUser);
+            // remove messageUser
+            messageUsers.removeObject(messageUser);
+        }
+        // unprocessed messageUsers
+        for(var j=0; j < messageUsers.length; j++){
+            availableUsers.pushObject(EmberChat.User.create(messageUsers[j]));
+        }
+        EmberChat.Session.propertyDidChange('availableUsers');
     }
 });
