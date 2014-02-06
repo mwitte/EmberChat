@@ -60,8 +60,10 @@ module.exports = function(config) {
             'karma-coverage'
         ],
         coverageReporter: {
-            type : 'html',
-            dir : 'test/coverage/'
+            reporters:[
+                {type: 'html', dir:'coverage/'},
+                {type: 'text'}
+            ]
         },
 
         // list of files to exclude
