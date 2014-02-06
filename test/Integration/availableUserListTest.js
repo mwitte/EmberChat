@@ -9,7 +9,7 @@
 /**
  * define the context fo this tests
  */
-module('integration tests', {
+module('UserList Test', {
     setup: function() {
         TestEnv.IntegrationHandler.setup();
     },
@@ -32,5 +32,24 @@ test("Are availableUsers visible", function() {
         var domElements = find(".userlist .list-group a");
         // there should be two users
         equal(domElements.length, 2, 'Found visible users in .userlist');
+    });
+});
+
+test("Open UserConversation, username is visible", function() {
+    // Runs in runloop context
+    Ember.run(function(){
+        // create a user
+        var user = EmberChat.User.create({name: 'AwesomeUserName', id: '123'});
+        // add as available user
+        EmberChat.Session.set('availableUsers', Ember.A([user]));
+        // ensure that dom is rendered
+        Ember.run(EmberChat, 'advanceReadiness');
+        // click user in list
+        click('.userlist .list-group a').then(function(){
+            // find element which contains the username
+            var domElements = find(".conversation .name");
+            //
+            ok(domElements.html().indexOf('AwesomeUserName') >= 0);
+        });
     });
 });

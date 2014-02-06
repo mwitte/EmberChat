@@ -12,6 +12,9 @@ EmberChat.ApplicationRoute = Ember.Route.extend({
      * @method setupController
      */
     setupController: function() {
-        EmberChat.Socket.connect();
+        // delay connection
+        Ember.run.later(this, function() {
+            EmberChat.Socket.connect();
+        }, 100);
     }
 });

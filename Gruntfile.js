@@ -341,10 +341,14 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('test', [
+    grunt.registerTask('buildTest', [
         'clean:server',
         'concurrent:test',
-        'neuter:app',
+        'neuter:app'
+    ]);
+
+    grunt.registerTask('test', [
+        'buildTest',
         'karma'
     ]);
 

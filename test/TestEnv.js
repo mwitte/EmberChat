@@ -24,19 +24,14 @@ TestEnv.IntegrationHandler = {
         document.write('<div id="ember-testing-container"><div id="ember-testing"></div></div>');
         EmberChat.reopen({
             rootElement: '#ember-testing',
-            server: {
-                host: 'offline.local',
-                port: '123',
-                path: 'off'
-            }
+            socketDisabled: true
         });
+        EmberChat.socketDisabled = true;
 
         EmberChat.rootElement = '#ember-testing';
         EmberChat.setupForTesting();
         EmberChat.injectTestHelpers();
-        Ember.run(function() {
-            EmberChat.reset();
-        });
+        EmberChat.reset();
     },
 
     /**

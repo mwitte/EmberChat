@@ -13,7 +13,7 @@ var EmberChat = window.EmberChat = Ember.Application.create({
     server: {
         host: window.location.hostname,
         port: '8589',
-        path: window.location.pathname + 'socket'
+        path: window.location.pathname + 'emberchat/socket'
     }
 });
 

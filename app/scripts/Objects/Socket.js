@@ -45,6 +45,10 @@ EmberChat.Socket = Ember.Object.create({
      * @method connect
      */
     connect: function() {
+        // disable connection by global prop
+        if( typeof EmberChat.socketDisabled !== 'undefined' && EmberChat.socketDisabled === true ){
+            return;
+        }
         var _this = this;
         window.WebSocket = window.WebSocket || window.MozWebSocket;
         // if browser does not support WebSockets
@@ -79,7 +83,9 @@ EmberChat.Socket = Ember.Object.create({
      * @method sendMessage
      */
     sendMessage: function(message) {
-        this.get('socket').send(message);
+        if(this.get('online')){
+            this.get('socket').send(message);
+        }
     },
 
     /**
