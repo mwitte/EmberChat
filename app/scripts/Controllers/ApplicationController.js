@@ -6,6 +6,4 @@
  */
 EmberChat.ApplicationController = Ember.ArrayController.extend({
 
-
-
 });

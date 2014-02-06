@@ -24,6 +24,8 @@ EmberChat.MessageProcessor = Ember.Object.create({
                 return EmberChat.SettingsMessage.create(messageContent).process();
             case 'UserList':
                 return EmberChat.UserListMessage.create(messageContent).process();
+            case 'RoomList':
+                return EmberChat.RoomListMessage.create(messageContent).process();
             case 'Conversation':
                 return EmberChat.ConversationMessage.create(messageContent).process();
             default :

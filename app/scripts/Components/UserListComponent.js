@@ -9,7 +9,7 @@ EmberChat.UserListComponent = Ember.Component.extend({
     /**
      * All available users
      *
-     * @property availableUsers
+     * @property users
      * @type {Ember.Array}
      */
     usersBinding: 'EmberChat.Session.availableUsers'

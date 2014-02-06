@@ -1,12 +1,12 @@
 require('scripts/Classes/Participant');
 
 /**
- * The user class
+ * The room class
  *
- * @class User
+ * @class Room
  * @extends EmberChat.Participant
  * @namespace EmberChat
  */
-EmberChat.User = EmberChat.Participant.extend({
+EmberChat.Room = EmberChat.Participant.extend({
 
 });

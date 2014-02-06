@@ -1,0 +1,19 @@
+<div class="col-xs-8">
+    <div class="panel panel-default userlist">
+        <div class="panel-heading"><h4>Rooms</h4></div>
+        <div class="panel-body">
+            <p>Come from server, no function so far: </p>
+            <div class="list-group">
+                {{#each content}}
+                    <a href="#" class="list-group-item">
+                        {{name}}
+                    </a>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-4">
+    {{user-list}}
+</div>

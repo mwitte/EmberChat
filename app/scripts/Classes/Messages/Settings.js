@@ -1,4 +1,4 @@
-require('scripts/Objects/Messages/Abstract');
+require('scripts/Classes/Messages/Abstract');
 
 /**
  * This class represents all settings messages

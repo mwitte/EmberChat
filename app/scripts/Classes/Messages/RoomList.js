@@ -3,18 +3,18 @@ require('scripts/Classes/Messages/AbstractList');
 /**
  * This class represents the user list messages.
  *
- * @class UserListMessage
+ * @class RoomListMessage
  * @extends EmberChat.AbstractListMessage
  * @namespace EmberChat
  */
-EmberChat.UserListMessage = EmberChat.AbstractListMessage.extend({
+EmberChat.RoomListMessage = EmberChat.AbstractListMessage.extend({
 
     /**
-     * Container for the users
+     * Container for the rooms
      * @property listContainer
      * @type {Ember.Array}
      */
-    listContainerBinding: 'EmberChat.Session.availableUsers',
+    listContainerBinding: 'EmberChat.Session.availableRooms',
 
     /**
      * Gets called by updateListContainer method if an element in the updateList was not in
@@ -27,7 +27,7 @@ EmberChat.UserListMessage = EmberChat.AbstractListMessage.extend({
     createListElement: function(updateList, listContainer){
         // unprocessed updateList
         for(var j=0; j < updateList.length; j++){
-            listContainer.pushObject(EmberChat.Room.create(updateList[j]));
+            listContainer.pushObject(EmberChat.User.create(updateList[j]));
         }
     }
 });

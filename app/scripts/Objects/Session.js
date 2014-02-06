@@ -23,6 +23,13 @@ EmberChat.Session = Ember.Object.create({
     availableUsers: Ember.A(),
 
     /**
+     * The available rooms
+     * @property availableRooms
+     * @type {Ember.Array}
+     */
+    availableRooms: Ember.A(),
+
+    /**
      * The opened conversations
      *
      * @property conversations
@@ -52,6 +59,12 @@ EmberChat.Session = Ember.Object.create({
         return this.get('availableUsers').findBy('id', id);
     },
 
+    /**
+     * All tasks which should be done when session user goes offline
+     *
+     * @method offlineTasks
+     * @returns {void}
+     */
     offlineTasks: function() {
         this.get('availableUsers').forEach(function(item, index, enumerable) {
             Ember.set(item, "online", false);
