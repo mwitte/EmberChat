@@ -3,10 +3,10 @@ require('scripts/Routes/ConversationRoute');
  * ConversationUserRoute
  *
  * @namespace EmberChat
- * @class ConversationUserRoute
+ * @class ConversationRoomRoute
  * @extends EmberChat.ConversationRoute
  */
-EmberChat.ConversationUserRoute = EmberChat.ConversationRoute.extend({
+EmberChat.ConversationRoomRoute = EmberChat.ConversationRoute.extend({
 
     /**
      * Sets the needed data for the controller
@@ -19,11 +19,14 @@ EmberChat.ConversationUserRoute = EmberChat.ConversationRoute.extend({
     setupController: function(controller, conversation) {
         controller.set('conversation', conversation);
         if(!conversation.get('content')){
+            /*
+            @TODO implement
             var message = EmberChat.SettingsMessage.create({
                 type: 'requestHistory',
                 user: conversation.get('user').get('id')
             });
             EmberChat.MessageProcessor.processOutgoing(message);
+            */
         }
     },
 
@@ -36,18 +39,22 @@ EmberChat.ConversationUserRoute = EmberChat.ConversationRoute.extend({
      */
     model: function (params) {
         var conversation = this._super(params);
+
         if(!conversation) {
-            var user = EmberChat.Session.findUserById(params.id);
-            if(!user){
+            var room = EmberChat.Session.findRoomById(params.id);
+            console.log(room);
+            if(!room){
                 this.transitionTo('index');
                 return null;
             }
-            conversation = EmberChat.Conversation.create({id: params.id, name: user.get('name'), user: user});
+            conversation = EmberChat.Conversation.create({id: params.id, name: room.get('name'), room: room});
             EmberChat.Session.get('conversations').pushObject(conversation);
         }
         this.setupConversation(conversation);
         this.controllerFor('conversation').set('conversation', conversation);
         return conversation;
     }
+
+
 
 });

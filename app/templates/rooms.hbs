@@ -5,9 +5,9 @@
             <p>Come from server, no function so far: </p>
             <div class="list-group">
                 {{#each content}}
-                    <a href="#" class="list-group-item">
+                    {{#link-to 'conversation.room' id class="list-group-item"}}
                         {{name}}
-                    </a>
+                    {{/link-to}}
                 {{/each}}
             </div>
         </div>

@@ -3,9 +3,10 @@
     <div class="panel-body">
         <div class="list-group">
             {{#each conversations}}
-                {{#if user}}
-                    {{#with user}}
-                        {{partial "partials/_conversationUserBtn"}}
+                {{partial "partials/_conversationUserBtn"}}
+                {{#if conversation.user}}
+                    {{#with conversation.user}}
+
                     {{/with}}
                 {{/if}}
             {{/each}}

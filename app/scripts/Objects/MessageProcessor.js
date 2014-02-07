@@ -18,7 +18,8 @@ EmberChat.MessageProcessor = Ember.Object.create({
      */
     processIncoming: function(rawMessage) {
         var messageContent = JSON.parse(rawMessage.data);
-        // determine type
+
+        // determine type @TODO get rid of the switch
         switch (messageContent.type) {
             case 'Settings':
                 return EmberChat.SettingsMessage.create(messageContent).process();
@@ -26,8 +27,10 @@ EmberChat.MessageProcessor = Ember.Object.create({
                 return EmberChat.UserListMessage.create(messageContent).process();
             case 'RoomList':
                 return EmberChat.RoomListMessage.create(messageContent).process();
-            case 'Conversation':
-                return EmberChat.ConversationMessage.create(messageContent).process();
+            case 'ConversationUser':
+                return EmberChat.ConversationUserMessage.create(messageContent).process();
+            case 'ConversationRoom':
+                return EmberChat.ConversationRoomMessage.create(messageContent).process();
             default :
                 Ember.warn("Unknown message type: " + messageContent.type);
                 return false;

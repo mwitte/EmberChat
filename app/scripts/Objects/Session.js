@@ -60,6 +60,17 @@ EmberChat.Session = Ember.Object.create({
     },
 
     /**
+     * Returns the Ember.Room for the given id or null
+     *
+     * @method findRoomById
+     * @param {string} id
+     * @returns {EmberChat.Room|null}
+     */
+    findRoomById: function(id) {
+        return this.get('availableRooms').findBy('id', id);
+    },
+
+    /**
      * All tasks which should be done when session user goes offline
      *
      * @method offlineTasks

@@ -6,7 +6,13 @@
 EmberChat.ConversationController = Ember.Controller.extend({
     actions: {
         send: function() {
-            EmberChat.MessageProcessor.processOutgoing({type: 'message', user: this.get('conversation').get('id'), content: this.get('text')});
+            var rawMessage = {type: 'message', content: this.get('text')};
+            if(this.get('conversation').get('user')){
+                rawMessage.user = this.get('conversation').get('id');
+            }else{
+                rawMessage.room = this.get('conversation').get('id');
+            }
+            EmberChat.MessageProcessor.processOutgoing(rawMessage);
             this.set('text', '');
         },
 

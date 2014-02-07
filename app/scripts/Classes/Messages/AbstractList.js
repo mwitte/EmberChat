@@ -35,7 +35,7 @@ EmberChat.AbstractListMessage = EmberChat.AbstractMessage.extend({
      * @returns {void}
      */
     createListElement: function(updateList, listContainer){
-        Ember.warn('Method createListElement needs do be implemented in '+ this.constructor.toString());
+        throw new Ember.Error('Method createListElement needs do be implemented in '+ this.constructor.toString());
     },
 
     /**

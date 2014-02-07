@@ -2,9 +2,10 @@
  * ConversationUserRoute
  *
  * @namespace EmberChat
- * @class ConversationUserRoute
+ * @class ConversationRoute
+ * @extends Ember.Route
  */
-EmberChat.ConversationUserRoute = Ember.Route.extend({
+EmberChat.ConversationRoute = Ember.Route.extend({
 
     /**
      * Sets the needed data for the controller
@@ -15,9 +16,11 @@ EmberChat.ConversationUserRoute = Ember.Route.extend({
      * @param {EmberChat.User} user
      */
     setupController: function(controller, conversation) {
+    },
+
+    setupConversation: function(conversation){
         conversation.set('isDisplayed', true);
         conversation.set('newMessages', 0);
-        controller.set('conversation', conversation);
     },
 
 
@@ -30,7 +33,6 @@ EmberChat.ConversationUserRoute = Ember.Route.extend({
      */
     model: function (params) {
         if(typeof params !== 'object' || !params.id) {
-            this.transitionTo('index');
             return null;
         }
         return EmberChat.Session.findConversationById(params.id);

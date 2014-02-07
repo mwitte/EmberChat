@@ -13,7 +13,6 @@ EmberChat.AbstractMessage = Ember.Object.extend({
      * @returns {boolean}
      */
     process: function() {
-        Ember.warn('Process method needs do be implemented in '+ this.constructor.toString());
-        return false;
+        throw new Ember.Error('Process method needs do be implemented in '+ this.constructor.toString());
     }
 });
