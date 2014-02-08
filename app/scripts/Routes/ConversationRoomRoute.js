@@ -14,19 +14,17 @@ EmberChat.ConversationRoomRoute = EmberChat.ConversationRoute.extend({
      * @method setupController
      * @param {Ember.Controller} controller
      * @param {EmberChat.Conversation} conversation
-     * @param {EmberChat.User} user
      */
-    setupController: function(controller, conversation) {
+    setupController: function (controller, conversation) {
         controller.set('conversation', conversation);
-        if(!conversation.get('content')){
-            /*
-            @TODO implement
-            var message = EmberChat.SettingsMessage.create({
-                type: 'requestHistory',
-                user: conversation.get('user').get('id')
-            });
+
+        if (!conversation.get('content')) {
+            var message = {
+                type: 'RoomJoin',
+                room: conversation.get('room').get('id')
+            };
             EmberChat.MessageProcessor.processOutgoing(message);
-            */
+            //@TODO get History
         }
     },
 
@@ -40,10 +38,10 @@ EmberChat.ConversationRoomRoute = EmberChat.ConversationRoute.extend({
     model: function (params) {
         var conversation = this._super(params);
 
-        if(!conversation) {
+        if (!conversation) {
             var room = EmberChat.Session.findRoomById(params.id);
             console.log(room);
-            if(!room){
+            if (!room) {
                 this.transitionTo('index');
                 return null;
             }

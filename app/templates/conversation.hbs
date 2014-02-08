@@ -17,7 +17,12 @@
 </div>
 <div class="panel-body conversation-content">
     {{#each conversation.content}}
-        <p><strong>{{user}}</strong>: {{content}}</p>
+        {{#if info}}
+            <p class="info">{{content}}</p>
+        {{else}}
+            <p><strong>{{user}}</strong>: {{content}}</p>
+        {{/if}}
+
     {{/each}}
 </div>
 <div class="panel-footer">

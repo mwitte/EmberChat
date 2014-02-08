@@ -17,5 +17,9 @@ EmberChat.Conversation = Ember.Object.extend({
 
     content: null,
 
-    newMessages: 0
+    newMessages: 0,
+
+    room: null,
+
+    user: null
 });

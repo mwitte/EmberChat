@@ -27,10 +27,14 @@ EmberChat.MessageProcessor = Ember.Object.create({
                 return EmberChat.UserListMessage.create(messageContent).process();
             case 'RoomList':
                 return EmberChat.RoomListMessage.create(messageContent).process();
-            case 'ConversationUser':
-                return EmberChat.ConversationUserMessage.create(messageContent).process();
-            case 'ConversationRoom':
-                return EmberChat.ConversationRoomMessage.create(messageContent).process();
+            case 'UserConversation':
+                return EmberChat.UserConversationMessage.create(messageContent).process();
+            case 'RoomConversation':
+                return EmberChat.RoomConversationMessage.create(messageContent).process();
+            case 'RoomJoin':
+                return EmberChat.RoomJoinMessage.create(messageContent).process();
+            case 'RoomLeave':
+                return EmberChat.RoomLeaveMessage.create(messageContent).process();
             default :
                 Ember.warn("Unknown message type: " + messageContent.type);
                 return false;
