@@ -1,11 +1,19 @@
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hallo {{user.name}}</h5></div>
+    <div class="panel-heading">
+        {{#if EmberChat.Session.authenticated}}
+            <h5>Hallo {{user.name}}</h5>
+        {{else}}
+            <h5>Welcome to EmberChat</h5>
+        {{/if}}
+    </div>
     <div class="panel-body">
-        <div class="list-group">
-            {{#link-to 'rooms' class="list-group-item"}}
-                List
-            {{/link-to}}
-        </div>
+        {{#if EmberChat.Session.authenticated}}
+            <div class="list-group">
+                {{#link-to 'rooms' class="list-group-item"}}
+                    Rooms / Users
+                {{/link-to}}
+            </div>
+        {{/if}}
         <div class="btn-group btn-block">
             {{#if isOnline}}
                 <button {{action 'disconnect'}}type="button" class="btn btn-success btn-block">
@@ -17,6 +25,5 @@
                 </button>
             {{/if}}
         </div>
-
     </div>
 </div>

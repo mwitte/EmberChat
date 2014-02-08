@@ -3,6 +3,7 @@
  */
 EmberChat.Router.map(function () {
 
+    this.route('authenticate');
     this.route('rooms');
 
     this.resource('conversation', function () {

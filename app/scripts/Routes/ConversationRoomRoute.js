@@ -40,7 +40,6 @@ EmberChat.ConversationRoomRoute = EmberChat.ConversationRoute.extend({
 
         if (!conversation) {
             var room = EmberChat.Session.findRoomById(params.id);
-            console.log(room);
             if (!room) {
                 this.transitionTo('index');
                 return null;

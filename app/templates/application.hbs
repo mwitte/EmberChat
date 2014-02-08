@@ -23,7 +23,9 @@
         <div class="row">
             <div class="col-xs-3">
                 {{session-info}}
-                {{conversation-list}}
+                {{#if EmberChat.Session.authenticated}}
+                    {{conversation-list}}
+                {{/if}}
             </div>
             <div class="col-xs-9">
                 {{outlet}}

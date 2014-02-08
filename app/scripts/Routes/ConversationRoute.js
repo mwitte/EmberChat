@@ -1,11 +1,12 @@
+require('scripts/Routes/AuthenticatedRoute');
 /**
  * ConversationUserRoute
  *
  * @namespace EmberChat
  * @class ConversationRoute
- * @extends Ember.Route
+ * @extends EmberChat.AuthenticatedRoute
  */
-EmberChat.ConversationRoute = Ember.Route.extend({
+EmberChat.ConversationRoute = EmberChat.AuthenticatedRoute.extend({
 
     /**
      * Sets the needed data for the controller

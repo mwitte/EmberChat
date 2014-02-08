@@ -1,10 +1,12 @@
+require('scripts/Routes/AuthenticatedRoute');
 /**
  * Default Route
  *
- * @class IndexRoute
  * @namespace EmberChat
+ * @class IndexRoute
+ * @extends EmberChat.AuthenticatedRoute
  */
-EmberChat.IndexRoute = Ember.Route.extend({
+EmberChat.IndexRoute = EmberChat.AuthenticatedRoute.extend({
 
     /**
      * Redirects to rooms route

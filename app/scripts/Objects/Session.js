@@ -7,6 +7,12 @@
 EmberChat.Session = Ember.Object.create({
 
     /**
+     * @property authenticated
+     * @type {boolean}
+     */
+    authenticated: false,
+
+    /**
      * The current user
      *
      * @property user
@@ -80,5 +86,15 @@ EmberChat.Session = Ember.Object.create({
         this.get('availableUsers').forEach(function(item, index, enumerable) {
             Ember.set(item, "online", false);
         });
+    },
+
+    authenticate: function() {
+        if(localStorage.token){
+            var rawMessage = {
+                type: 'authentication',
+                token: localStorage.token
+            };
+            EmberChat.MessageProcessor.processOutgoing(rawMessage);
+        }
     }
 });
