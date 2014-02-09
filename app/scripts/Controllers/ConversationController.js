@@ -19,7 +19,6 @@ EmberChat.ConversationController = Ember.Controller.extend({
         },
 
         close: function() {
-            this.transitionToRoute('index');
             if(this.get('conversation').get('room')){
                 var message = {
                     type: 'RoomLeave',
@@ -28,6 +27,8 @@ EmberChat.ConversationController = Ember.Controller.extend({
                 EmberChat.MessageProcessor.processOutgoing(message);
             }
             EmberChat.Session.get('conversations').removeObject(this.get('conversation'));
+            this.get('conversation').destroy();
+            this.transitionToRoute('index');
         }
     }
 });

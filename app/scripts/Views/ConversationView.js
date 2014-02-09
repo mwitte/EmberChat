@@ -12,7 +12,7 @@ EmberChat.ConversationView = Ember.View.extend({
      * @property classNames
      * @type {Array}
      */
-    classNames: ['panel panel-default'],
+    classNames: [''],
 
     /**
      * Gets called if the conversation content changed. Scrolls the viewport down.

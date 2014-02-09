@@ -1,41 +1,46 @@
-<div class="panel-heading conversation">
-    <div class="row">
-    <div class="col-xs-10">
-        <h4 class="name">
-            {{conversation.name}}
-        </h4>
-    </div>
-    <div class="col-xs-2">
-        <h4>
-        <a href="#" {{action "close"}} class="pull-right">
-            <span class="glyphicon glyphicon-remove"></span>
-        </a>
-        </h4>
-    </div>
-
-    </div>
-</div>
-<div class="panel-body conversation-content">
-    {{#each conversation.content}}
-        {{#if info}}
-            <p class="info">{{content}}</p>
-        {{else}}
-            <p><strong>{{user}}</strong>: {{content}}</p>
-        {{/if}}
-
-    {{/each}}
-</div>
-<div class="panel-footer">
-    <form {{action "send" on="submit"}} role="form">
-        <div class="form-group">
-            <div class="input-group">
-                {{input type="text" valueBinding='text' class="form-control"}}
-                <span class="input-group-btn">
-                    <button {{action 'send'}} class="btn btn-default" type="button">Go!</button>
-                </span>
+<div class="col-xs-8">
+    <div class="panel panel-default">
+        <div class="panel-heading conversation">
+            <div class="row">
+                <div class="col-xs-10">
+                    <h4 class="name">
+                        {{conversation.name}}
+                    </h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>
+                        <a href="#" {{action "close"}} class="pull-right">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </h4>
+                </div>
             </div>
         </div>
-    </form>
+        <div class="panel-body conversation-content">
+            {{#each conversation.content}}
+                {{#if info}}
+                    <p class="info">{{content}}</p>
+                {{else}}
+                    <p><strong>{{user}}</strong>: {{content}}</p>
+                {{/if}}
+
+            {{/each}}
+        </div>
+        <div class="panel-footer">
+            <form {{action "send" on="submit"}} role="form">
+                <div class="form-group">
+                    <div class="input-group">
+                        {{input type="text" valueBinding='text' class="form-control"}}
+                        <span class="input-group-btn">
+                            <button {{action 'send'}} class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-{{! should get wrapped with grid}}
-{{outlet}}
+
+<div class="col-xs-4">
+    {{outlet}}
+</div>

@@ -36,7 +36,6 @@ EmberChat.SessionInfoComponent = Ember.Component.extend({
          */
         disconnect:  function() {
             EmberChat.Socket.get('socket').close();
-            EmberChat.Session.offlineTasks();
         }
     }
 });

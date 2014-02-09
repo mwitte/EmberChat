@@ -79,13 +79,15 @@ EmberChat.Session = Ember.Object.create({
     /**
      * All tasks which should be done when session user goes offline
      *
-     * @method offlineTasks
+     * @method onOfflineTasks
      * @returns {void}
      */
-    offlineTasks: function() {
+    onOfflineTasks: function() {
         this.get('availableUsers').forEach(function(item, index, enumerable) {
             Ember.set(item, "online", false);
         });
+        // @TODO there should be a onOnlineTask which should join all open rooms
+        this.set('conversations', Ember.A());
     },
 
     authenticate: function() {
