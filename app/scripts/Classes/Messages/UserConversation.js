@@ -1,4 +1,4 @@
-require('scripts/Classes/Messages/ConversationMessage');
+require('scripts/Classes/Messages/Conversation');
 
 /**
  * This class represents a conversation message

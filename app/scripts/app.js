@@ -14,6 +14,10 @@ var EmberChat = window.EmberChat = Ember.Application.create({
         host: window.location.hostname,
         port: '8589',
         path: window.location.pathname + 'emberchat/socket'
+    },
+
+    encryption: {
+        rsa: 512
     }
 });
 

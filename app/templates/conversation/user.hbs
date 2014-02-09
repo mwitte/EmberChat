@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+    {{partial 'partials/_conversationHead'}}
+    {{partial 'partials/_conversationBody'}}
+    <div class="panel-footer">
+        <form {{action "send" on="submit"}} role="form">
+            <div class="form-group">
+                <div class="input-group">
+                    {{conversation.encryptionKey}}
+                    <label>
+                        {{input type="checkbox" checkedBinding="encryptEnable"}} End-to-end encryption
+                    </label>
+                </div>
+                <div class="input-group">
+                    {{input type="text" valueBinding='text' class="form-control"}}
+                    <span class="input-group-btn">
+                        <button {{action 'send'}} class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-require('scripts/Classes/Messages/ConversationMessage');
+require('scripts/Classes/Messages/Conversation');
 require('scripts/Classes/User');
 
 /**
@@ -43,12 +43,7 @@ EmberChat.RoomJoinMessage = EmberChat.RoomConversationMessage.extend({
         if(this.get('user').id === EmberChat.Session.get('user').get('id')){
             return false;
         }
-
-        if(conversation.get('content')){
-            conversation.get('content').pushObjects(content);
-        }else{
-            conversation.set('content', Ember.A(content));
-        }
+        conversation.addContent(content);
         return true;
     },
 

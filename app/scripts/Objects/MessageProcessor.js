@@ -35,6 +35,8 @@ EmberChat.MessageProcessor = Ember.Object.create({
                 return EmberChat.RoomJoinMessage.create(messageContent).process();
             case 'RoomLeave':
                 return EmberChat.RoomLeaveMessage.create(messageContent).process();
+            case 'KeyExchange':
+                return EmberChat.KeyExchangeMessage.create(messageContent).process();
             default :
                 Ember.warn("Unknown message type: " + messageContent.type);
                 return false;

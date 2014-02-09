@@ -20,6 +20,8 @@
         "Ember": true,
         "Handlebars": true,
         "DS": true,
-        "Sha256": true
+        "Sha256": true,
+        "JSEncrypt": true,
+        "GibberishAES": true
     }
 }

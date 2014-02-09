@@ -43,11 +43,7 @@ EmberChat.ConversationMessage = EmberChat.AbstractMessage.extend({
     fillConversationObject: function(conversation) {
         var content = this.get('content');
         Ember.assert('ConversationMessage contains no content!', typeof content === 'object');
-        if(conversation.get('content')){
-            conversation.get('content').pushObjects(content);
-        }else{
-            conversation.set('content', Ember.A(content));
-        }
+        conversation.addContent(content);
     },
 
     /**

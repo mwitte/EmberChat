@@ -17,4 +17,6 @@ grunt
 [handlebars](http://handlebarsjs.com/) -
 [jQuery](http://jquery.com/) -
 [Boostrap](http://getbootstrap.com/) -
-[SHA-256 by Chris Veness](http://www.movable-type.co.uk)
+[SHA-256 by Chris Veness](http://www.movable-type.co.uk) -
+[JSEncrypt by Travis Tidwell](http://travistidwell.com/) -
+[Gibberish-AES by Mark Percival](http://mpercival.com)
