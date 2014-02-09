@@ -19,6 +19,7 @@
         "jQuery": true,
         "Ember": true,
         "Handlebars": true,
-        "DS": true
+        "DS": true,
+        "Sha256": true
     }
 }

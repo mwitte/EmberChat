@@ -6,11 +6,4 @@
  */
 EmberChat.UserListComponent = Ember.Component.extend({
 
-    /**
-     * All available users
-     *
-     * @property users
-     * @type {Ember.Array}
-     */
-    usersBinding: 'EmberChat.Session.availableUsers'
 });

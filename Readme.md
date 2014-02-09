@@ -11,3 +11,10 @@ npm install
 bower install
 grunt
 ```
+
+### Used Libraries ###
+[ember.js](http://emberjs.com/) -
+[handlebars](http://handlebarsjs.com/) -
+[jQuery](http://jquery.com/) -
+[Boostrap](http://getbootstrap.com/) -
+[SHA-256 by Chris Veness](http://www.movable-type.co.uk)
