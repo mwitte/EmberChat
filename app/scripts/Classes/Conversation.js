@@ -25,7 +25,46 @@ EmberChat.Conversation = Ember.Object.extend({
 
     users: null,
 
+    isEncrypted: false,
+
     encryptionKey: null,
+
+
+    /**
+     * Request a encrypted key of the other client, sends him a generated RSA public key for encryption
+     */
+    requestEncryptedKey: function() {
+        if(!this.get('user').get('online')){
+            this.set('isEncrypted', false);
+            return;
+        }
+        if(this.get('isEncrypted') && !this.get('encryptionKey')){
+            var rsaEncrypt = new JSEncrypt({default_key_size: EmberChat.encryption.rsa});
+            // build message with public key
+            var exChangeMsg = {
+                type: 'KeyExchange',
+                publicKey: rsaEncrypt.getPublicKeyB64(),
+                user: this.get('user').get('id')
+            };
+            EmberChat.MessageProcessor.processOutgoing(exChangeMsg);
+            // set JSEncrypt instance as conversation property
+            this.set('rsaEncrypt', rsaEncrypt);
+        }else if(this.get('isEncrypted') === false){
+            var disableMsg = {
+                type: 'KeyExchange',
+                disable: true,
+                user: this.get('user').get('id')
+            };
+            EmberChat.MessageProcessor.processOutgoing(disableMsg);
+            this.set('encryptionKey', null);
+        }
+    }.observes('isEncrypted'),
+
+
+    disableEncryption: function() {
+        this.set('isEncrypted', false);
+        this.set('encryptionKey', null);
+    }.observes('user.online'),
 
     /**
      *
@@ -45,6 +84,7 @@ EmberChat.Conversation = Ember.Object.extend({
                     // try to decode it, can fail if given text is not encrypted
                     try {
                         content.content = GibberishAES.dec(content.content, this.get('encryptionKey'));
+                        content.encrypted = true;
                     } catch (e) {
 
                     }

@@ -21,6 +21,14 @@ EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
         if(this.get('encryptedKey')){
             this.receiveKeyAndDecrypt();
         }
+        if(this.get('disable')){
+            this.disableEncryption();
+        }
+    },
+
+    disableEncryption: function(){
+        var conversation = this.getConversationObject();
+        conversation.disableEncryption();
     },
 
     /**
@@ -49,6 +57,7 @@ EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
         // generate a key
         var generatedKey = this.generateKey();
         conversation.set('encryptionKey', generatedKey);
+        conversation.set('isEncrypted', true);
 
         var jsEncrypt = new JSEncrypt({default_key_size: EmberChat.encryption.rsa});
         jsEncrypt.setPublicKey(this.get('publicKey'));

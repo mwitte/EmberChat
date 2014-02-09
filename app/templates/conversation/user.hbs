@@ -4,13 +4,19 @@
     <div class="panel-footer">
         <form {{action "send" on="submit"}} role="form">
             <div class="form-group">
+                {{#if conversation.user.online}}
                 <div class="input-group">
-                    {{conversation.encryptionKey}}
-                    <label>
-                        {{input type="checkbox" checkedBinding="encryptEnable"}} End-to-end encryption
+                    <label data-toggle="tooltip" data-placement="top"
+                           title="Only this and the browser of the other user are able to decrypt.
+                           Even the server is not able to read the messages. Encrypted messages cannot be logged.">
+                        {{input type="checkbox" checkedBinding="conversation.isEncrypted"}} End-to-end encryption
                     </label>
                 </div>
+                {{/if}}
                 <div class="input-group">
+                    {{#if conversation.isEncrypted}}
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></span>
+                    {{/if}}
                     {{input type="text" valueBinding='text' class="form-control"}}
                     <span class="input-group-btn">
                         <button {{action 'send'}} class="btn btn-default" type="button">Go!</button>

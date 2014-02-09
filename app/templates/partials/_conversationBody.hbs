@@ -3,7 +3,12 @@
         {{#if info}}
             <p class="info">{{content}}</p>
         {{else}}
-            <p><strong>{{user}}</strong>: {{content}}</p>
+            <p>
+                <strong>{{user}}</strong>: {{content}}
+                {{#if encrypted}}
+                    <span class="glyphicon glyphicon-eye-close pull-right"></span>
+                {{/if}}
+            </p>
         {{/if}}
 
     {{/each}}
