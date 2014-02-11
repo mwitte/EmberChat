@@ -22,6 +22,7 @@
         "DS": true,
         "Sha256": true,
         "JSEncrypt": true,
-        "GibberishAES": true
+        "GibberishAES": true,
+        "chrome": true
     }
 }

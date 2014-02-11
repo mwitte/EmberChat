@@ -88,6 +88,7 @@ EmberChat.Session = Ember.Object.create({
         });
         // @TODO there should be a onOnlineTask which should join all open rooms
         this.set('conversations', Ember.A());
+        this.set('authenticated', false);
     },
 
     authenticate: function() {

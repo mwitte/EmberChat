@@ -26,7 +26,7 @@ var EmberChat = window.EmberChat = Ember.Application.create({
  */
 require('scripts/properties');
 
-
+require('scripts/Environments/*');
 require('scripts/Prototypes');
 require('scripts/Classes/*');
 require('scripts/Objects/*');

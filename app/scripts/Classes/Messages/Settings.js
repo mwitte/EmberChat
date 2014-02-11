@@ -27,6 +27,7 @@ EmberChat.SettingsMessage = EmberChat.AbstractMessage.extend({
         EmberChat.Session.set('authenticated', true);
         // fire authenticated event
         Ember.Instrumentation.instrument("signal.authenticated");
+
         return true;
     }
 });

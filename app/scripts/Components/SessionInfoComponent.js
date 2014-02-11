@@ -29,6 +29,7 @@ EmberChat.SessionInfoComponent = Ember.Component.extend({
          */
         connect: function() {
             EmberChat.Socket.connect();
+            this.sendAction('authenticate');
         },
 
         /**

@@ -21,6 +21,7 @@ EmberChat.ConversationMessage = EmberChat.AbstractMessage.extend({
             this.doBackgroundTasks(conversation);
         }
         this.fillConversationObject(conversation);
+
         return true;
     },
 

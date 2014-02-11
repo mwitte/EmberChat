@@ -6,4 +6,9 @@
  */
 EmberChat.ApplicationController = Ember.ArrayController.extend({
 
+    actions: {
+        authenticate: function() {
+            this.transitionToRoute('authenticate');
+        }
+    }
 });
