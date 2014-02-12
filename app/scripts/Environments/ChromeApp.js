@@ -11,7 +11,7 @@ EmberChat.ChromeAppEnvironment = Ember.Object.create({
     /**
      * uniquie id for each notification
      */
-    notificationId: 0,
+    notificationId: 1,
 
     /**
      * Determine if this environment is current context
