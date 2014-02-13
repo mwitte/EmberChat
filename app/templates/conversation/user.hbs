@@ -17,7 +17,7 @@
                     {{#if conversation.isEncrypted}}
                     <span class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></span>
                     {{/if}}
-                    {{input type="text" valueBinding='text' class="form-control"}}
+                    {{input type="text" valueBinding='text' class="form-control" disabledBinding="conversation.isConversationDisabled"}}
                     <span class="input-group-btn">
                         <button {{action 'send'}} class="btn btn-default" type="button">Go!</button>
                     </span>

@@ -1,12 +1,21 @@
 require('scripts/Classes/Messages/UserConversation');
 
 /**
- * Another user requests a key for secure communication
+ * Key exchange messages for encrypted conversations. Detailed doc about the procedure can be found in docs folder
  *
  * @class RequestEncryptedKeyMessage
  * @namespace EmberChat
  */
 EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
+
+    /**
+     * Used word for encrypted acknowledge message. This word can be public because the acknowledge message it the
+     * test for the other side that both got the same AES key.
+     *
+     * @property acknowledgeWord
+     * @type {string}
+     */
+    acknowledgeWord : 'Acknowledge',
 
     /**
      * Process this message
@@ -24,8 +33,43 @@ EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
         if(this.get('disable')){
             this.disableEncryption();
         }
+        if(this.get('acknowledge')){
+            this.acknowledgeEncryption();
+        }
     },
 
+    /**
+     * Acknowledge encryption is for preventing man-in-the-middle attacks. Only the other client could decode the
+     * given encrypted key and used it for encryption the acknowledge and this acknowledge could decoded by
+     * secure encryptionKey on this side enabling the encryption for messaging
+     *
+     * @method acknowledgeEncryption
+     * @return {void}
+     */
+    acknowledgeEncryption: function(){
+        var conversation = this.getConversationObject();
+        // try to decrypt acknowledge with secure encryptionKey
+        try{
+            var decryptedAcknowledge = GibberishAES.dec(this.get('acknowledge'), conversation.get('encryptionKey'));
+        }catch (e){
+
+        }
+        // only if acknowledge word could decoded by secure encryptionKey
+        if(decryptedAcknowledge === this.get('acknowledgeWord')){
+            conversation.set('encryptionValidated', true);
+        }else{
+            // something was wrong
+            Ember.warn('Could not acknowledgeEncryption '+ this.constructor.toString());
+            conversation.disableEncryption();
+        }
+    },
+
+    /**
+     * Disables the encryption on this side, the conversation itself sends a disabling message to other client
+     *
+     * @method disableEncryption
+     * @return {void}
+     */
     disableEncryption: function(){
         var conversation = this.getConversationObject();
         conversation.disableEncryption();
@@ -33,6 +77,8 @@ EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
 
     /**
      * Receive encrypted key and decrypt with conversation's JSEncrypt instance
+     * @method receiveKeyAndDecrypt
+     * @return {void}
      */
     receiveKeyAndDecrypt: function(){
         var conversation = this.getConversationObject();
@@ -43,13 +89,31 @@ EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
         if(!jsEncrypt){
             throw new Ember.Error('Conversation has no instance of JSEncrypt in '+ this.constructor.toString());
         }
-        // set decrypted key as conversation property
-        conversation.set('encryptionKey', jsEncrypt.decrypt(this.get('encryptedKey')));
+
+        var decryptedKey = jsEncrypt.decrypt(this.get('encryptedKey'));
+
+        // only if decryption succeeded
+        if(decryptedKey){
+            // set decrypted key as conversation property
+            conversation.set('encryptionKey', decryptedKey);
+            conversation.set('encryptionValidated', true);
+
+            var rawMessage = {};
+            rawMessage.acknowledge = GibberishAES.enc(this.get('acknowledgeWord'), decryptedKey);
+            rawMessage.user = conversation.get('user').get('id');
+            rawMessage.type = 'KeyExchange';
+            EmberChat.MessageProcessor.processOutgoing(rawMessage);
+        }else{
+            // something was wrong
+            Ember.warn('Could not receiveKeyAndDecrypt '+ this.constructor.toString());
+            conversation.disableEncryption();
+        }
     },
 
     /**
      * Generates a new key, encrypts it with given publicKey and sends it back
      *
+     * @method generateKeyAndTransmit
      * @returns {boolean}
      */
     generateKeyAndTransmit: function(){
@@ -62,13 +126,24 @@ EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
         var jsEncrypt = new JSEncrypt({default_key_size: EmberChat.encryption.rsa});
         jsEncrypt.setPublicKey(this.get('publicKey'));
 
-        var message = {
-            type: 'KeyExchange',
-            user: this.get('user').id,
-            encryptedKey: jsEncrypt.encrypt(generatedKey)
-        };
+        var encryptedKey = jsEncrypt.encrypt(generatedKey);
 
-        EmberChat.MessageProcessor.processOutgoing(message);
+        // only if encryption succeeded
+        if(encryptedKey){
+            var message = {
+                type: 'KeyExchange',
+                user: this.get('user').id,
+                encryptedKey: encryptedKey
+            };
+
+            EmberChat.MessageProcessor.processOutgoing(message);
+
+            conversation.set('encryptionValidated', false);
+        }else{
+            // something was wrong, disable encryption
+            conversation.disableEncryption();
+            Ember.warn('Could not generateKeyAndTransmit '+ this.constructor.toString());
+        }
 
         return true;
     },

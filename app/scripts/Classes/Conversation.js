@@ -29,6 +29,24 @@ EmberChat.Conversation = Ember.Object.extend({
 
     encryptionKey: null,
 
+    encryptionValidated: false,
+
+    /**
+     * Determines if the current conversation should be disabled
+     *
+     * @property isConversationDisabled
+     * @type {boolean}
+     */
+    isConversationDisabled: function(){
+        /**
+         * if conversation is encrypted but not valid so far, this happens if the exchanged key is not acknowledged
+         */
+        if(this.get('isEncrypted') && !this.get('encryptionValidated')){
+            return true;
+        }
+        return false;
+    }.property('isEncrypted', 'encryptionValidated'),
+
 
     /**
      * Request a encrypted key of the other client, sends him a generated RSA public key for encryption
@@ -60,10 +78,10 @@ EmberChat.Conversation = Ember.Object.extend({
         }
     }.observes('isEncrypted'),
 
-
     disableEncryption: function() {
         this.set('isEncrypted', false);
         this.set('encryptionKey', null);
+        this.set('encryptionValidated', false);
     }.observes('user.online'),
 
     /**

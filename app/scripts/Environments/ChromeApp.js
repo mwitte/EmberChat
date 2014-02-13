@@ -18,7 +18,7 @@ EmberChat.ChromeAppEnvironment = Ember.Object.create({
      * @returns {boolean}
      */
     isEnv: function(){
-        return (typeof chrome !== 'undefined');
+        return chrome.app.isInstalled;
     },
 
     /**

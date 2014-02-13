@@ -17,6 +17,7 @@ var EmberChat = window.EmberChat = Ember.Application.create({
     },
 
     encryption: {
+        // key length for RSA encryption, will probably be changeable by user in future
         rsa: 512
     }
 });
