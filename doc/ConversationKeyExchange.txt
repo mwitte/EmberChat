@@ -1,0 +1,22 @@
+title Encrypted conversation key exchange
+
+
+note left of Alice: Generate RSA key pair
+Alice->+Alice: Disable conversation
+Alice->+Server: transmit public RSA key
+Server->Bob: transmit public RSA key
+Bob->+Bob: Disable conversation
+Bob->+Bob: Generate new AES key and \n encrypt with public RSA
+
+Bob->-Server: transmit encrypted AES key
+
+Server->Alice: transmit encrypted AES key
+Alice->+Alice: Decrypt encrypted AES key with\nprivate RSA and encrypt\n'Acknowledge' with AES key
+
+Alice->-Server: transmit encrypted 'Acknowledge'
+
+Alice->-Alice: Enable conversation
+
+Server->+Bob: transmit encrypted 'Acknowledge'
+Bob->-Bob: Decrypt 'Acknowledge'\nwith AES key
+Bob->-Bob: Enable conversation
