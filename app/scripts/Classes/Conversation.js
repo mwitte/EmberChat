@@ -112,7 +112,10 @@ EmberChat.Conversation = Ember.Object.extend({
 
         // create new notification on user chat
         if(contentArray[0] && contentArray[0].content && this.get('user')){
-            EmberChat.DefaultEnvironment.newNotification(this.get('name'), contentArray[0].content);
+            // @TODO conversation body should be changed
+            if(contentArray[0].user !== EmberChat.Session.get('user').get('name')){
+                EmberChat.DefaultEnvironment.newNotification(this.get('name'), contentArray[0].content);
+            }
         }
 
         if(this.get('content')){
