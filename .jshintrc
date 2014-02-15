@@ -23,6 +23,7 @@
         "Sha256": true,
         "JSEncrypt": true,
         "GibberishAES": true,
-        "chrome": true
+        "chrome": true,
+        "process": true
     }
 }

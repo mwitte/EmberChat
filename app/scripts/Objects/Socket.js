@@ -94,6 +94,7 @@ EmberChat.Socket = Ember.Object.create({
     onOpen: function() {
         this.set('online', true);
         EmberChat.Session.authenticate();
+        EmberChat.DefaultEnvironment.onConnected();
     },
 
     /**

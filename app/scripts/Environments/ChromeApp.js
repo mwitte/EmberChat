@@ -13,12 +13,22 @@ EmberChat.ChromeAppEnvironment = Ember.Object.create({
      */
     notificationId: 1,
 
+    init: function(){
+        if(this.isEnv()){
+            chrome.idle.onStateChanged.addListener(this.onStateChanged);
+        }
+
+    },
+
     /**
      * Determine if this environment is current context
      * @returns {boolean}
      */
     isEnv: function(){
-        return chrome.app.isInstalled;
+        if(typeof chrome === 'undefined'){
+            return false;
+        }
+        return chrome.app.getIsInstalled();
     },
 
     /**
@@ -28,9 +38,13 @@ EmberChat.ChromeAppEnvironment = Ember.Object.create({
      * @param id
      */
     newNotification: function(title, message, id){
-        if(!this.isEnv() || EmberChat.DefaultEnvironment.get('inFocus')){
+        if(!this.isEnv()){
             return false;
         }
+        if(EmberChat.DefaultEnvironment.get('inFocus')){
+            return false;
+        }
+
         // @todo is this useful?
         if(!id){
             id = parseInt(this.get('notificationId'), "string");
@@ -43,5 +57,14 @@ EmberChat.ChromeAppEnvironment = Ember.Object.create({
             iconUrl: "images/static/icon-48.png"
         };
         chrome.notifications.create(id.toString(), opt, function(){});
+    },
+
+    /**
+     * Gets called if the state changes
+     *
+     * @param {string} state can be 'active', 'idle' or 'locked'
+     */
+    onStateChanged: function(state){
+        // @TODO implement messaging
     }
 });
