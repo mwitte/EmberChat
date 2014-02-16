@@ -1,0 +1,25 @@
+<div class="col-xs-12">
+    <div class="panel panel-default userlist">
+        <div class="panel-heading"><h4>Profile: {{EmberChat.Session.user.name}}</h4></div>
+        <div class="panel-body">
+            <form role="form">
+                {{#if errorMessage}}
+                    <div class="alert alert-danger">{{errorMessage}}</div>
+                {{/if}}
+                <div class="form-group">
+                    <label for="currentPassword">Current password</label>
+                    {{input type="password" valueBinding="currentPassword" class="form-control" id="currentPassword" placeholder="Current password"}}
+                </div>
+                <div class="form-group">
+                    <label for="password">New password</label>
+                    {{input type="password" valueBinding="password" class="form-control" id="password" placeholder="New password"}}
+                </div>
+                <div class="form-group">
+                    <label for="passwordCheck">New password (repeat)</label>
+                    {{input type="password" valueBinding="passwordCheck" class="form-control" id="passwordCheck" placeholder="New password"}}
+                </div>
+                <button {{action 'save'}} type="submit" class="btn btn-default">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

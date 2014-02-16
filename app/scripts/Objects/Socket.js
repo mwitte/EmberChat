@@ -8,24 +8,6 @@ require('scripts/Objects/MessageProcessor');
 EmberChat.Socket = Ember.Object.create({
 
     /**
-     * @property host
-     * @type {string}
-     */
-    hostBinding: 'EmberChat.server.host',
-
-    /**
-     * @property port
-     * @type {string}
-     */
-    portBinding: 'EmberChat.server.port',
-
-    /**
-     * @property path
-     * @type {string}
-     */
-    pathBinding: 'EmberChat.server.path',
-
-    /**
      * Determines the online state of the socket
      *
      * @type {boolean}
@@ -40,15 +22,35 @@ EmberChat.Socket = Ember.Object.create({
     socket: null,
 
     /**
+     * Saves the given connection data, if empty deletes current
+     *
+     * @param {String} host
+     * @param {String} path
+     */
+    saveConnection: function(host, path){
+        if(host && path){
+            localStorage.host = host;
+            localStorage.path = path;
+        }else{
+            delete localStorage.host;
+            delete localStorage.path;
+        }
+    },
+
+    /**
      * Opens the socket connection
      *
      * @method connect
      */
-    connect: function() {
+    connect: function(host, path) {
         // disable connection by global prop
         if( typeof EmberChat.socketDisabled !== 'undefined' && EmberChat.socketDisabled === true ){
             return;
         }
+        if(!host || !path){
+            return;
+        }
+
         var _this = this;
         window.WebSocket = window.WebSocket || window.MozWebSocket;
         // if browser does not support WebSockets
@@ -56,8 +58,12 @@ EmberChat.Socket = Ember.Object.create({
             Ember.warn("Browser does not support WebSockets");
             return;
         }
+        if(this.get('socket')){
+            this.get('socket').close();
+        }
+
         // create socket
-        var socket = new WebSocket('ws://' + this.get('host') + ':' + this.get('port') + this.get('path'));
+        var socket = new WebSocket('ws://' + host + '/' + path);
         // bind event listeners
         socket.onopen = function () {
             _this.onOpen();
@@ -93,7 +99,6 @@ EmberChat.Socket = Ember.Object.create({
      */
     onOpen: function() {
         this.set('online', true);
-        EmberChat.Session.authenticate();
         EmberChat.DefaultEnvironment.onConnected();
     },
 

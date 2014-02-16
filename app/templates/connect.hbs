@@ -1,0 +1,18 @@
+<div class="col-xs-12">
+    <div class="panel panel-default userlist">
+        <div class="panel-heading"><h4>Connect</h4></div>
+        <div class="panel-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="host">Host ( e. g. 127.0.0.1:8586 )</label>
+                    {{input type="text" valueBinding="host" class="form-control" id="host" placeholder="Host"}}
+                </div>
+                <div class="form-group">
+                    <label for="path">Path ( e. g. emberchat/socket )</label>
+                    {{input type="text" valueBinding="path" class="form-control" id="path" placeholder="Path"}}
+                </div>
+                <button {{action 'connect'}} type="submit" class="btn btn-success">Connect</button>
+            </form>
+        </div>
+    </div>
+</div>

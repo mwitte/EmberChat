@@ -25,9 +25,10 @@ EmberChat.SettingsMessage = EmberChat.AbstractMessage.extend({
             localStorage.token = this.get('token');
         }
         EmberChat.Session.set('authenticated', true);
-        // fire authenticated event
-        Ember.Instrumentation.instrument("signal.authenticated");
-
+        try{
+            // fire authenticated event
+            Ember.Instrumentation.instrument("signal.authenticated");
+        }catch (e){}
         return true;
     }
 });

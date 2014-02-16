@@ -1,3 +1,4 @@
+require('scripts/Routes/ConnectionRoute');
 /**
  * Every route which should only accessible for authenticated session should extend this
  *
@@ -8,9 +9,11 @@
 EmberChat.AuthenticatedRoute = Ember.Route.extend({
 
     afterModel: function(model, transition){
-        if(!EmberChat.Session.get('authenticated')){
-            // safe original transition
-            EmberChat.attemptedTransition = transition;
+        // safe original transition
+        EmberChat.attemptedTransition = transition;
+        if(!EmberChat.Socket.get('online')){
+            this.transitionTo('connect');
+        }else if(!EmberChat.Session.get('authenticated')){
             this.transitionTo('authenticate');
         }
         this.redirect(model);
