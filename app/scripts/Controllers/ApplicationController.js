@@ -13,6 +13,11 @@ EmberChat.ApplicationController = Ember.ArrayController.extend({
         disconnect: function() {
             EmberChat.Socket.saveConnection();
             this.transitionToRoute('connect');
+        },
+        unAuthenticate: function() {
+            EmberChat.Socket.get('socket').close();
+            EmberChat.Session.unAuthenticate();
+            this.transitionToRoute('connect');
         }
     }
 });

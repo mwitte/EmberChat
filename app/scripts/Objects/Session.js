@@ -13,6 +13,12 @@ EmberChat.Session = Ember.Object.create({
     authenticated: false,
 
     /**
+     * @property isAdmin
+     * @type {boolean}
+     */
+    isAdmin: false,
+
+    /**
      * The current user
      *
      * @property user
@@ -99,5 +105,9 @@ EmberChat.Session = Ember.Object.create({
             };
             EmberChat.MessageProcessor.processOutgoing(rawMessage);
         }
+    },
+
+    unAuthenticate: function() {
+        delete localStorage.token;
     }
 });

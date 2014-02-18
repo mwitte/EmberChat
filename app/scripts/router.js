@@ -13,5 +13,8 @@ EmberChat.Router.map(function () {
         this.route('room', {path: 'room/:id'});
     });
 
+    this.resource('admin', function () {
+        this.route('createUser', {path: 'createUser'});
+    });
 
 });

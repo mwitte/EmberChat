@@ -24,6 +24,7 @@ EmberChat.SettingsMessage = EmberChat.AbstractMessage.extend({
         if(this.get('token')){
             localStorage.token = this.get('token');
         }
+        EmberChat.Session.set('isAdmin', this.get('admin'));
         EmberChat.Session.set('authenticated', true);
         try{
             // fire authenticated event

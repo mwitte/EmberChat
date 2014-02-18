@@ -10,9 +10,9 @@ EmberChat.ProfileController = Ember.Controller.extend({
 
     errorMessage: null,
 
-    currentPassword: 'password',
-    password: 'password',
-    passwordCheck: 'password',
+    currentPassword: '',
+    password: '',
+    passwordCheck: '',
 
     checkPassword: function(){
         if(this.get('password').length <= this.get('passwordMinLength')){
@@ -29,8 +29,9 @@ EmberChat.ProfileController = Ember.Controller.extend({
             return;
         }
         this.set('errorMessage', null);
-        //this.set('password', '');
-        //this.set('passwordCheck', '');
+        this.set('currentPassword', '');
+        this.set('password', '');
+        this.set('passwordCheck', '');
         return hash;
     },
 

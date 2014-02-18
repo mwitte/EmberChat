@@ -40,7 +40,9 @@ EmberChat.MessageProcessor = Ember.Object.create({
             case 'Connected':
                 return EmberChat.ConnectedMessage.create(messageContent).process();
             case 'ProfileUpdate':
-                return EmberChat.ProfileUpdate.create(messageContent).process();
+                return EmberChat.ProfileUpdateMessage.create(messageContent).process();
+            case 'AdminAction':
+                return EmberChat.AdminActionMessage.create(messageContent).process();
             default :
                 Ember.warn("Unknown message type: " + messageContent.type);
                 return false;

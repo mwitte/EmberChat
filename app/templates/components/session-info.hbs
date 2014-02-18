@@ -12,14 +12,26 @@
                 {{#link-to 'rooms' class="list-group-item"}}
                     Rooms / Users
                 {{/link-to}}
+                {{#link-to 'profile' class="list-group-item"}}
+                    Profile
+                {{/link-to}}
             </div>
         {{/if}}
-        <div class="btn-group btn-block">
-            {{#if isOnline}}
-                <button {{action 'disconnect'}}type="button" class="btn btn-success btn-block">
-                    <span class="glyphicon glyphicon-ok"></span> online
-                </button>
-            {{/if}}
-        </div>
+        {{#if isOnline}}
+            <div class="btn-group btn-block">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button {{action 'disconnect'}}type="button" class="btn btn-success btn-block">
+                            <span class="glyphicon glyphicon-ok"></span> online
+                        </button>
+                    </div>
+                    <div class="col-xs-6">
+                        {{#if EmberChat.Session.authenticated}}
+                            <button {{action 'logout'}} type="submit" class="btn btn-danger btn-block">Logout</button>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        {{/if}}
     </div>
 </div>

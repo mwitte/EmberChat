@@ -25,19 +25,15 @@ EmberChat.SessionInfoComponent = Ember.Component.extend({
     actions: {
 
         /**
-         * Connect to server
-         */
-        connect: function() {
-            EmberChat.Socket.connect();
-            this.sendAction('authenticate');
-        },
-
-        /**
          * Disconnect from server
          */
         disconnect:  function() {
             EmberChat.Socket.get('socket').close();
             this.sendAction('disconnect');
+        },
+
+        logout: function() {
+            this.sendAction('unAuthenticate');
         }
     }
 });

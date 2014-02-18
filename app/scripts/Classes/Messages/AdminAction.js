@@ -3,15 +3,15 @@ require('scripts/Classes/Messages/Abstract');
 /**
  * This class represents a conversation message
  *
- * @class ProfileUpdateMessage
+ * @class AdminActionMessage
  * @extends EmberChat.AbstractMessage
  * @namespace EmberChat
  */
-EmberChat.ProfileUpdateMessage = EmberChat.AbstractMessage.extend({
+EmberChat.AdminActionMessage = EmberChat.AbstractMessage.extend({
     process: function(){
         try{
             // fire authenticated event
-            Ember.Instrumentation.instrument("signal.profileUpdated", this);
+            Ember.Instrumentation.instrument("signal.admin." + this.get('action'), this);
         }catch (e){}
     }
 });

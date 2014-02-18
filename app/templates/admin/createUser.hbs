@@ -1,0 +1,38 @@
+<div class="col-xs-12">
+    <div class="panel panel-default userlist">
+        <div class="panel-heading"><h4>Create User</h4></div>
+        <div class="panel-body">
+            <form role="form">
+                {{#if errorMessage}}
+                    <div class="alert alert-danger">{{errorMessage}}</div>
+                {{/if}}
+                {{#if successMessage}}
+                    <div class="alert alert-success">{{successMessage}}</div>
+                {{/if}}
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    {{input type="text" valueBinding="name" class="form-control" id="name" placeholder="Name"}}
+                </div>
+
+                <div class="form-group">
+                    <label for="auth">Auth</label>
+                    {{input type="text" valueBinding="auth" class="form-control" id="auth" placeholder="Auth"}}
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    {{input type="text" valueBinding="password" class="form-control" id="password" placeholder="Password"}}
+                    <span class="help-block">Encrypted: {{encryptedPassword}}</span>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        {{input type="checkbox" checkedBinding="admin"}} Admin
+                    </label>
+                </div>
+                <button {{action 'save'}} type="submit" class="btn btn-primary" {{bind-attr disabled="disabled"}}>Create</button>
+            </form>
+        </div>
+    </div>
+</div>
