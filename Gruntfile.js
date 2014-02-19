@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             },
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass:server']
+                tasks: ['compass']
             },
             neuter: {
                 files: ['<%= yeoman.app %>/scripts/{,**/}*.js'],
@@ -110,23 +110,19 @@ module.exports = function (grunt) {
             ]
         },
         compass: {
-            options: {
-                sassDir: '<%= yeoman.app %>/styles',
-                cssDir: '.tmp/styles',
-                generatedImagesDir: '.tmp/images/generated',
-                imagesDir: '<%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/scripts',
-                fontsDir: '<%= yeoman.app %>/fonts',
-                importPath: 'app',
-                httpImagesPath: '/images',
-                httpGeneratedImagesPath: '/images/generated',
-                httpFontsPath: '/fonts',
-                relativeAssets: false
-            },
-            dist: {},
-            server: {
+            dist: {
                 options: {
-                    debugInfo: true
+                    sassDir: '<%= yeoman.app %>/styles',
+                    cssDir: '.tmp/styles',
+                    generatedImagesDir: '.tmp/images/generated',
+                    imagesDir: '<%= yeoman.app %>/images',
+                    javascriptsDir: '<%= yeoman.app %>/scripts',
+                    fontsDir: '<%= yeoman.app %>/fonts',
+                    importPath: 'app',
+                    httpImagesPath: '/images',
+                    httpGeneratedImagesPath: '/images/generated',
+                    httpFontsPath: '/fonts',
+                    relativeAssets: false
                 }
             }
         },
@@ -262,7 +258,7 @@ module.exports = function (grunt) {
         concurrent: {
             server: [
                 'emberTemplates',
-                'compass:server'
+                'compass'
             ],
             test: [
                 'emberTemplates',
@@ -270,7 +266,7 @@ module.exports = function (grunt) {
             ],
             dist: [
                 'emberTemplates',
-                'compass:dist',
+                'compass',
                 'imagemin',
                 'svgmin',
                 'htmlmin'
