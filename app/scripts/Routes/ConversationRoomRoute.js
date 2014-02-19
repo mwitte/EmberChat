@@ -20,7 +20,8 @@ EmberChat.ConversationRoomRoute = EmberChat.ConversationRoute.extend({
 
         if (!conversation.get('content')) {
             var message = {
-                type: 'RoomJoin',
+                type: 'Room',
+                subType: 'Join',
                 room: conversation.get('room').get('id')
             };
             EmberChat.MessageProcessor.processOutgoing(message);

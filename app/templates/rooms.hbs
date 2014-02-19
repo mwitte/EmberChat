@@ -11,6 +11,22 @@
                 {{/each}}
             </div>
         </div>
+        <div class="panel-footer">
+            <form role="form">
+                <h4>Create new room</h4>
+                {{#if errorMessage}}
+                    <div class="alert alert-danger">{{errorMessage}}</div>
+                {{/if}}
+                {{#if successMessage}}
+                    <div class="alert alert-success">{{successMessage}}</div>
+                {{/if}}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    {{input type="text" valueBinding="name" class="form-control" id="name" placeholder="Name"}}
+                </div>
+                <button {{action 'create'}} type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
     </div>
 </div>
 

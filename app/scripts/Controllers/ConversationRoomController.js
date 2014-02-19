@@ -11,14 +11,16 @@ EmberChat.ConversationRoomController = EmberChat.ConversationController.extend({
         send: function() {
             var rawMessage = {content: this.get('text')};
             rawMessage.room = this.get('conversation').get('id');
-            rawMessage.type = 'RoomConversation';
+            rawMessage.type = 'Room';
+            rawMessage.subType = 'Conversation';
             EmberChat.MessageProcessor.processOutgoing(rawMessage);
             this.set('text', '');
         },
 
         close: function() {
             var message = {
-                type: 'RoomLeave',
+                type: 'Room',
+                subType: 'Leave',
                 room: this.get('conversation').get('room').get('id')
             };
             EmberChat.MessageProcessor.processOutgoing(message);

@@ -20,7 +20,8 @@ EmberChat.ConversationUserController = EmberChat.ConversationController.extend({
             }
 
             rawMessage.user = this.get('conversation').get('user').get('id');
-            rawMessage.type = 'UserConversation';
+            rawMessage.type = 'User';
+            rawMessage.subType = 'Conversation';
             EmberChat.MessageProcessor.processOutgoing(rawMessage);
             this.set('text', '');
         },

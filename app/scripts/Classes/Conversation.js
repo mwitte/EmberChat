@@ -60,7 +60,8 @@ EmberChat.Conversation = Ember.Object.extend({
             var rsaEncrypt = new JSEncrypt({default_key_size: EmberChat.encryption.rsa});
             // build message with public key
             var exChangeMsg = {
-                type: 'KeyExchange',
+                type: 'User',
+                subType: 'KeyExchange',
                 publicKey: rsaEncrypt.getPublicKeyB64(),
                 user: this.get('user').get('id')
             };
@@ -69,7 +70,8 @@ EmberChat.Conversation = Ember.Object.extend({
             this.set('rsaEncrypt', rsaEncrypt);
         }else if(this.get('isEncrypted') === false){
             var disableMsg = {
-                type: 'KeyExchange',
+                type: 'User',
+                subType: 'KeyExchange',
                 disable: true,
                 user: this.get('user').get('id')
             };

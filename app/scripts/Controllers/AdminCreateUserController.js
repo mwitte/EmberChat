@@ -53,6 +53,7 @@ EmberChat.AdminCreateUserController = Ember.Controller.extend({
      * @param message
      */
     updateFailed: function(message){
+        var _this = this;
         this.set('errorMessage', 'Failed to create user: ' + message);
         Ember.run.later(this, function() {
             _this.set('errorMessage', null);

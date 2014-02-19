@@ -101,7 +101,8 @@ EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
             var rawMessage = {};
             rawMessage.acknowledge = GibberishAES.enc(this.get('acknowledgeWord'), decryptedKey);
             rawMessage.user = conversation.get('user').get('id');
-            rawMessage.type = 'KeyExchange';
+            rawMessage.type = 'User';
+            rawMessage.subType = 'KeyExchange';
             EmberChat.MessageProcessor.processOutgoing(rawMessage);
         }else{
             // something was wrong
@@ -131,7 +132,8 @@ EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
         // only if encryption succeeded
         if(encryptedKey){
             var message = {
-                type: 'KeyExchange',
+                type: 'User',
+                subType: 'KeyExchange',
                 user: this.get('user').id,
                 encryptedKey: encryptedKey
             };

@@ -8,5 +8,4 @@ require('scripts/Classes/Participant');
  * @namespace EmberChat
  */
 EmberChat.Room = EmberChat.Participant.extend({
-
 });

@@ -15,6 +15,9 @@ EmberChat.ProfileController = Ember.Controller.extend({
     passwordCheck: '',
 
     checkPassword: function(){
+        if(this.get('currentPassword').length <= 0){
+            this.set('errorMessage', 'You have to set your current password.');
+        }
         if(this.get('password').length <= this.get('passwordMinLength')){
             this.set('errorMessage', 'Password is too short. At least ' + this.get('passwordMinLength') + ' needed.');
             return;
@@ -28,11 +31,14 @@ EmberChat.ProfileController = Ember.Controller.extend({
             this.set('errorMessage', 'Could not hash given password.');
             return;
         }
+        return hash;
+    },
+
+    reset: function(){
         this.set('errorMessage', null);
         this.set('currentPassword', '');
         this.set('password', '');
         this.set('passwordCheck', '');
-        return hash;
     },
 
     /**
@@ -57,16 +63,18 @@ EmberChat.ProfileController = Ember.Controller.extend({
     actions: {
         save: function(){
             var _this = this;
-            if(this.get('password')){
-                var passwordHash = this.checkPassword();
+            var hash = this.checkPassword();
+            if(hash){
                 var rawMessage = {
-                    type: 'UpdateProfile',
+                    type: 'Profile',
+                    subType: 'Update',
                     profile: {
-                        password: passwordHash,
+                        password: hash,
                         currentPassword: Sha256.hash(this.get('currentPassword'))
                     }
                 };
                 EmberChat.MessageProcessor.processOutgoing(rawMessage);
+                this.reset();
 
                 // subscript event listener
                 Ember.Instrumentation.subscribe("signal.profileUpdated", {
