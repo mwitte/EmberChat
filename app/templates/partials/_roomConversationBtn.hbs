@@ -1,6 +1,8 @@
 {{#link-to 'conversation.room' id class="list-group-item"}}
     {{name}}
     {{#if newMessages}}
-        <span class="badge pull-right">{{newMessages}}</span>
+        <span class="label label-success pull-right">
+            {{newMessages}}
+        </span>
     {{/if}}
 {{/link-to}}

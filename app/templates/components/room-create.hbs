@@ -1,11 +1,12 @@
-<form role="form">
+<a href="#" class="btn btn-primary showForm">Create room</a>
+{{#if errorMessage}}
+    <div class="alert alert-danger">{{errorMessage}}</div>
+{{/if}}
+{{#if successMessage}}
+    <div class="alert alert-success">{{successMessage}}</div>
+{{/if}}
+<form role="form" class="hide">
     <h4>Create new room</h4>
-    {{#if errorMessage}}
-        <div class="alert alert-danger">{{errorMessage}}</div>
-    {{/if}}
-    {{#if successMessage}}
-        <div class="alert alert-success">{{successMessage}}</div>
-    {{/if}}
     <div class="form-group">
         <label for="name">Name</label>
         {{input type="text" valueBinding="name" class="form-control" id="name" placeholder="Name"}}

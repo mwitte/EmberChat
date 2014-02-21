@@ -7,6 +7,8 @@
  */
 EmberChat.RoomCreateComponent = Ember.Component.extend({
 
+    classNames: ['room-create'],
+
     /**
      * Shows success message
      *
@@ -18,7 +20,9 @@ EmberChat.RoomCreateComponent = Ember.Component.extend({
         this.set('name', '');
         Ember.run.later(this, function() {
             _this.set('successMessage', null);
+            Ember.$(_this.get('element')).find('.showForm').fadeIn('fast');
         }, 5000);
+        Ember.$(this.get('element')).find('form').fadeOut('fast');
     },
 
     /**
@@ -33,6 +37,26 @@ EmberChat.RoomCreateComponent = Ember.Component.extend({
         Ember.run.later(this, function() {
             _this.set('errorMessage', null);
         }, 5000);
+    },
+
+    /**
+     * Gets called after rendering
+     *
+     * @event didInsertElement
+     */
+    didInsertElement: function(){
+        var formElement = Ember.$(this.get('element')).find('form');
+        var showFormElement = Ember.$(this.get('element')).find('.showForm');
+        // hide with jQuery
+        formElement.hide();
+        // remove css hiding
+        formElement.removeClass('hide');
+        showFormElement.click(function(){
+            showFormElement.fadeOut('fast', function(){
+                formElement.fadeIn('fast');
+            });
+            return false;
+        });
     },
 
     actions: {

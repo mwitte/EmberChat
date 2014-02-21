@@ -13,7 +13,7 @@ EmberChat.AdminCreateUserController = Ember.Controller.extend({
     admin: false,
 
     disabled: function(){
-        if(this.get('name').length > 4 && this.get('auth').length > 4 && this.get('password').length > 4){
+        if(this.get('name').length >= 3 && this.get('auth').length >= 3 && this.get('password').length >= 4){
             return false;
         }
         return true;

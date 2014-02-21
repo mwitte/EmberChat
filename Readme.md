@@ -2,7 +2,40 @@
 
 This is a webapp chat client for [EmberChatAppServer](https://github.com/mwitte/EmberChatAppServer) based on ember.js
  
-Currently under heavy development.
+ Currently under heavy development.
+ 
+ ### Features ###
+ - authentication
+ - conversation user-to-user
+     - history
+     - end-to-end encryption (RSA/AES)
+ - conversation in rooms(multiple users)
+ - notification on site on message
+ - native app
+     - MacOS, Windows, Linux32, Linux64
+     - desktop notifications
+ - creating users(admin)
+ - creating rooms
+
+### Planned ###
+ - admin
+    - deleting users
+    - deleting rooms
+ - save open conversations
+ - more user attributes(forename, surname)
+ - history for room conversations
+ - auto reconnect
+ - quicksearch
+    - userlist
+    - conversations
+    - rooms
+ - @mention in rooms
+ - user state(dnd, free for chat, idle)
+ - global voting system
+ - file transfer
+ - semantic rendering(urls)
+ - emoticons ;-)
+ - video conversation
 
 ### Build ###
 

@@ -49,7 +49,7 @@ EmberChat.SessionClass = Ember.Object.extend({
      */
     conversationsSorted: function(){
         var sorted = this.get('conversations').sort(function(a,b) {
-            if((a.get('user')) == (b.get('user'))){
+            if((a.get('user')) === (b.get('user'))){
                 if(a.get('name') < b.get('name')) return -1;
                 if(a.get('name') > b.get('name')) return 1;
                 return 0;
