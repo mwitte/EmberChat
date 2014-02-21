@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     },
     copy: {
       main: {
-        src: "gh-pages/README.md",
+        src: "README.md",
         dest: "gh-pages/_includes/index.md",
         options: {
           process: function(content, srcpath) {
@@ -21,5 +21,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('build', ['copy']);
-  grunt.registerTask('default', ['build', 'watch']);
+  grunt.registerTask('default', ['build']);
 };
