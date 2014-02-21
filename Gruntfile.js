@@ -1,13 +1,13 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     watch: {
-      files: ['README.md'],
+      files: ['gh-pages/README.md'],
       tasks: ['build']
     },
     copy: {
       main: {
-        src: "README.md",
-        dest: "_includes/index.md",
+        src: "gh-pages/README.md",
+        dest: "gh-pages/_includes/index.md",
         options: {
           process: function(content, srcpath) {
             return content.replace(/^# .+$/gm, "");

@@ -1,5 +1,7 @@
 markdown: redcarpet
 pygments: true
+source: gh-pages
+destination: gh-pages/_site
 
 title_tag_text: EmberChat, native chat application with ember.js
 h1_tag_text: EmberChat

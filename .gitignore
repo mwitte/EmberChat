@@ -1,4 +1,11 @@
-_site
+.sass-cache/
+.tmp/
+app/
+coverage/
+dist/
+doc/
+
+/gh-pages/_site
 node_modules
 .DS_Store
 /.idea
