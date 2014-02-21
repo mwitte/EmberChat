@@ -1,20 +1,20 @@
-require('scripts/Classes/Messages/AbstractList');
+require('scripts/Classes/ReceiveMsg/AbstractList');
 
 /**
  * This class represents the user list messages.
  *
- * @class UserListMessage
- * @extends EmberChat.AbstractListMessage
- * @namespace EmberChat
+ * @class RoomList
+ * @extends EmberChat.ReceiveMsg.AbstractList
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.UserListMessage = EmberChat.AbstractListMessage.extend({
+EmberChat.ReceiveMsg.RoomList = EmberChat.ReceiveMsg.AbstractList.extend({
 
     /**
-     * Container for the users
+     * Container for the rooms
      * @property listContainer
      * @type {Ember.Array}
      */
-    listContainerBinding: 'EmberChat.Session.availableUsers',
+    listContainerBinding: 'EmberChat.Session.availableRooms',
 
     /**
      * Gets called by updateListContainer method if an element in the updateList was not in
@@ -27,7 +27,7 @@ EmberChat.UserListMessage = EmberChat.AbstractListMessage.extend({
     createListElement: function(updateList, listContainer){
         // unprocessed updateList
         for(var j=0; j < updateList.length; j++){
-            listContainer.pushObject(EmberChat.Room.create(updateList[j]));
+            listContainer.pushObject(EmberChat.User.create(updateList[j]));
         }
     }
 });

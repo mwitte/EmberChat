@@ -50,6 +50,9 @@ EmberChat.Conversation = Ember.Object.extend({
 
     /**
      * Request a encrypted key of the other client, sends him a generated RSA public key for encryption
+     *
+     * @method requestEncryptedKey
+     * @return {void}
      */
     requestEncryptedKey: function() {
         if(!this.get('user').get('online')){
@@ -85,7 +88,9 @@ EmberChat.Conversation = Ember.Object.extend({
     }.observes('user.online'),
 
     /**
+     * Adds content to this conversation
      *
+     * @method addContent
      * @param {array} contentArray
      */
     addContent: function(contentArray){

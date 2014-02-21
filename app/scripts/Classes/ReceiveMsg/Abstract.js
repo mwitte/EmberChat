@@ -1,10 +1,12 @@
 /**
  * This class is the abstract for all Message classes
  *
- * @class AbstractMessage
- * @namespace EmberChat
+ * @class Abstract
+ * @extends Ember.Object
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.AbstractMessage = Ember.Object.extend({
+EmberChat.ReceiveMsg = {};
+EmberChat.ReceiveMsg.Abstract = Ember.Object.extend({
 
     /**
      * Process this message

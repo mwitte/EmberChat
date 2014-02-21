@@ -1,13 +1,13 @@
-require('scripts/Classes/Messages/Abstract');
+require('scripts/Classes/ReceiveMsg/Abstract');
 
 /**
  * This class represents the user list messages.
  *
- * @class AbstractListMessage
- * @extends EmberChat.AbstractMessage
- * @namespace EmberChat
+ * @class AbstractList
+ * @extends EmberChat.ReceiveMsg.Abstract
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.AbstractListMessage = EmberChat.AbstractMessage.extend({
+EmberChat.ReceiveMsg.AbstractList = EmberChat.ReceiveMsg.Abstract.extend({
 
     /**
      * Process this message

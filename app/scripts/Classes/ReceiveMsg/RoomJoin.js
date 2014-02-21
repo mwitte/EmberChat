@@ -1,14 +1,14 @@
-require('scripts/Classes/Messages/Conversation');
+require('scripts/Classes/ReceiveMsg/Conversation');
 require('scripts/Classes/User');
 
 /**
  * When a user joins a room
  *
- * @class RoomJoinMessage
- * @extends EmberChat.RoomConversationMessage
- * @namespace EmberChat
+ * @class RoomJoin
+ * @extends EmberChat.ReceiveMsg.RoomConversation
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.RoomJoinMessage = EmberChat.RoomConversationMessage.extend({
+EmberChat.ReceiveMsg.RoomJoin = EmberChat.ReceiveMsg.RoomConversation.extend({
 
 
     /**

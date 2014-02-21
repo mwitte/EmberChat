@@ -1,13 +1,13 @@
-require('scripts/Classes/Messages/Abstract');
+require('scripts/Classes/ReceiveMsg/Abstract');
 
 /**
  * This class represents a conversation message
  *
- * @class AdminActionMessage
- * @extends EmberChat.AbstractMessage
- * @namespace EmberChat
+ * @class AdminAction
+ * @extends EmberChat.ReceiveMsg.Abstract
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.AdminActionMessage = EmberChat.AbstractMessage.extend({
+EmberChat.ReceiveMsg.AdminAction = EmberChat.ReceiveMsg.Abstract.extend({
     process: function(){
         try{
             // fire authenticated event

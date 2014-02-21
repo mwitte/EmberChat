@@ -1,12 +1,13 @@
-require('scripts/Classes/Messages/Abstract');
+require('scripts/Classes/ReceiveMsg/Abstract');
 
 /**
  * This class represents all settings messages
  *
- * @class SettingsMessage
- * @namespace EmberChat
+ * @class Settings
+ * @extends EmberChat.ReceiveMsg.Abstract
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.SettingsMessage = EmberChat.AbstractMessage.extend({
+EmberChat.ReceiveMsg.Settings = EmberChat.ReceiveMsg.Abstract.extend({
 
     /**
      * Process this message

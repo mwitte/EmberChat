@@ -1,13 +1,13 @@
-require('scripts/Classes/Messages/Abstract');
+require('scripts/Classes/ReceiveMsg/Abstract');
 
 /**
  * This class represents a conversation message
  *
- * @class ProfileUpdateMessage
- * @extends EmberChat.AbstractMessage
- * @namespace EmberChat
+ * @class ProfileUpdate
+ * @extends EmberChat.ReceiveMsg.Abstract
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.ProfileUpdateMessage = EmberChat.AbstractMessage.extend({
+EmberChat.ReceiveMsg.ProfileUpdate = EmberChat.ReceiveMsg.Abstract.extend({
     process: function(){
         try{
             // fire authenticated event

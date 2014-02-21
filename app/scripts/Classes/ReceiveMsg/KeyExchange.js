@@ -1,12 +1,13 @@
-require('scripts/Classes/Messages/UserConversation');
+require('scripts/Classes/ReceiveMsg/UserConversation');
 
 /**
  * Key exchange messages for encrypted conversations. Detailed doc about the procedure can be found in docs folder
  *
- * @class RequestEncryptedKeyMessage
- * @namespace EmberChat
+ * @class KeyExchange
+ * @extends EmberChat.ReceiveMsg.UserConversation
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.KeyExchangeMessage = EmberChat.UserConversationMessage.extend({
+EmberChat.ReceiveMsg.KeyExchange = EmberChat.ReceiveMsg.UserConversation.extend({
 
     /**
      * Used word for encrypted acknowledge message. This word can be public because the acknowledge message it the

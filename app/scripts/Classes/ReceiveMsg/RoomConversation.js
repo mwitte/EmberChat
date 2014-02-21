@@ -1,13 +1,13 @@
-require('scripts/Classes/Messages/Conversation');
+require('scripts/Classes/ReceiveMsg/Conversation');
 
 /**
  * This class represents a conversation message
  *
- * @class RoomConversationMessage
- * @extends EmberChat.ConversationMessage
- * @namespace EmberChat
+ * @class RoomConversation
+ * @extends EmberChat.ReceiveMsg.Conversation
+ * @namespace EmberChat.ReceiveMsg
  */
-EmberChat.RoomConversationMessage = EmberChat.ConversationMessage.extend({
+EmberChat.ReceiveMsg.RoomConversation = EmberChat.ReceiveMsg.Conversation.extend({
 
     /**
      * Get always a valid Conversation object
