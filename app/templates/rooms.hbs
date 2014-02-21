@@ -4,7 +4,7 @@
         <div class="panel-body">
             <p>Come from server, no function so far: </p>
             <div class="list-group">
-                {{#each content}}
+                {{#each rooms}}
                     {{#link-to 'conversation.room' id class="list-group-item"}}
                         {{name}}
                     {{/link-to}}
@@ -12,24 +12,11 @@
             </div>
         </div>
         <div class="panel-footer">
-            <form role="form">
-                <h4>Create new room</h4>
-                {{#if errorMessage}}
-                    <div class="alert alert-danger">{{errorMessage}}</div>
-                {{/if}}
-                {{#if successMessage}}
-                    <div class="alert alert-success">{{successMessage}}</div>
-                {{/if}}
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    {{input type="text" valueBinding="name" class="form-control" id="name" placeholder="Name"}}
-                </div>
-                <button {{action 'create'}} type="submit" class="btn btn-primary">Create</button>
-            </form>
+            {{room-create existingRoomsBinding="rooms"}}
         </div>
     </div>
 </div>
 
 <div class="col-xs-4">
-    {{user-list usersBinding="EmberChat.Session.availableUsers"}}
+    {{user-list usersBinding="EmberChat.Session.availableUsersSorted"}}
 </div>

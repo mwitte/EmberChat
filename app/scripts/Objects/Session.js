@@ -1,10 +1,75 @@
 /**
  * Contains all session related data like the logged in user, other users etc.
  *
+ * @class SessionClass
+ * @namespace EmberChat
+ * @extends Ember.Object
+ */
+EmberChat.SessionClass = Ember.Object.extend({
+
+    /**
+     * Provides the available rooms sorted by name
+     *
+     * @property availableUsersSorted
+     * @type {Ember.Array}
+     */
+    availableRoomsSorted: function(){
+        var sorted = this.get('availableRooms').sort(function(a,b) {
+            if(a.get('name') < b.get('name')) return -1;
+            if(a.get('name') > b.get('name')) return 1;
+            return 0;
+        });
+        return Ember.A(sorted.toArray());
+    }.property('availableRooms.@each'),
+
+    /**
+     * Provides the available users sorted by online state and name
+     *
+     * @property availableUsersSorted
+     * @type {Ember.Array}
+     */
+    availableUsersSorted: function(){
+        var sorted = this.get('availableUsers').sort(function(a,b) {
+            if(a.get('online') === b.get('online')) {
+                if(a.get('name') < b.get('name')) return -1;
+                if(a.get('name') > b.get('name')) return 1;
+                return 0;
+            }
+            if(b.get('online')) return 1;
+            return -1;
+        });
+        return Ember.A(sorted.toArray());
+    }.property('availableUsers.@each'),
+
+    /**
+     * Provides the open conversations sorted by type and name
+     *
+     * @property conversationsSorted
+     * @type {Ember.Array}
+     */
+    conversationsSorted: function(){
+        var sorted = this.get('conversations').sort(function(a,b) {
+            if((a.get('user')) == (b.get('user'))){
+                if(a.get('name') < b.get('name')) return -1;
+                if(a.get('name') > b.get('name')) return 1;
+                return 0;
+            }
+            if(a.get('user')) return 1;
+            if(b.get('user')) return -1;
+            return 0;
+        });
+        return Ember.A(sorted.toArray());
+    }.property('conversations.@each')
+});
+
+/**
+ * Contains all session related data like the logged in user, other users etc.
+ *
  * @class Session
  * @namespace EmberChat
+ * @extends EmberChat.SessionClass
  */
-EmberChat.Session = Ember.Object.create({
+EmberChat.Session = EmberChat.SessionClass.create({
 
     /**
      * @property authenticated

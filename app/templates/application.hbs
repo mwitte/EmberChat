@@ -24,7 +24,7 @@
             <div class="col-xs-3">
                 {{session-info unAuthenticate="unAuthenticate" disconnect="disconnect"}}
                 {{#if EmberChat.Session.authenticated}}
-                    {{conversation-list}}
+                    {{conversation-list conversationsBinding="EmberChat.Session.conversationsSorted"}}
                     {{#if EmberChat.Session.isAdmin}}
                         {{admin-panel}}
                     {{/if}}

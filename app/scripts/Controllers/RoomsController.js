@@ -3,20 +3,16 @@
  *
  * @namespace EmberChat
  * @class RoomsController
+ * @extends Ember.Controller
  */
-EmberChat.RoomsController = Ember.ArrayController.extend({
-    actions: {
-        /**
-         * creates a new room
-         */
-        create: function() {
-            var rawMessage = {
-                type: 'Room\\Create',
-                user: {
-                    name: this.get('name')
-                }
-            };
-            EmberChat.MessageProcessor.processOutgoing(rawMessage);
-        }
-    }
+EmberChat.RoomsController = Ember.Controller.extend({
+
+    /**
+     * The available rooms
+     *
+     * @property rooms
+     * @type {Ember.Array}
+     */
+    roomsBinding: 'EmberChat.Session.availableRoomsSorted'
+
 });

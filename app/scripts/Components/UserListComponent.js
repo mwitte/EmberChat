@@ -5,5 +5,4 @@
  * @namespace EmberChat
  */
 EmberChat.UserListComponent = Ember.Component.extend({
-
 });

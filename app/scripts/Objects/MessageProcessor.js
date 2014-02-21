@@ -19,11 +19,16 @@ EmberChat.MessageProcessor = Ember.Object.create({
     processIncoming: function(rawMessage) {
         var messageContent = JSON.parse(rawMessage.data);
 
+        var message = null;
         try{
-            EmberChat.ReceiveMsg[messageContent.type].create(messageContent).process();
+            message = EmberChat.ReceiveMsg[messageContent.type].create(messageContent);
         }catch (e){
             Ember.warn("Unknown message type: " + messageContent.type);
         }
+        if(message){
+            message.process();
+        }
+
     },
 
     /**

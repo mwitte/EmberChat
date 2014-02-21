@@ -19,7 +19,7 @@ EmberChat.ConversationUserRoute = EmberChat.ConversationRoute.extend({
     setupController: function(controller, conversation) {
         controller.set('conversation', conversation);
         if(!conversation.get('content')){
-            var message = EmberChat.SettingsMessage.create({
+            var message = EmberChat.ReceiveMsg.Settings.create({
                 type: 'User\\RequestHistory',
                 user: conversation.get('user').get('id')
             });

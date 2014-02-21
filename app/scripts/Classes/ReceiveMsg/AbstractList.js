@@ -56,7 +56,9 @@ EmberChat.ReceiveMsg.AbstractList = EmberChat.ReceiveMsg.Abstract.extend({
                 continue;
             }
             // set properties
+            listContainer.arrayContentWillChange(ia);
             listContainer[ia].setProperties(listElement);
+            listContainer.arrayContentDidChange(ia);
             // remove listElement
             updateList.removeObject(listElement);
         }
