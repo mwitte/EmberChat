@@ -65,8 +65,7 @@ EmberChat.AdminCreateUserController = Ember.Controller.extend({
             var _this = this;
             if(this.get('password')){
                 var rawMessage = {
-                    type: 'Admin',
-                    subType: 'CreateUser',
+                    type: 'Admin\\CreateUser',
                     user: {
                         name: this.get('name'),
                         auth: this.get('auth'),

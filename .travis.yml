@@ -19,10 +19,10 @@ env:
         - secure: "Sea9Szq1qc54fHnvWE5gMs2Uenbb0g+Rf7bURk30TTndsWRyhbAnM3Dj1gqN3oTW3+1ZUL4Vmh9UAx55lL8YGMrql3D6Fo4WnHsOkDWJFM42CCyusApsI+8zoApbwpph1cYWkdSCmCmCAeodyMFw5v3aGFWKzgtG50OlAGD1h98="
 before_install:
   - "gem install compass"
+  - "npm install -g grunt-contrib-compass"
   - "npm install"
   - "npm install -g grunt-cli bower"
 install:
   - "bower install"
 script:
   - "grunt"
-after_success: ./utils/publishBuild.sh

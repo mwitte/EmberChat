@@ -11,8 +11,7 @@ EmberChat.RoomsController = Ember.ArrayController.extend({
          */
         create: function() {
             var rawMessage = {
-                type: 'Room',
-                subType: 'Create',
+                type: 'Room\\Create',
                 user: {
                     name: this.get('name')
                 }

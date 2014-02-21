@@ -66,8 +66,7 @@ EmberChat.ProfileController = Ember.Controller.extend({
             var hash = this.checkPassword();
             if(hash){
                 var rawMessage = {
-                    type: 'Profile',
-                    subType: 'Update',
+                    type: 'Profile\\Update',
                     profile: {
                         password: hash,
                         currentPassword: Sha256.hash(this.get('currentPassword'))
