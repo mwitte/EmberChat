@@ -1,9 +1,6 @@
 markdown: redcarpet
 pygments: true
-source: gh-pages
-include: ['_includes']
-layouts: _layouts
-destination: gh-pages/_site
+destination: _site
 
 title_tag_text: EmberChat, native chat application with ember.js
 h1_tag_text: EmberChat

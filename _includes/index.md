@@ -1,4 +1,4 @@
-# EmberChat
+
 
 > [EmberChat](http://mwitte.github.io/EmberChat) is a chat application made with web technologies as **native application**.
 

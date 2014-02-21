@@ -5,7 +5,7 @@ coverage/
 dist/
 doc/
 
-/gh-pages/_site
+/_site
 node_modules
 .DS_Store
 /.idea
