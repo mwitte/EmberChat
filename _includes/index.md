@@ -1,3 +1,5 @@
+![EmberChat](images/icon-128.png)
+
 
 
 > [EmberChat](http://mwitte.github.io/EmberChat) is a chat application made with web technologies as **native application**.
@@ -68,5 +70,3 @@ Matthias Witte ([Twitter](https://twitter.com/wittematze)/[GitHub](https://githu
 ### License
 
 not sure so far
-
-![EmberChat](images/icon-128.png)
