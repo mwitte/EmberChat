@@ -2,9 +2,9 @@
 
 This is a webapp chat client for [EmberChatAppServer](https://github.com/mwitte/EmberChatAppServer) based on ember.js
  
- Currently under heavy development.
+Currently under heavy development.
  
- ### Features ###
+### Features ###
  - authentication
  - conversation user-to-user
      - history
@@ -36,6 +36,8 @@ This is a webapp chat client for [EmberChatAppServer](https://github.com/mwitte/
  - semantic rendering(urls)
  - emoticons ;-)
  - video conversation
+ - more test coverage
+ - design
 
 ### Build ###
 
