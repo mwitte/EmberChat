@@ -6,18 +6,19 @@ Currently under heavy development.
  
 ### Features ###
  - authentication
- - conversation user-to-user
-     - history
-     - end-to-end encryption (RSA/AES)
- - conversation in rooms(multiple users)
+ - conversation
+    - user-to-user
+        - history
+        - end-to-end encryption (RSA/AES)
+    - rooms(multiple users)
  - notification on site on message
  - native app
-     - MacOS, Windows, Linux32, Linux64
-     - desktop notifications
- - admin
-    - creating user
-    - removing rooms
+    - MacOS, Windows, Linux32, Linux64
+    - desktop notifications
  - creating rooms
+ - admin
+    - creating users
+    - removing rooms
 
 ### Planned ###
  - deleting users(admin)
