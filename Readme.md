@@ -14,13 +14,13 @@ Currently under heavy development.
  - native app
      - MacOS, Windows, Linux32, Linux64
      - desktop notifications
- - creating users(admin)
+ - admin
+    - creating user
+    - removing rooms
  - creating rooms
 
 ### Planned ###
- - admin
-    - deleting users
-    - deleting rooms
+ - deleting users(admin)
  - save open conversations
  - more user attributes(forename, surname)
  - history for room conversations

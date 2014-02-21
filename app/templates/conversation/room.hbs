@@ -6,7 +6,7 @@
             <form {{action "send" on="submit"}} role="form">
                 <div class="form-group">
                     <div class="input-group">
-                        {{input type="text" valueBinding='text' class="form-control"}}
+                        {{input disabledBinding="conversation.closed" type="text" valueBinding='text' class="form-control"}}
                         <span class="input-group-btn">
                             <button {{action 'send'}} class="btn btn-default" type="button">Go!</button>
                         </span>
@@ -19,5 +19,8 @@
 
 <div class="col-xs-4">
     {{user-list usersBinding="conversation.users"}}
+    {{#if EmberChat.Session.isAdmin}}
+        {{room-remove roomBinding="conversation.room"}}
+    {{/if}}
 </div>
 

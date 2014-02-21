@@ -19,8 +19,10 @@ EmberChat.RoomCreateComponent = Ember.Component.extend({
         this.set('successMessage', 'Successfully created room "' + this.get('name'));
         this.set('name', '');
         Ember.run.later(this, function() {
-            _this.set('successMessage', null);
-            Ember.$(_this.get('element')).find('.showForm').fadeIn('fast');
+            if(!_this.isDestroyed){
+                _this.set('successMessage', null);
+                Ember.$(_this.get('element')).find('.showForm').fadeIn('fast');
+            }
         }, 5000);
         Ember.$(this.get('element')).find('form').fadeOut('fast');
     },
@@ -35,7 +37,7 @@ EmberChat.RoomCreateComponent = Ember.Component.extend({
         var _this = this;
         this.set('errorMessage', 'Failed to create room: ' + message);
         Ember.run.later(this, function() {
-            _this.set('errorMessage', null);
+            if(!_this.isDestroyed) _this.set('errorMessage', null);
         }, 5000);
     },
 

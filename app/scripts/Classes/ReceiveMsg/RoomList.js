@@ -29,5 +29,47 @@ EmberChat.ReceiveMsg.RoomList = EmberChat.ReceiveMsg.AbstractList.extend({
         for(var j=0; j < updateList.length; j++){
             listContainer.pushObject(EmberChat.User.create(updateList[j]));
         }
+    },
+
+    /**
+     * Closes all room conversations which are not valid rooms
+     *
+     * @method closeRoomConversations
+     * @param {array} existingRooms
+     */
+    closeRoomConversations: function(existingRooms){
+        var conversations = EmberChat.Session.get('conversations');
+
+        // iterate all open conversations
+        for(var i=0; i < conversations.length; i++){
+            // only room conversations
+            if(conversations[i].get('room')){
+                var conversationFoundInRoomList = false;
+                // try to find given room conversation in room list
+                for(var j=0; j < existingRooms.length;j++){
+                    var listRoom = existingRooms[j];
+                    if(listRoom.id === conversations[i].get('id')){
+                        conversationFoundInRoomList = true;
+                    }
+                }
+                if(!conversationFoundInRoomList){
+                    conversations[i].set('closed', true);
+                }
+            }
+
+        }
+    },
+
+    /**
+     * Updates the given listContainer with the given updateList
+     *
+     * @method updateListContainer
+     * @param {Ember.Array} updateList
+     * @param {Ember.Array} listContainer
+     * @return {void}
+     */
+    updateListContainer: function(updateList, listContainer){
+        this.closeRoomConversations(updateList);
+        this._super(updateList, listContainer);
     }
 });
