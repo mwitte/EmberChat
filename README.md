@@ -40,13 +40,15 @@ It's currently under heavy development so there are no releases yet. To get an i
  - admin
     - creating users
     - removing rooms
+ - auto reconnect
+ - automated 'version changed' notification
+ - rejoin rooms after authentication
+ - timestamp for conversation content
 
 ### Planned ###
  - deleting users(admin)
- - save open conversations
  - more user attributes(forename, surname)
  - history for room conversations
- - auto reconnect
  - quicksearch
     - userlist
     - conversations
