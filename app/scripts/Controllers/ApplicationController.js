@@ -18,6 +18,9 @@ EmberChat.ApplicationController = Ember.ArrayController.extend({
             EmberChat.Socket.get('socket').close();
             EmberChat.Session.unAuthenticate();
             this.transitionToRoute('connect');
+        },
+        openExternal: function(url) {
+            EmberChat.DefaultEnvironment.openExternal(url);
         }
     }
 });

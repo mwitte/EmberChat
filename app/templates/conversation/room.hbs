@@ -1,4 +1,4 @@
-<div class="col-xs-8">
+<div class="col-sm-8">
     <div class="panel panel-default">
         {{partial 'partials/_conversationHead'}}
         {{partial 'partials/_conversationBody'}}
@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<div class="col-xs-4">
+<div class="col-sm-4">
     {{user-list usersBinding="conversation.users"}}
     {{#if EmberChat.Session.isAdmin}}
         {{room-remove roomBinding="conversation.room"}}

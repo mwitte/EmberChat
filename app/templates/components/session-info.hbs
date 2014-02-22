@@ -20,12 +20,12 @@
         {{#if isOnline}}
             <div class="btn-group btn-block">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-sm-6">
                         <button {{action 'disconnect'}}type="button" class="btn btn-success btn-block">
                             <span class="glyphicon glyphicon-ok"></span> online
                         </button>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-sm-6">
                         {{#if EmberChat.Session.authenticated}}
                             <button {{action 'logout'}} type="submit" class="btn btn-danger btn-block">Logout</button>
                         {{/if}}

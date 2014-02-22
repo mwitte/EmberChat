@@ -38,7 +38,7 @@ module.exports = function (grunt) {
             },
             neuter: {
                 files: ['<%= yeoman.app %>/scripts/{,**/}*.js'],
-                tasks: ['neuter']
+                tasks: ['neuter', 'replace:metadata']
             },
             livereload: {
                 options: {
@@ -215,28 +215,34 @@ module.exports = function (grunt) {
             }
         },
         replace: {
-          app: {
-            options: {
-              variables: {
-                ember: 'bower_components/ember/ember.js',
-                ember_data: 'bower_components/ember-data/ember-data.js'
-              }
+            metadata: {
+                options: {
+                    variables: {
+                        package_version: '<%= pkg.version %>',
+                        package_homepage: '<%= pkg.homepage %>',
+                        package_repository_url: '<%= pkg.repository.url %>'
+                    }
+                },
+                files: [{src: '.tmp/scripts/combined-scripts.js', dest: '.tmp/scripts/combined-scripts.js'}]
             },
-            files: [
-              {src: '<%= yeoman.app %>/index.html', dest: '.tmp/index.html'}
-            ]
-          },
-          dist: {
-            options: {
-              variables: {
-                ember: 'bower_components/ember/ember.prod.js',
-                ember_data: 'bower_components/ember-data/ember-data.prod.js'
-              }
+            app: {
+                options: {
+                    variables: {
+                        ember: 'bower_components/ember/ember.js',
+                        ember_data: 'bower_components/ember-data/ember-data.js'
+                    }
+                },
+                files: [{src: '<%= yeoman.app %>/index.html', dest: '.tmp/index.html'}]
             },
-            files: [
-              {src: '<%= yeoman.app %>/index.html', dest: '.tmp/index.html'}
-            ]
-          }
+            dist: {
+                options: {
+                    variables: {
+                        ember: 'bower_components/ember/ember.prod.js',
+                        ember_data: 'bower_components/ember-data/ember-data.prod.js'
+                    }
+                },
+                files: [{src: '<%= yeoman.app %>/index.html', dest: '.tmp/index.html'}]
+            }
         },
         // Put files not handled in other tasks here
         copy: {
@@ -332,6 +338,7 @@ module.exports = function (grunt) {
             'replace:app',
             'concurrent:server',
             'neuter:app',
+            'replace:metadata',
             'connect:livereload',
             'open',
             'watch'
@@ -355,6 +362,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concurrent:dist',
         'neuter:app',
+        'replace:metadata',
         'concat',
         'cssmin',
         'uglify',

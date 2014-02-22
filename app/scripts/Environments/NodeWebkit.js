@@ -5,6 +5,7 @@ require('scripts/Default');
  *
  * @class NodeWebkitEnvironment
  * @namespace EmberChat
+ * @extends Ember.Object
  */
 EmberChat.NodeWebkitEnvironment = Ember.Object.create({
 
@@ -13,6 +14,8 @@ EmberChat.NodeWebkitEnvironment = Ember.Object.create({
 
     /**
      * Determine if this environment is current context
+     *
+     * @method isEnv
      * @returns {boolean}
      */
     isEnv: function(){
@@ -21,11 +24,13 @@ EmberChat.NodeWebkitEnvironment = Ember.Object.create({
 
     /**
      * Create a new notification
+     *
+     * @method newNotification
      * @param title
      * @param message
      * @param id
      */
-    newNotification: function(title, message, id){
+    newNotification: function(title, message, id) {
         if(!this.isEnv()){
             return false;
         }
@@ -46,8 +51,10 @@ EmberChat.NodeWebkitEnvironment = Ember.Object.create({
 
     /**
      * Gets called when app got a web-socket connection
+     *
+     * @event onConnected
      */
-    onConnected: function(){
+    onConnected: function() {
         // creates a new notification
         window.LOCAL_NW.desktopNotifications.notify(
             //@TODO path seems strange
@@ -56,5 +63,17 @@ EmberChat.NodeWebkitEnvironment = Ember.Object.create({
             "connected",
             function(){}
         );
+    },
+
+    /**
+     * Open external url
+     *
+     * @method openExternal
+     * @param {string} url
+     */
+    openExternal: function(url) {
+        if(!this.isEnv()) return;
+        var gui = require('nw.gui');
+        gui.Shell.openExternal(url);
     }
 });

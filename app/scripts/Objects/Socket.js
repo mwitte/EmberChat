@@ -59,7 +59,7 @@ EmberChat.Socket = Ember.Object.create({
                 if(_this.get('online') === false){
                     _this.connect(localStorage.host, localStorage.path);
                     _this.autoConnect();
-                    _this.set('autoConnectTries', parseInt(_this.get('autoConnectTries')) + 1);
+                    _this.set('autoConnectTries', parseInt(_this.get('autoConnectTries'), "string") + 1);
                 }
             }, 5000);
         }

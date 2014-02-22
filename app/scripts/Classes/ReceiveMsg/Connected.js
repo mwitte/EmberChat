@@ -9,7 +9,17 @@ require('scripts/Classes/ReceiveMsg/Abstract');
  */
 EmberChat.ReceiveMsg.Connected = EmberChat.ReceiveMsg.Abstract.extend({
     process: function(){
-        // fire authenticated event
-        Ember.Instrumentation.instrument("signal.connected");
+        try{
+            EmberChat.set('versionServer', this.get('version'));
+
+            if(EmberChat.get('versionWebApp') < EmberChat.get('versionServer')){
+                EmberChat.set('versionConflict', true);
+            }else{
+                EmberChat.set('versionConflict', false);
+            }
+
+            // fire connected event
+            Ember.Instrumentation.instrument("signal.connected");
+        }catch(e){}
     }
 });

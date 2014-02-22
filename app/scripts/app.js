@@ -6,6 +6,12 @@ var EmberChat = window.EmberChat = Ember.Application.create({
      */
     LOG_TRANSITIONS: true,
 
+    // used for version check on connect to server
+    versionWebApp: '@@package_version',
+    versionServer: null,
+
+    homepageUrl : '@@package_homepage',
+    githubUrl: '@@package_repository_url',
     /**
      * Connection Settings
      * @property server

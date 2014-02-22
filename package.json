@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "A websocket based chat with ember.js",
   "author": "Matthias Witte",
-  "homepage": "https://github.com/mwitte/EmberChat",
+  "homepage": "http://mwitte.github.io/EmberChat/",
+  "repository" : {
+    "type" : "git",
+    "url" : "http://github.com/mwitte/EmberChat.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
