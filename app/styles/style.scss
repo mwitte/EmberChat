@@ -29,9 +29,19 @@ html, body {
 .conversation-content{
   max-height: 217px;
   height: 217px;
-  overflow: scroll;
+  overflow-y: scroll;
   // something like "user joined"
   .info{
     color: darkgrey;
+  }
+  // time and encryption was enabled
+  .meta-info{
+    margin-left: 10px;
+  }
+  .user-name{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
   }
 }

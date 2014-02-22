@@ -1,15 +1,27 @@
 <div class="panel-body conversation-content">
     {{#each conversation.content}}
-        {{#if info}}
-            <p class="info">{{content}}</p>
-        {{else}}
-            <p>
-                <strong>{{user}}</strong>: {{content}}
-                {{#if encrypted}}
-                    <span class="glyphicon glyphicon-eye-close pull-right"></span>
-                {{/if}}
-            </p>
-        {{/if}}
+        <div class="row">
+            <div class="col-sm-3 user-name">
+                {{#unless info}}
+                    {{user}}:
+                {{/unless}}
+            </div>
+            <div class="col-sm-9">
+                <span class="pull-right meta-info">
+                    {{#if encrypted}}
+                        <span class="glyphicon glyphicon-eye-close"></span>
+                    {{/if}}
+                    {{formatDate date "hh:mm a"}}
+                </span>
+                {{#if info}}
+                    <p class="info">{{content}}</p>
+                {{else}}
+                    <p>
+                        {{content}}
 
+                    </p>
+                {{/if}}
+            </div>
+        </div>
     {{/each}}
 </div>

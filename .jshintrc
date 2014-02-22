@@ -24,6 +24,7 @@
         "JSEncrypt": true,
         "GibberishAES": true,
         "chrome": true,
-        "process": true
+        "process": true,
+        "moment": true
     }
 }

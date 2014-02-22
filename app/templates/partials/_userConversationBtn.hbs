@@ -5,9 +5,19 @@
             {{#if isEncrypted}}
                 <span class="glyphicon glyphicon-eye-close"></span>
             {{/if}}
-            {{newMessages}}
+            {{#if newMessages}}
+                {{newMessages}}
+            {{else}}
+                &nbsp;
+            {{/if}}
         </span>
     {{else}}
-        <span class="label label-default pull-right">{{newMessages}}</span>
+        <span class="label label-default pull-right">
+            {{#if newMessages}}
+                {{newMessages}}
+            {{else}}
+                &nbsp;
+            {{/if}}
+        </span>
     {{/if}}
 {{/link-to}}

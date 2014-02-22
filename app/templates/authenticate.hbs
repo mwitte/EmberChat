@@ -21,17 +21,8 @@
                         {{input type="checkbox" checkedBinding="keep"}} Keep authentication persistent
                     </label>
                 </div>
-                <button {{action 'authenticate'}} type="submit" class="btn btn-default">Login</button>
+                <button {{action 'authenticate'}} type="submit" class="btn btn-primary">Login</button>
             </form>
-
-            <h4>Development:</h4>
-            <p>Use one of the below auths, password is always "password" or just click on on below.</p>
-            <ul>
-                <li><a href="#" {{action 'devAuth' 'Matthias'}}>Matthias</a></li>
-                <li><a href="#" {{action 'devAuth' 'Dominik'}}>Dominik</a></li>
-                <li><a href="#" {{action 'devAuth' 'Bert'}}>Bert</a></li>
-                <li><a href="#" {{action 'devAuth' 'Philipp'}}>Philipp</a></li>
-            </ul>
         </div>
     </div>
 </div>

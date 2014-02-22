@@ -20,10 +20,12 @@ Currently under heavy development.
     - creating users
     - removing rooms
  - auto reconnect
+ - automated 'version changed' notification
+ - rejoin rooms after authentication
+ - timestamp for conversation content
 
 ### Planned ###
  - deleting users(admin)
- - save open conversations
  - more user attributes(forename, surname)
  - history for room conversations
  - quicksearch

@@ -33,6 +33,7 @@ EmberChat.RoomRemoveComponent = Ember.Component.extend({
                 room: this.get('room')
             };
             EmberChat.MessageProcessor.processOutgoing(rawMessage);
+            Ember.$(this.get('element')).find('.removeBtn').remove();
         }
     }
 

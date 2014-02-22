@@ -36,6 +36,7 @@ EmberChat.AuthenticateRoute = Ember.Route.extend({
                 }else{
                     _this.transitionTo('rooms');
                 }
+                EmberChat.Session.onAuthenticated();
             },
             after: function() {}
         });

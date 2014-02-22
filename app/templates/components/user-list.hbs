@@ -5,9 +5,9 @@
             {{#each users}}
                 {{#link-to 'conversation.user' id class="list-group-item"}}
                     {{#if online}}
-                        <span class="label label-success">o</span>
+                        <span class="label label-success">&nbsp;</span>
                     {{else}}
-                        <span class="label label-default">o</span>
+                        <span class="label label-default">&nbsp;</span>
                     {{/if}}
                     {{name}}
                 {{/link-to}}

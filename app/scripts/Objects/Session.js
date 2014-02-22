@@ -59,7 +59,23 @@ EmberChat.SessionClass = Ember.Object.extend({
             return 0;
         });
         return Ember.A(sorted.toArray());
-    }.property('conversations.@each')
+    }.property('conversations.@each'),
+
+    /**
+     * Persists the open conversations in storage, gets called every time the open conversations change
+     *
+     * @event persistOpenConversations
+     */
+    persistOpenConversations: function(){
+        var openRoomConversations = [];
+        this.get('conversations').forEach(function(conversation, index){
+            if(conversation && conversation.get('room') && !conversation.get('closed')){
+                openRoomConversations.push({id: conversation.get('id')});
+            }
+        });
+        localStorage.openConversations = JSON.stringify(openRoomConversations);
+    }.observes('conversations.@each')
+
 });
 
 /**
@@ -145,6 +161,42 @@ EmberChat.Session = EmberChat.SessionClass.create({
      */
     findRoomById: function(id) {
         return this.get('availableRooms').findBy('id', id);
+    },
+
+    /**
+     * Gets called when user got authenticated
+     */
+    onAuthenticated: function(){
+        this.rejoinConversations();
+    },
+
+    /**
+     * Rejoin persisted conversations
+     *
+     * @method rejoinConversations
+     */
+    rejoinConversations: function() {
+        var _this = this;
+        if(!this.get('rejoinTries')) this.set('rejoinTries',0);
+        // wait 1 second if there are no rooms given
+        if(this.get('availableRooms').length <= 0 && this.get('rejoinTries') < 10){
+            this.set('rejoinTries', parseInt(this.get('rejoinTries'), 'string') + 1);
+            Ember.run.later(this, function() {
+                _this.onAuthenticated();
+            }, 100);
+            return;
+        }
+        try{
+            // get persisted conversations
+            var openConversations = JSON.parse(localStorage.openConversations);
+            openConversations.forEach(function(object, index){
+                // find rooms by id
+                var conversation = _this.findRoomById(object.id);
+                if(conversation){
+                    EmberChat.MessageProcessor.processOutgoing({type: "Room\\Join", room:conversation.get('id')});
+                }
+            });
+        }catch (e){}
     },
 
     /**
