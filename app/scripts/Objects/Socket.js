@@ -22,6 +22,14 @@ EmberChat.Socket = Ember.Object.create({
     socket: null,
 
     /**
+     * Amount of tries to reconnect
+     *
+     * @property autoConnectTries
+     * @type int
+     */
+    autoConnectTries: 0,
+
+    /**
      * Saves the given connection data, if empty deletes current
      *
      * @param {String} host
@@ -34,6 +42,26 @@ EmberChat.Socket = Ember.Object.create({
         }else{
             delete localStorage.host;
             delete localStorage.path;
+        }
+    },
+
+    /**
+     * Gets called when application loses connection
+     *
+     * @event autoConnect
+     * @return {void}
+     */
+    autoConnect: function() {
+        var _this = this;
+        // only if there are connection settings, when user switches offline there should be no connection settings given
+        if(localStorage.host && localStorage.path && _this.get('autoConnectTries') < 100){
+            Ember.run.later(this, function() {
+                if(_this.get('online') === false){
+                    _this.connect(localStorage.host, localStorage.path);
+                    _this.autoConnect();
+                    _this.set('autoConnectTries', parseInt(_this.get('autoConnectTries')) + 1);
+                }
+            }, 5000);
         }
     },
 
@@ -99,6 +127,7 @@ EmberChat.Socket = Ember.Object.create({
      */
     onOpen: function() {
         this.set('online', true);
+        this.set('autoConnectTries', 0);
         EmberChat.DefaultEnvironment.onConnected();
     },
 
@@ -118,6 +147,7 @@ EmberChat.Socket = Ember.Object.create({
     onClose: function() {
         this.set('online', false);
         EmberChat.Session.onOfflineTasks();
+        this.autoConnect();
     },
 
     /**

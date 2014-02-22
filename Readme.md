@@ -19,13 +19,13 @@ Currently under heavy development.
  - admin
     - creating users
     - removing rooms
+ - auto reconnect
 
 ### Planned ###
  - deleting users(admin)
  - save open conversations
  - more user attributes(forename, surname)
  - history for room conversations
- - auto reconnect
  - quicksearch
     - userlist
     - conversations
