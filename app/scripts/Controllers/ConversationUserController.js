@@ -21,14 +21,11 @@ EmberChat.ConversationUserController = EmberChat.ConversationController.extend({
 
             rawMessage.user = this.get('conversation').get('user').get('id');
             rawMessage.type = 'User\\Conversation';
-            EmberChat.MessageProcessor.processOutgoing(rawMessage);
-            this.set('text', '');
+            this.send(rawMessage);
         },
 
         close: function() {
-            EmberChat.Session.get('conversations').removeObject(this.get('conversation'));
-            this.get('conversation').destroy();
-            this.transitionToRoute('index');
+            this._super();
         }
     }
 });

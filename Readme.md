@@ -11,6 +11,7 @@ Currently under heavy development.
         - history
         - end-to-end encryption (RSA/AES)
     - rooms(multiple users)
+        - automated rejoin after authentication
  - notification on site on message
  - native app
     - MacOS, Windows, Linux32, Linux64
@@ -21,10 +22,10 @@ Currently under heavy development.
     - removing rooms
  - auto reconnect
  - automated 'version changed' notification
- - rejoin rooms after authentication
  - timestamp for conversation content
  - server uptime
  - semantic rendering for urls
+ - history for sent messages(arrow up/down in textfield)
 
 ### Planned ###
  - deleting users(admin)

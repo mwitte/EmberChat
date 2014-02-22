@@ -4,10 +4,15 @@ require('scripts/Views/ConversationView');
  *
  * @namespace EmberChat
  * @class ConversationRoomView
- * @extends Ember.View
+ * @extends EmberChat.AbstractConversationView
  */
-EmberChat.ConversationRoomView = Ember.View.extend({
+EmberChat.ConversationRoomView = EmberChat.AbstractConversationView.extend({
+
+    /**
+     * @event didInsertElement
+     */
     didInsertElement: function(){
+        this._super();
         // enable bootstrap tooltips
         Ember.$(this.get('element')).find("[data-toggle='tooltip']").tooltip();
         // set focus to input

@@ -14,10 +14,6 @@ EmberChat.ConversationView = Ember.View.extend({
      */
     classNames: [''],
 
-
-    didInsertElement: function(){
-    },
-
     /**
      * Gets called if the conversation content changed. Scrolls the viewport down.
      *

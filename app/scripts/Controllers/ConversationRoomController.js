@@ -7,6 +7,7 @@ require('scripts/Controllers/ConversationController');
  * @extends ConversationController
  */
 EmberChat.ConversationRoomController = EmberChat.ConversationController.extend({
+
     actions: {
         send: function() {
             if(this.get('conversation').get('closed')){
@@ -15,8 +16,7 @@ EmberChat.ConversationRoomController = EmberChat.ConversationController.extend({
             var rawMessage = {content: this.get('text')};
             rawMessage.room = this.get('conversation').get('id');
             rawMessage.type = 'Room\\Conversation';
-            EmberChat.MessageProcessor.processOutgoing(rawMessage);
-            this.set('text', '');
+            this.send(rawMessage);
         },
 
         close: function() {
@@ -27,10 +27,7 @@ EmberChat.ConversationRoomController = EmberChat.ConversationController.extend({
                 };
                 EmberChat.MessageProcessor.processOutgoing(message);
             }
-
-            EmberChat.Session.get('conversations').removeObject(this.get('conversation'));
-            this.get('conversation').destroy();
-            this.transitionToRoute('index');
+            this._super();
         }
     }
 });

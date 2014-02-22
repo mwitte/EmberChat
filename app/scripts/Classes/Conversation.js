@@ -3,6 +3,7 @@
  *
  * @class Conversation
  * @namespace EmberChat
+ * @extends Ember.Object
  */
 EmberChat.Conversation = Ember.Object.extend({
 
@@ -13,25 +14,101 @@ EmberChat.Conversation = Ember.Object.extend({
      */
     name: null,
 
+    /**
+     * Unique id for this conversation
+     * @property id
+     * @type {string}
+     */
     id: null,
 
+    /**
+     * Conversation content
+     * @property content
+     * @type {Ember.Array}
+     */
     content: null,
 
+    /**
+     * Contains the last messages the user sent
+     *
+     * @property sentContent
+     * @type {Ember.Array}
+     */
+    sentContent: Ember.A(),
+
+    /**
+     * Amount of unseen messages
+     * @property newMessages
+     * @type {int}
+     */
     newMessages: 0,
 
+    /**
+     * Determines if this conversion is closed. Closed means that an admin removed the room for this conversation
+     * @property closed
+     * @type {boolean}
+     */
     closed: false,
 
-    room: null,
-
+    /**
+     * User of this conversation if its a user conversation
+     * @property user
+     * @type EmberChat.User
+     */
     user: null,
 
+    /**
+     * Room of this conversation if its a room conversation
+     * @property room
+     * @type EmberChat.Room
+     */
+    room: null,
+
+    /**
+     * The users which are in this room conversation
+     * @property users
+     * @type {Ember.Array}
+     */
     users: null,
 
+    /**
+     * Determines if this conversation is encrypted
+     * @property isEncrypted
+     * @type {boolean}
+     */
     isEncrypted: false,
 
+    /**
+     * The encryption key for this conversation
+     * @property encryptionKey
+     * @type {string}
+     */
     encryptionKey: null,
 
+    /**
+     * Determines if this conversation encryption is validated
+     * @property encryptionValidated
+     * @type {boolean}
+     */
     encryptionValidated: false,
+
+    /**
+     * Adds sent messages, the sent messages are used for history browsing
+     * @method addSentContent
+     * @param message
+     */
+    addSentContent: function(message){
+        var sentContent = this.get('sentContent');
+        // save only 20 messages
+        if(sentContent.length > 20) sentContent.shiftObject();
+        // remove duplicated content
+        sentContent.forEach(function(object, index){
+            if(object === message){
+                sentContent.removeAt(index);
+            }
+        });
+        sentContent.pushObject(message);
+    },
 
     /**
      * Determines if the current conversation should be disabled
@@ -83,6 +160,10 @@ EmberChat.Conversation = Ember.Object.extend({
         }
     }.observes('isEncrypted'),
 
+    /**
+     * Disables the encryption, gets called when the online state of the other user changes
+     * @event disableEncryption
+     */
     disableEncryption: function() {
         this.set('isEncrypted', false);
         this.set('encryptionKey', null);
