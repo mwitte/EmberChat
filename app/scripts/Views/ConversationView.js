@@ -14,13 +14,24 @@ EmberChat.ConversationView = Ember.View.extend({
      */
     classNames: [''],
 
+
+    didInsertElement: function(){
+    },
+
     /**
      * Gets called if the conversation content changed. Scrolls the viewport down.
      *
      * @event conversationChanged
      */
     conversationChanged: function(){
+        var _this = this;
         this.scrollContent();
+        Ember.run.later(function(){
+            Ember.$(_this.get('element')).find('.conversation-content .content a').click(function(){
+                EmberChat.DefaultEnvironment.openExternal(Ember.$(this).attr('href'));
+                return false;
+            });
+        }, 20);
     }.observes('controller.conversation.content.@each'),
 
     /**
@@ -30,7 +41,7 @@ EmberChat.ConversationView = Ember.View.extend({
      */
     scrollContent: function() {
         var _this = this;
-        setTimeout(function(){
+        Ember.run.later(function(){
             var conversationContainer = Ember.$(_this.get('element')).find('.conversation-content');
 
             if(conversationContainer && conversationContainer[0]){

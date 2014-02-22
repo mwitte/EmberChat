@@ -20,6 +20,9 @@
                 EmberChat {{EmberChat.versionWebApp}} -
                 <a href="#" {{action openExternal EmberChat.homepageUrl}}>Homepage</a> -
                 <a href="#" {{action openExternal EmberChat.githubUrl}}>Github</a>
+                {{#if serverUpTime}}
+                    - Server started {{serverUpTime}}
+                {{/if}}
             </p>
         </div>
     </div>

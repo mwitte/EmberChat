@@ -12,7 +12,7 @@ EmberChat.ApplicationRoute = Ember.Route.extend({
      *
      * @method setupController
      */
-    setupController: function() {
-
+    setupController: function(controller, model) {
+        controller.updateServerStartTime();
     }
 });

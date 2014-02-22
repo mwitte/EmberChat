@@ -6,7 +6,7 @@
                     {{user}}:
                 {{/unless}}
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-9 content">
                 <span class="pull-right meta-info">
                     {{#if encrypted}}
                         <span class="glyphicon glyphicon-eye-close"></span>
@@ -16,10 +16,7 @@
                 {{#if info}}
                     <p class="info">{{content}}</p>
                 {{else}}
-                    <p>
-                        {{content}}
-
-                    </p>
+                    {{renderConversationContent content}}
                 {{/if}}
             </div>
         </div>

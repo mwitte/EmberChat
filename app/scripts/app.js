@@ -42,5 +42,6 @@ require('scripts/store');
 require('scripts/Models/*');
 require('scripts/Routes/*');
 require('scripts/Components/*');
+require('scripts/Handlebars');
 require('scripts/Views/*');
 require('scripts/router');

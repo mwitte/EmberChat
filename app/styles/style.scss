@@ -12,6 +12,20 @@ html, body {
     margin: 10px 0;
 }
 
+@mixin one-liner() {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin break-words(){
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
 
 .main-content{
   padding-left: 0;
@@ -26,9 +40,21 @@ html, body {
   }
 }
 
+.user-list{
+  .name{
+    @include one-liner();
+  }
+}
+.conversation-list{
+  .name{
+    @include one-liner();
+  }
+}
+
+
 .conversation-content{
-  max-height: 217px;
-  height: 217px;
+  @include break-words();
+  max-height: 280px;
   overflow-y: scroll;
   // something like "user joined"
   .info{
@@ -39,9 +65,6 @@ html, body {
     margin-left: 10px;
   }
   .user-name{
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    overflow: hidden;
+    @include one-liner();
   }
 }

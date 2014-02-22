@@ -24,7 +24,7 @@ EmberChat.AuthenticateRoute = Ember.Route.extend({
      *
      * @method setupController
      */
-    setupController: function() {
+    setupController: function(controller, model) {
         var _this = this;
         EmberChat.Session.authenticate();
 
@@ -37,6 +37,8 @@ EmberChat.AuthenticateRoute = Ember.Route.extend({
                     _this.transitionTo('rooms');
                 }
                 EmberChat.Session.onAuthenticated();
+                controller.set('password', '');
+                controller.set('auth', '');
             },
             after: function() {}
         });

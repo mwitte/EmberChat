@@ -126,6 +126,10 @@ EmberChat.Conversation = Ember.Object.extend({
         }
 
         if(this.get('content')){
+            // remove old content
+            if(this.get('content').length >= 100){
+                this.get('content').shiftObject();
+            }
             this.get('content').pushObjects(contentArray);
         }else{
             this.set('content', Ember.A(contentArray));

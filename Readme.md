@@ -23,6 +23,8 @@ Currently under heavy development.
  - automated 'version changed' notification
  - rejoin rooms after authentication
  - timestamp for conversation content
+ - server uptime
+ - semantic rendering for urls
 
 ### Planned ###
  - deleting users(admin)
@@ -36,7 +38,7 @@ Currently under heavy development.
  - user state(dnd, free for chat, idle)
  - global voting system
  - file transfer
- - semantic rendering(urls)
+ - semantic rendering(code)
  - emoticons ;-)
  - video conversation
  - more test coverage

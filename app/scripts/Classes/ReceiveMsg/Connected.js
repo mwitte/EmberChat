@@ -18,6 +18,8 @@ EmberChat.ReceiveMsg.Connected = EmberChat.ReceiveMsg.Abstract.extend({
                 EmberChat.set('versionConflict', false);
             }
 
+            EmberChat.Session.set('serverStartTime', this.get('serverStartTime'));
+
             // fire connected event
             Ember.Instrumentation.instrument("signal.connected");
         }catch(e){}
