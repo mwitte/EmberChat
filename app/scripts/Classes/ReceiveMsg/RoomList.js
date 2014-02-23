@@ -27,7 +27,7 @@ EmberChat.ReceiveMsg.RoomList = EmberChat.ReceiveMsg.AbstractList.extend({
     createListElement: function(updateList, listContainer){
         // unprocessed updateList
         for(var j=0; j < updateList.length; j++){
-            listContainer.pushObject(EmberChat.User.create(updateList[j]));
+            listContainer.pushObject(EmberChat.Room.create(updateList[j]));
         }
     },
 

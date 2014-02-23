@@ -1,9 +1,9 @@
 {{#link-to 'conversation.user' id class="list-group-item name"}}
-    {{name}}
+    <i {{bind-attr class=":fa :fa-comment user.online:text-success"}}></i>  {{name}}
     {{#if user.online}}
-        <span class="label label-success">
+        <span class="pull-right">
             {{#if isEncrypted}}
-                <span class="glyphicon glyphicon-eye-close"></span>
+                <i class="fa fa-lock"></i>
             {{/if}}
             {{#if newMessages}}
                 {{newMessages}}
@@ -12,7 +12,7 @@
             {{/if}}
         </span>
     {{else}}
-        <span class="label label-default">
+        <span class="pull-right">
             {{#if newMessages}}
                 {{newMessages}}
             {{else}}

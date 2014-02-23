@@ -11,7 +11,9 @@
                     <label for="path">Path ( e. g. emberchat/socket )</label>
                     {{input type="text" valueBinding="path" class="form-control" id="path" placeholder="Path"}}
                 </div>
-                <button {{action 'connect'}} type="submit" class="btn btn-success">Connect</button>
+                <button {{action 'connect'}} type="submit" class="btn btn-success">
+                    <i class="fa fa-check"></i> Connect
+                </button>
             </form>
         </div>
     </div>

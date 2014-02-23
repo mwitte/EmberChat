@@ -21,7 +21,7 @@ EmberChat.ConversationUserController = EmberChat.ConversationController.extend({
 
             rawMessage.user = this.get('conversation').get('user').get('id');
             rawMessage.type = 'User\\Conversation';
-            this.send(rawMessage);
+            this.sendMessage(rawMessage);
         },
 
         close: function() {

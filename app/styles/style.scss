@@ -6,6 +6,9 @@ $icon-font-path: "../fonts/";
 
 @import "libs/themes/superhero";
 
+$fa-font-path: '../fonts/';
+@import "bower_components/font-awesome/scss/font-awesome";
+
 
 /* Put your CSS here */
 html, body {

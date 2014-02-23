@@ -32,7 +32,7 @@ EmberChat.AuthenticateRoute = Ember.Route.extend({
         Ember.Instrumentation.subscribe("signal.authenticated", {
             before: function() {
                 if(EmberChat.attemptedTransition){
-                    _this.transitionTo(EmberChat.attemptedTransition.targetName);
+                    EmberChat.attemptedTransition.retry();
                 }else{
                     _this.transitionTo('rooms');
                 }

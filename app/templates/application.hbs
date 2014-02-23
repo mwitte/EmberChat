@@ -5,23 +5,28 @@
             {{outlet}}
         </div>
         <div class="col-sm-3 col-sm-pull-9">
-            {{session-info unAuthenticate="unAuthenticate" disconnect="disconnect"}}
             {{#if EmberChat.Session.authenticated}}
                 {{conversation-list conversationsBinding="EmberChat.Session.conversationsSorted"}}
-                {{#if EmberChat.Session.isAdmin}}
-                    {{admin-panel}}
-                {{/if}}
             {{/if}}
+            {{session-info unAuthenticate="unAuthenticate" disconnect="disconnect"}}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12 col-centered">
             <p class="centered">
-                EmberChat {{EmberChat.versionWebApp}} -
-                <a href="#" {{action openExternal EmberChat.homepageUrl}}>Homepage</a> -
-                <a href="#" {{action openExternal EmberChat.githubUrl}}>Github</a>
+                EmberChat {{EmberChat.versionWebApp}}
+                <label data-toggle="tooltip" data-placement="top" title="Homepage">
+                    <a href="#" {{action 'openExternal' EmberChat.homepageUrl}}>
+                        <i class="fa fa-home fa-2x"></i>
+                    </a>
+                </label>
+                <label data-toggle="tooltip" data-placement="top" title="Project on github">
+                    <a href="#" {{action 'openExternal' EmberChat.githubUrl}}>
+                        <i class="fa fa-github fa-2x"></i>
+                    </a>
+                </label>
                 {{#if serverUpTime}}
-                    - Server started {{serverUpTime}}
+                    Server started {{serverUpTime}} <i class="fa fa-clock-o fa-spin"></i>
                 {{/if}}
             </p>
         </div>

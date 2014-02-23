@@ -16,7 +16,7 @@ EmberChat.ConversationRoomController = EmberChat.ConversationController.extend({
             var rawMessage = {content: this.get('text')};
             rawMessage.room = this.get('conversation').get('id');
             rawMessage.type = 'Room\\Conversation';
-            this.send(rawMessage);
+            this.sendMessage(rawMessage);
         },
 
         close: function() {

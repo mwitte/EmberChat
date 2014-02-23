@@ -29,7 +29,6 @@ Currently under heavy development.
 
 ### Planned ###
  - deleting users(admin)
- - more user attributes(forename, surname)
  - history for room conversations
  - quicksearch
     - userlist

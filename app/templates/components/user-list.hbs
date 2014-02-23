@@ -4,11 +4,7 @@
         <div class="list-group">
             {{#each users}}
                 {{#link-to 'conversation.user' id class="list-group-item name"}}
-                    {{#if online}}
-                        <span class="label label-success">&nbsp;</span>
-                    {{else}}
-                        <span class="label label-default">&nbsp;</span>
-                    {{/if}}
+                    <i {{bind-attr class=":fa :fa-user online:text-success"}}></i>
                     {{name}}
                 {{/link-to}}
             {{/each}}

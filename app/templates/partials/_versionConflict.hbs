@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>Update available</h3>
+                <h3>Update available <i class="fa fa-warning"></i> </h3>
             </div>
             <div class="panel-body">
                 <p>
@@ -10,8 +10,8 @@
                     Server depends EmberChat <span class="label label-danger">{{EmberChat.versionServer}}</span>
                 </p>
                 <p>
-                    <a class="btn btn-success" href="#" {{action openHomepage}}>
-                        Get EmberChat {{EmberChat.versionServer}}
+                    <a class="btn btn-success" href="#" {{action 'openHomepage'}}>
+                        <i class="fa fa-download"></i> Get EmberChat {{EmberChat.versionServer}}
                     </a>
                 </p>
             </div>

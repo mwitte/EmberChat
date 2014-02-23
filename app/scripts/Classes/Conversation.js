@@ -134,30 +134,34 @@ EmberChat.Conversation = Ember.Object.extend({
      * @return {void}
      */
     requestEncryptedKey: function() {
-        if(!this.get('user').get('online')){
-            this.set('isEncrypted', false);
-            return;
-        }
-        if(this.get('isEncrypted') && !this.get('encryptionKey')){
-            var rsaEncrypt = new JSEncrypt({default_key_size: EmberChat.encryption.rsa});
-            // build message with public key
-            var exChangeMsg = {
-                type: 'User\\KeyExchange',
-                publicKey: rsaEncrypt.getPublicKeyB64(),
-                user: this.get('user').get('id')
-            };
-            EmberChat.MessageProcessor.processOutgoing(exChangeMsg);
-            // set JSEncrypt instance as conversation property
-            this.set('rsaEncrypt', rsaEncrypt);
-        }else if(this.get('isEncrypted') === false){
-            var disableMsg = {
-                type: 'User\\KeyExchange',
-                disable: true,
-                user: this.get('user').get('id')
-            };
-            EmberChat.MessageProcessor.processOutgoing(disableMsg);
-            this.set('encryptionKey', null);
-        }
+        var _this = this;
+        Ember.run.later(function(){
+            if(!_this.get('user').get('online')){
+                _this.set('isEncrypted', false);
+                return;
+            }
+            if(_this.get('isEncrypted') && !_this.get('encryptionKey')){
+                var rsaEncrypt = new JSEncrypt({default_key_size: EmberChat.encryption.rsa});
+                // build message with public key
+                var exChangeMsg = {
+                    type: 'User\\KeyExchange',
+                    publicKey: rsaEncrypt.getPublicKeyB64(),
+                    user: _this.get('user').get('id')
+                };
+                EmberChat.MessageProcessor.processOutgoing(exChangeMsg);
+                // set JSEncrypt instance as conversation property
+                _this.set('rsaEncrypt', rsaEncrypt);
+            }else if(_this.get('isEncrypted') === false){
+                var disableMsg = {
+                    type: 'User\\KeyExchange',
+                    disable: true,
+                    user: _this.get('user').get('id')
+                };
+                EmberChat.MessageProcessor.processOutgoing(disableMsg);
+                _this.set('encryptionKey', null);
+            }
+        }, 100);
+
     }.observes('isEncrypted'),
 
     /**
@@ -171,6 +175,25 @@ EmberChat.Conversation = Ember.Object.extend({
     }.observes('user.online'),
 
     /**
+     * Applies the user object to the content by reference
+     *
+     * @param {object} content
+     */
+    applyUserToContent: function(content) {
+        if(content.user) {
+            if(content.user === EmberChat.Session.get('user').get('id')){
+                content.user = EmberChat.Session.get('user');
+                return;
+            }
+            var user = EmberChat.Session.findUserById(content.user);
+            if(user){
+                content.user = user;
+            }
+        }
+    },
+
+
+    /**
      * Adds content to this conversation
      *
      * @method addContent
@@ -178,30 +201,30 @@ EmberChat.Conversation = Ember.Object.extend({
      */
     addContent: function(contentArray){
 
-        // is this conversation encrypted?
-        if(this.get('encryptionKey')){
-            // iterate all conversation elements
-            for(var i=0; i<contentArray.length;i++){
-                var content = contentArray[i];
-                // only if it got content, and it's type is msg
-                if(content.content &&
-                    content.type &&
-                    content.type === 'msg'){
+        // iterate all conversation elements
+        for(var i=0; i<contentArray.length;i++){
+            var content = contentArray[i];
+            // only if it got content, and it's type is msg
+            if(content.content &&
+                content.type &&
+                content.type === 'msg'){
+                // is this conversation encrypted?
+                if(this.get('encryptionKey')){
                     // try to decode it, can fail if given text is not encrypted
                     try {
                         content.content = GibberishAES.dec(content.content, this.get('encryptionKey'));
                         content.encrypted = true;
-                    } catch (e) {
-
-                    }
+                    } catch (e) {}
                 }
             }
+            this.applyUserToContent(content);
         }
+
 
         // create new notification on user chat
         if(contentArray[0] && contentArray[0].content && this.get('user')){
             // @TODO conversation body should be changed
-            if(contentArray[0].user !== EmberChat.Session.get('user').get('name')){
+            if(contentArray[0].user.get('id') !== EmberChat.Session.get('user').get('id')){
                 EmberChat.DefaultEnvironment.newNotification(this.get('name'), contentArray[0].content);
             }
         }

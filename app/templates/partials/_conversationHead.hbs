@@ -2,13 +2,18 @@
     <div class="row">
         <div class="col-sm-10">
             <h4 class="name">
-                {{conversation.name}} {{#if conversation.closed}} <span class="label label-danger">Closed</span> {{/if}}
+                {{conversation.name}}
+                {{#if conversation.closed}}
+                    <span class="label label-danger">
+                        <i class="fa fa-ban"></i> Closed
+                    </span>
+                {{/if}}
             </h4>
         </div>
         <div class="col-sm-2">
             <h4>
                 <a href="#" {{action "close"}} class="pull-right" data-toggle="tooltip" data-placement="bottom" title="leave this">
-                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="fa fa-times"></span>
                 </a>
             </h4>
         </div>

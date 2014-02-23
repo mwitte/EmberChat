@@ -247,24 +247,42 @@ module.exports = function (grunt) {
         // Put files not handled in other tasks here
         copy: {
             dist: {
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>',
+                        dest: '<%= yeoman.dist %>',
+                        src: [
+                            '*.{ico,txt}',
+                            '.htaccess',
+                            'images/{,*/}*.{webp,gif}',
+                            'fonts/*'
+                        ]
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>/bower_components/font-awesome/',
+                        dest: '<%= yeoman.dist %>',
+                        src: ['fonts/*']
+                    }]
+            },
+            fontawesome: {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%= yeoman.app %>',
-                    dest: '<%= yeoman.dist %>',
-                    src: [
-                        '*.{ico,txt}',
-                        '.htaccess',
-                        'images/{,*/}*.{webp,gif}',
-                        'fonts/*'
-                    ]
+                    cwd: '<%= yeoman.app %>/bower_components/font-awesome/',
+                    dest: '.tmp',
+                    src: [ 'fonts/*' ]
                 }]
             }
         },
         concurrent: {
             server: [
                 'emberTemplates',
-                'compass'
+                'compass',
+                'copy:fontawesome'
             ],
             test: [
                 'emberTemplates',

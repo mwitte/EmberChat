@@ -12,7 +12,19 @@
             </div>
         </div>
         <div class="panel-footer">
-            {{room-create existingRoomsBinding="rooms"}}
+            <div class="row">
+                <div class="col-sm-6">
+                    {{room-create existingRoomsBinding="rooms"}}
+                </div>
+                <div class="col-sm-6">
+                    {{#if EmberChat.Session.isAdmin}}
+                        {{#link-to 'admin.createUser' class="btn btn-warning btn-block"}}
+                            <i class="fa fa-user"></i> Create User
+                        {{/link-to}}
+                    {{/if}}
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

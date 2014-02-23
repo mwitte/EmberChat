@@ -1,5 +1,5 @@
 /**
- * The central application controller
+ * Creates a user
  *
  * @namespace EmberChat
  * @class AdminCreateUserController
@@ -7,30 +7,76 @@
  */
 EmberChat.AdminCreateUserController = Ember.Controller.extend({
 
-    name: '',
+    /**
+     * @property forename
+     * @type {string}
+     */
+    forename: '',
+
+    /**
+     * @property surname
+     * @type {string}
+     */
+    surname: '',
+
+    /**
+     * @property auth
+     * @type {string}
+     */
     auth: '',
+
+    /**
+     * @property password
+     * @type {string}
+     */
     password: '',
+
+    /**
+     * @property admin
+     * @type {boolean}
+     */
     admin: false,
 
+    /**
+     * @property errorMessage
+     * @type {string}
+     */
+    errorMessage: null,
+
+    /**
+     * Determines if the sending should be disabled or enabled
+     *
+     * @property disabled
+     * @type {boolean}
+     */
     disabled: function(){
-        if(this.get('name').length >= 3 && this.get('auth').length >= 3 && this.get('password').length >= 4){
+        if(this.get('forename').length + this.get('surname').length >= 3 &&
+            this.get('auth').length >= 3 &&
+            this.get('password').length >= 4){
             return false;
         }
         return true;
-    }.property('name', 'auth', 'password'),
+    }.property('forename', 'surname', 'auth', 'password'),
 
     encryptedPassword: function(){
         return Sha256.hash(this.get('password'));
     }.property('password'),
 
+    /**
+     * Gets called if forename or surname changes, fills the auth field
+     * @event preFillAuth
+     */
     preFillAuth: function(){
-        this.set('auth', this.get('name'));
-    }.observes('name'),
+        this.set('auth', this.get('surname').toLowerCase() + this.get('forename').toLowerCase().charAt(0));
+    }.observes('forename', 'surname'),
 
-    errorMessage: null,
-
+    /**
+     * Resets all form fields
+     * @method reset
+     */
     reset: function(){
-        this.set('name', '');
+        this.set('forename', '');
+        this.set('surname', '');
         this.set('auth', '');
         this.set('password', '');
         this.set('admin', false);
@@ -38,10 +84,11 @@ EmberChat.AdminCreateUserController = Ember.Controller.extend({
 
     /**
      * Gets called if update was successful
+     * @event updateSuccess
      */
     updateSuccess: function(){
         var _this = this;
-        this.set('successMessage', 'Successfully created user "' + this.get('name') + '" with auth "' + this.get('auth') + '"');
+        this.set('successMessage', 'Successfully created user "' + this.get('forename') + ' '+ this.get('surname') +'" with auth "' + this.get('auth') + '"');
         this.reset();
         Ember.run.later(this, function() {
             _this.set('successMessage', null);
@@ -50,6 +97,7 @@ EmberChat.AdminCreateUserController = Ember.Controller.extend({
 
     /**
      * Gets called if update failed
+     * @event updateFailed
      * @param message
      */
     updateFailed: function(message){
@@ -67,7 +115,8 @@ EmberChat.AdminCreateUserController = Ember.Controller.extend({
                 var rawMessage = {
                     type: 'Admin\\CreateUser',
                     user: {
-                        name: this.get('name'),
+                        forename: this.get('forename'),
+                        surname: this.get('surname'),
                         auth: this.get('auth'),
                         password: Sha256.hash(this.get('password')),
                         admin: this.get('admin')

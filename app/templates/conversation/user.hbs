@@ -11,12 +11,15 @@
                                    title="Only this and the browser of the other user are able to decrypt.
                            Even the server is not able to read the messages. Encrypted messages cannot be logged.">
                                 {{input type="checkbox" checkedBinding="conversation.isEncrypted"}} End-to-end encryption
+                                {{#if conversation.isConversationDisabled}}
+                                    <i class="fa fa-spinner fa-spin"></i>
+                                {{/if}}
                             </label>
                         </div>
                     {{/if}}
                     <div class="input-group">
                         {{#if conversation.isEncrypted}}
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-eye-close"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         {{/if}}
                         {{input type="text" valueBinding='text' class="form-control" disabledBinding="conversation.isConversationDisabled"}}
                         <span class="input-group-btn">

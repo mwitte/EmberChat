@@ -18,10 +18,12 @@
                 </div>
                 <div class="checkbox">
                     <label>
-                        {{input type="checkbox" checkedBinding="keep"}} Keep authentication persistent
+                        {{input type="checkbox" checkedBinding="keep"}} Stay logged in
                     </label>
                 </div>
-                <button {{action 'authenticate'}} type="submit" class="btn btn-primary">Login</button>
+                <button {{action 'authenticate'}} type="submit" class="btn btn-success">
+                    <i class="fa fa-sign-in"></i> Login
+                </button>
             </form>
         </div>
     </div>
