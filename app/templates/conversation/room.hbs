@@ -19,8 +19,6 @@
 
 <div class="col-sm-4">
     {{user-list usersBinding="conversation.users"}}
-    {{#if EmberChat.Session.isAdmin}}
-        {{room-remove roomBinding="conversation.room"}}
-    {{/if}}
+    {{participant-remove participantBinding="conversation.room"}}
 </div>
 

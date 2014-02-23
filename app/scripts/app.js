@@ -45,3 +45,4 @@ require('scripts/Components/*');
 require('scripts/Handlebars');
 require('scripts/Views/*');
 require('scripts/router');
+require('scripts/TemplateProxies/*');

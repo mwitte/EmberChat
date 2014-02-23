@@ -1,13 +1,13 @@
 /**
- * Create rooms
+ * Removes participants
  *
- * @class RoomRemoveComponent
+ * @class ParticipantRemoveComponent
  * @namespace EmberChat
  * @extends Ember.Component
  */
-EmberChat.RoomRemoveComponent = Ember.Component.extend({
+EmberChat.ParticipantRemoveComponent = Ember.Component.extend({
 
-    classNames: ['room-remove'],
+    classNames: ['participant-remove'],
 
     /**
      * Gets called after rendering
@@ -28,10 +28,19 @@ EmberChat.RoomRemoveComponent = Ember.Component.extend({
          * removes a new room
          */
         remove: function() {
-            var rawMessage = {
-                type: 'Admin\\RemoveRoom',
-                room: this.get('room')
-            };
+            var rawMessage;
+            if(this.get('participant').get('isRoom')){
+                rawMessage = {
+                    type: 'Admin\\RemoveRoom',
+                    room: this.get('participant')
+                };
+            }else{
+                rawMessage = {
+                    type: 'Admin\\RemoveUser',
+                    user: this.get('participant')
+                };
+            }
+
             EmberChat.MessageProcessor.processOutgoing(rawMessage);
             Ember.$(this.get('element')).find('.removeBtn').remove();
         }
