@@ -119,12 +119,20 @@ EmberChat.ReceiveMsg.KeyExchange = EmberChat.ReceiveMsg.UserConversation.extend(
      */
     generateKeyAndTransmit: function(){
         var conversation = this.getConversationObject();
+        // rsa encryption text max length
+        var maxLength = this.get('length') / 8 - 11;
         // generate a key
-        var generatedKey = this.generateKey();
+        var generatedKey = this.generateKey(maxLength);
         conversation.set('encryptionKey', generatedKey);
         conversation.set('isEncrypted', true);
+        var keyLengths = conversation.get('keyLengths');
+        for(var i=0; i< keyLengths.length; i++){
+            if(keyLengths[i].length === this.get('length')){
+                conversation.set('keyLength', keyLengths[i]);
+            }
+        }
 
-        var jsEncrypt = new JSEncrypt({default_key_size: EmberChat.encryption.rsa});
+        var jsEncrypt = new JSEncrypt({default_key_size: this.get('length')});
         jsEncrypt.setPublicKey(this.get('publicKey'));
 
         var encryptedKey = jsEncrypt.encrypt(generatedKey);
@@ -151,17 +159,31 @@ EmberChat.ReceiveMsg.KeyExchange = EmberChat.ReceiveMsg.UserConversation.extend(
 
     /**
      * Generates a random string with needed length
-     *
+     * @param {int} maxLength for the generated key
      * @returns {string}
      */
-    generateKey: function(){
-        // rsa encryption text max length
-        var maxLength = EmberChat.encryption.rsa / 8 - 11;
-        // use JSEncrypt for Random string
+    generateKey: function(maxLength){
+        // use JSEncrypt for Random string, key length is not very important here so use a weak/fast
         var keyGenerator = new JSEncrypt({default_key_size: 512});
-        // generate random string
-        var randomString = keyGenerator.getPrivateKeyB64();
-        // hash string and cut
-        return Sha256.hash(randomString).substr(0, maxLength);
+        // generate long random key
+        var generatedKey = Sha256.hash(keyGenerator.getPrivateKeyB64() + this.makeRandomString(10));
+        generatedKey += Sha256.hash(keyGenerator.getPublicKeyB64() + this.makeRandomString(10));
+        generatedKey += Sha256.hash(keyGenerator.getPrivateKeyB64() + keyGenerator.getPublicKeyB64() + this.makeRandomString(10));
+        generatedKey = generatedKey + this.makeRandomString(maxLength - generatedKey.length);
+        return generatedKey.substr(0, maxLength);
+    },
+
+    /**
+     * Generates a random string with the given length
+     *
+     * @param {int} length
+     * @returns {string}
+     */
+    makeRandomString: function(length){
+        var text = "";
+        var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+        for( var i=0; i < length; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
     }
 });

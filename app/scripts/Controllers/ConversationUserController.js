@@ -8,6 +8,7 @@ require('scripts/Controllers/ConversationController');
  */
 EmberChat.ConversationUserController = EmberChat.ConversationController.extend({
 
+
     actions: {
         send: function() {
             var rawMessage = {};

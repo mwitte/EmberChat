@@ -16,10 +16,10 @@ Currently under heavy development.
  - native app
     - MacOS, Windows, Linux32, Linux64
     - desktop notifications
- - creating rooms
+ - create rooms
  - admin
-    - creating users
-    - removing rooms
+    - create/remove users
+    - remove rooms
  - auto reconnect
  - automated 'version changed' notification
  - timestamp for conversation content
@@ -28,7 +28,6 @@ Currently under heavy development.
  - history for sent messages(arrow up/down in textfield)
 
 ### Planned ###
- - deleting users(admin)
  - history for room conversations
  - quicksearch
     - userlist

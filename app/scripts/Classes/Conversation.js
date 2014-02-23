@@ -92,6 +92,26 @@ EmberChat.Conversation = Ember.Object.extend({
      */
     encryptionValidated: false,
 
+
+    /**
+     * The selected key length for RSA
+     * @property keyLength
+     * @type {object}
+     */
+    keyLength: null,
+
+    /**
+     * Possible key lengths for RSA
+     * @property keyLengths
+     * @type {Ember.Array}
+     */
+    keyLengths: [
+        {length: 512, label: "512 bit < 0.2 sec"},
+        {length: 1024, label: "1024 bit < 0.5 sec"},
+        {length: 2048, label: "2048 bit > 2 sec"},
+        {length: 4096, label: "4096 bit > 20 sec"}
+    ],
+
     /**
      * Adds sent messages, the sent messages are used for history browsing
      * @method addSentContent
@@ -141,11 +161,12 @@ EmberChat.Conversation = Ember.Object.extend({
                 return;
             }
             if(_this.get('isEncrypted') && !_this.get('encryptionKey')){
-                var rsaEncrypt = new JSEncrypt({default_key_size: EmberChat.encryption.rsa});
+                var rsaEncrypt = new JSEncrypt({default_key_size: _this.get('keyLength').length});
                 // build message with public key
                 var exChangeMsg = {
                     type: 'User\\KeyExchange',
                     publicKey: rsaEncrypt.getPublicKeyB64(),
+                    length: _this.get('keyLength').length,
                     user: _this.get('user').get('id')
                 };
                 EmberChat.MessageProcessor.processOutgoing(exChangeMsg);

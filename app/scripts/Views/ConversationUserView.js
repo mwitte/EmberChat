@@ -14,9 +14,11 @@ EmberChat.ConversationUserView = EmberChat.AbstractConversationView.extend({
     didInsertElement: function(){
         var _this = this;
         this._super();
-        // enable bootstrap tooltips
-        Ember.$(this.get('element')).find("[data-toggle='tooltip']").tooltip();
-        // set focus to input
-        Ember.$(this.get('element')).find("input[type='text']").focus();
+        Ember.run.later(function(){
+            // enable bootstrap tooltips
+            Ember.$(_this.get('element')).find("[data-toggle='tooltip']").tooltip();
+            // set focus to input
+            Ember.$(_this.get('element')).find("input[type='text']").focus();
+        }, 40);
     }
 });
