@@ -1,0 +1,27 @@
+<div class="panel panel-default user-list">
+    <div class="panel-heading"><h5>{{user.name}}</h5></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6"><strong>Forename</strong></div>
+            <div class="col-sm-6">{{user.forename}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6"><strong>Surname</strong></div>
+            <div class="col-sm-6">{{user.surname}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+                {{#if user.online}}
+                    <span class="label label-success">
+                        <span class="fa fa-signal"></span> online
+                    </span>
+                {{else}}
+                    <span class="label label-danger">
+                        <span class="fa fa-ban"></span> offline
+                    </span>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

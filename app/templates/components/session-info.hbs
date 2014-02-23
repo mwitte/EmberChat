@@ -7,28 +7,26 @@
                     <i class="fa fa-home"></i> Rooms / Users
                 {{/link-to}}
                 {{#link-to 'profile' class="list-group-item"}}
-                    <i class="fa fa-cog"></i>Your profile
+                    <i class="fa fa-cog"></i> Your profile
                 {{/link-to}}
             </div>
         {{/if}}
-
-            <div class="btn-group btn-block">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <button {{action 'disconnect'}}type="button" class="btn btn-success btn-block">
-                            <span class="fa fa-signal"></span> online
+        <div class="btn-group btn-block">
+            <div class="row">
+                <div class="col-sm-6">
+                    <button {{action 'disconnect'}}type="button" class="btn btn-success btn-block">
+                        <span class="fa fa-signal"></span> online
+                    </button>
+                </div>
+                <div class="col-sm-6">
+                    {{#if EmberChat.Session.authenticated}}
+                        <button {{action 'logout'}} type="submit" class="btn btn-danger btn-block">
+                            <i class="fa fa-sign-out"></i> Logout
                         </button>
-                    </div>
-                    <div class="col-sm-6">
-                        {{#if EmberChat.Session.authenticated}}
-                            <button {{action 'logout'}} type="submit" class="btn btn-danger btn-block">
-                                <i class="fa fa-sign-out"></i> Logout
-                            </button>
-                        {{/if}}
-                    </div>
+                    {{/if}}
                 </div>
             </div>
-
+        </div>
     </div>
 </div>
 {{/if}}

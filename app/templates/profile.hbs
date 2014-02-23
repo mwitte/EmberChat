@@ -1,4 +1,4 @@
-<div class="col-sm-12">
+<div class="col-sm-8">
     <div class="panel panel-default userlist">
         <div class="panel-heading"><h4>Profile: {{EmberChat.Session.user.name}}</h4></div>
         <div class="panel-body">
@@ -25,4 +25,8 @@
             </form>
         </div>
     </div>
+</div>
+
+<div class="col-sm-4">
+    {{user-list usersBinding="EmberChat.Session.availableUsersSorted"}}
 </div>

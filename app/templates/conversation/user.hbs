@@ -1,4 +1,4 @@
-<div class="col-sm-12">
+<div class="col-sm-8">
     <div class="panel panel-default">
         {{partial 'partials/_conversationHead'}}
         {{partial 'partials/_conversationBody'}}
@@ -30,4 +30,8 @@
             </form>
         </div>
     </div>
+</div>
+
+<div class="col-sm-4">
+    {{user-info userBinding="conversation.user"}}
 </div>
