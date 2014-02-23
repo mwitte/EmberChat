@@ -2,7 +2,7 @@
 # EmberChat
 
 
-> [EmberChat](http://mwitte.github.io/EmberChat) is a chat application made with web technologies as **native application**.
+> EmberChat is a chat application made with web technologies as **native application**.
 
 ## Main Features
 
@@ -11,19 +11,24 @@
  - end to end encryption for user-user chats
 
 It useses [appserver.io](http://appserver.io) as server and ember.js as application framework. The native applications
-are build within a [node-webkit](https://github.com/rogerwang/node-webkit) runtime which runs on several platforms.
+are build within a [node-webkit](https://github.com/rogerwang/node-webkit) runtime which runs on several platforms. Main
+project on [github](https://github.com/mwitte/EmberChat/).
 
-## Download (alpha)
+## Download EmberChat v0.0.1 (alpha)
 
- - [MacOs](https://dl.dropboxusercontent.com/u/8932463/EmberChat/EmberChat.MacOS.zip)
- - [Linux64](https://dl.dropboxusercontent.com/u/8932463/EmberChat/EmberChat.Linux64.zip)
- - [Windows](https://dl.dropboxusercontent.com/u/8932463/EmberChat/EmberChat.Windows.zip)
+ - [MacOs](https://dl.dropboxusercontent.com/u/8932463/EmberChat/EmberChat.MacOS-0.0.1.zip)
+ - [Linux64](https://dl.dropboxusercontent.com/u/8932463/EmberChat/EmberChat.Linux64-0.0.1.zip)
+ - [Windows](https://dl.dropboxusercontent.com/u/8932463/EmberChat/EmberChat.Windows-0.0.1.zip)
 
-There is currently no server online available so if you want to use it host your own [server](https://github.com/mwitte/EmberChatAppServer).
+There is currently no server online available so if you want to use it host your own
+[server](https://github.com/mwitte/EmberChatAppServer). To get an idea..
 
-It's currently under heavy development so there are no releases yet. To get an idea what it's about..
+<iframe width="853" height="480" src="//www.youtube.com/embed/77dYi2lf54Y" frameborder="0" allowfullscreen></iframe>
 
-<iframe width="853" height="480" src="//www.youtube.com/embed/OYYpQpinV4U" frameborder="0" allowfullscreen></iframe>
+## Bugs
+
+Before you'll report a bug look at the planned features section, probably it's not implemented yet. Please report
+Bugs on [github](https://github.com/mwitte/EmberChat/issues).
 
 ### Features ###
  - authentication
@@ -32,36 +37,32 @@ It's currently under heavy development so there are no releases yet. To get an i
         - history
         - end-to-end encryption (RSA/AES)
     - rooms(multiple users)
+        - automated rejoin after authentication
  - notification on site on message
  - native app
     - MacOS, Windows, Linux32, Linux64
     - desktop notifications
- - creating rooms
+ - create rooms
  - admin
-    - creating users
-    - removing rooms
+    - create/remove users
+    - remove rooms
  - auto reconnect
  - automated 'version changed' notification
- - rejoin rooms after authentication
  - timestamp for conversation content
+ - server uptime
+ - semantic rendering for urls
+ - history for sent messages(arrow up/down in textfield)
 
 ### Planned ###
- - deleting users(admin)
- - more user attributes(forename, surname)
  - history for room conversations
+ - improved error/success messaging
+ - i18n
  - quicksearch
     - userlist
     - conversations
     - rooms
  - @mention in rooms
- - user state(dnd, free for chat, idle)
- - global voting system
- - file transfer
- - semantic rendering(urls)
- - emoticons ;-)
- - video conversation
- - more test coverage
- - design
+ - and lots of more(global voting/message system, file transfer, semantic rendering(code), emoticons ;-), video conversation, more test coverage, design, user state)
 
 ## Author
 
