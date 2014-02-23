@@ -28,6 +28,7 @@ EmberChat.ParticipantRemoveComponent = Ember.Component.extend({
          * removes a new room
          */
         remove: function() {
+            var _this = this;
             var rawMessage;
             if(this.get('participant').get('isRoom')){
                 rawMessage = {
@@ -43,6 +44,10 @@ EmberChat.ParticipantRemoveComponent = Ember.Component.extend({
 
             EmberChat.MessageProcessor.processOutgoing(rawMessage);
             Ember.$(this.get('element')).find('.removeBtn').remove();
+
+            Ember.$(this.get('element')).find('.modal').on('hidden.bs.modal', function (e) {
+                _this.sendAction('closeConversation');
+            });
         }
     }
 

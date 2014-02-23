@@ -1,8 +1,13 @@
 # EmberChat [![Build Status](https://travis-ci.org/mwitte/EmberChat.png)](https://travis-ci.org/mwitte/EmberChat)#
 
-This is a webapp chat client for [EmberChatAppServer](https://github.com/mwitte/EmberChatAppServer) based on ember.js
- 
-Currently under heavy development.
+EmberChat is a chat application made with web technologies as browser and native application.
+Head to the [project homepage](http://mwitte.github.io/EmberChat/). It uses
+[EmberChatAppServer](https://github.com/mwitte/EmberChatAppServer) as server.
+
+### Main Features ###
+ - common chat features
+ - native applications
+ - end to end encryption for user-user chats with RSA(512 - 4096 bit) and AES
  
 ### Features ###
  - authentication
@@ -29,19 +34,14 @@ Currently under heavy development.
 
 ### Planned ###
  - history for room conversations
+ - improved error/success messaging
+ - i18n
  - quicksearch
     - userlist
     - conversations
     - rooms
  - @mention in rooms
- - user state(dnd, free for chat, idle)
- - global voting system
- - file transfer
- - semantic rendering(code)
- - emoticons ;-)
- - video conversation
- - more test coverage
- - design
+ - and lots of more(global voting/message system, file transfer, semantic rendering(code), emoticons ;-), video conversation, more test coverage, design, user state)
 
 ### Build ###
 
