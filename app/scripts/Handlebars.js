@@ -23,7 +23,7 @@ Ember.Handlebars.registerBoundHelper('formatDate', function(date, format, option
         options = format;
         format = "llll";
     }
-    return moment().format(format);
+    return moment(date).format(format);
 });
 
 /**
