@@ -7,16 +7,10 @@
                 <div class="form-group">
                     {{#if conversation.user.online}}
                         <div class="input-group form-inline">
-                            {{view Ember.Select viewName="select"
-                            contentBinding="conversation.keyLengths"
-                            optionLabelPath="content.label"
-                            optionValuePath="content.length"
-                            selectionBinding="conversation.keyLength"
-                            disabledBinding="conversation.isEncrypted"}}
                             <label data-toggle="tooltip" data-placement="top"
                                    title="Only this and the browser of the other user are able to decrypt.
                            Even the server is not able to read the messages. Encrypted messages cannot be logged.">
-                                {{input type="checkbox" checkedBinding="conversation.isEncrypted"}} End-to-end encryption
+                                {{input type="checkbox" checkedBinding="conversation.isEncrypted"}} {{conversation.keyLength.label}} End-to-end encryption
                                 {{#if conversation.isConversationDisabled}}
                                     <i class="fa fa-spinner fa-spin"></i>
                                 {{/if}}

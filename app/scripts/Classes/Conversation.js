@@ -98,7 +98,7 @@ EmberChat.Conversation = Ember.Object.extend({
      * @property keyLength
      * @type {object}
      */
-    keyLength: null,
+    keyLength: {length: 1024, label: "1024 bit"},
 
     /**
      * Possible key lengths for RSA
@@ -108,8 +108,7 @@ EmberChat.Conversation = Ember.Object.extend({
     keyLengths: [
         {length: 512, label: "512 bit < 0.2 sec"},
         {length: 1024, label: "1024 bit < 0.5 sec"},
-        {length: 2048, label: "2048 bit > 2 sec"},
-        {length: 4096, label: "4096 bit > 20 sec"}
+        {length: 2048, label: "2048 bit > 2 sec"}
     ],
 
     /**
