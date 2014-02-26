@@ -67,13 +67,20 @@ EmberChat.SessionClass = Ember.Object.extend({
      * @event persistOpenConversations
      */
     persistOpenConversations: function(){
+        var _this = this;
         var openRoomConversations = [];
-        this.get('conversations').forEach(function(conversation, index){
-            if(conversation && conversation.get('room') && !conversation.get('closed')){
-                openRoomConversations.push({id: conversation.get('id')});
+        // wait a little bit that messaging is finished
+        Ember.run.later(function(){
+            // only persist conversations if app is online
+            if(EmberChat.Socket.get('online')){
+                _this.get('conversations').forEach(function(conversation, index){
+                    if(conversation && conversation.get('room') && !conversation.get('closed')){
+                        openRoomConversations.push({id: conversation.get('id')});
+                    }
+                });
+                localStorage.openConversations = JSON.stringify(openRoomConversations);
             }
-        });
-        localStorage.openConversations = JSON.stringify(openRoomConversations);
+        }, 500);
     }.observes('conversations.@each')
 
 });
