@@ -25,6 +25,7 @@
         "GibberishAES": true,
         "chrome": true,
         "process": true,
-        "moment": true
+        "moment": true,
+        "Window": true
     }
 }

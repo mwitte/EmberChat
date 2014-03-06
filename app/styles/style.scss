@@ -33,5 +33,14 @@
 }
 
 
+.icon-group {
+  a {
+    color: white;
+  }
+  label{
+    padding: 5px;
+  }
+}
+
 @import "layout";
 @import "conversation";

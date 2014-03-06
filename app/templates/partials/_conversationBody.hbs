@@ -1,4 +1,4 @@
-<div class="panel-body conversation-content">
+<div {{bind-attr class=":panel-body :conversation-content :scroll-v-conversation conversation.room:room"}}>
     {{#each conversation.content}}
         <div class="row">
             <div class="col-sm-3 user-name">

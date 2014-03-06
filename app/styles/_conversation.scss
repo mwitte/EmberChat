@@ -1,5 +1,6 @@
 .conversation-content{
   @include break-words();
+  min-height: 200px;
   max-height: 280px;
   overflow-y: scroll;
   // something like "user joined"

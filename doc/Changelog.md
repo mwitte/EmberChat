@@ -1,9 +1,11 @@
 ### v0.x
 *2014*
 
-- History for room conversations
-- Fix #5: After re-login the user is only in one room
-- Fix #3: Wrong date in history
+- vertical spread for conversation-, user- and room-list
+- history for room conversations
+- set end-to-end encryption key length fixed to 1024 bit
+- fix #5: After re-login the user is only in one room
+- fix #3: Wrong date in history
 
 ### v0.0.1
 *2014-02-22*

@@ -6,28 +6,13 @@
         </div>
         <div class="col-sm-3 col-sm-pull-9">
             {{#if EmberChat.Session.authenticated}}
-                {{conversation-list conversationsBinding="EmberChat.Session.conversationsSorted"}}
+                {{conversation-list
+                conversationsBinding="EmberChat.Session.conversationsSorted"
+                unAuthenticate="unAuthenticate"
+                disconnect="disconnect"
+                openExternal="openExternal"
+                }}
             {{/if}}
-            {{session-info unAuthenticate="unAuthenticate" disconnect="disconnect"}}
-            <div class="col-sm-12 col-centered">
-                <p class="centered">
-                    EmberChat {{EmberChat.versionWebApp}}
-                    <label data-toggle="tooltip" data-placement="top" title="Homepage">
-                        <a href="#" {{action 'openExternal' EmberChat.homepageUrl}}>
-                            <i class="fa fa-home fa-2x"></i>
-                        </a>
-                    </label>
-                    <label data-toggle="tooltip" data-placement="top" title="Project on github">
-                        <a href="#" {{action 'openExternal' EmberChat.githubUrl}}>
-                            <i class="fa fa-github fa-2x"></i>
-                        </a>
-                    </label>
-                    <br/>
-                    {{#if serverUpTime}}
-                        Server started {{serverUpTime}}
-                    {{/if}}
-                </p>
-            </div>
         </div>
     </div>
 </div>

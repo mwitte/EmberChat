@@ -1,7 +1,10 @@
 <div class="panel panel-default conversation-list">
-    <div class="panel-heading"><h5>Open Conversations:</h5></div>
-    <div class="panel-body">
+    <div class="panel-heading"><h4>EmberChat {{EmberChat.versionWebApp}}</h4></div>
+    <div class="panel-body scroll-v-mid">
         <div class="list-group">
+            {{#link-to 'rooms' class="list-group-item name"}}
+                <span class="fa fa-list-ul"></span> Rooms
+            {{/link-to}}
             {{#each conversations}}
                 {{#if user}}
                     {{partial "partials/_userConversationBtn"}}
@@ -9,6 +12,45 @@
                     {{partial "partials/_roomConversationBtn"}}
                 {{/if}}
             {{/each}}
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="icon-group">
+                    {{#if isOnline}}
+                        {{#if EmberChat.Session.authenticated}}
+                            <label data-toggle="tooltip" data-placement="top" title="Settings">
+                                {{#link-to 'profile' title="Settings"}}
+                                    <span class="fa fa-cog fa-2x"></span>
+                                {{/link-to}}
+                            </label>
+                        {{/if}}
+                        {{#if EmberChat.Session.authenticated}}
+                            <label data-toggle="tooltip" data-placement="top" title="logout">
+                                <a href="#" {{action 'logout'}} title="logout">
+                                    <span class="fa fa-sign-out fa-2x"></span>
+                                </a>
+                            </label>
+                        {{/if}}
+                        <label data-toggle="tooltip" data-placement="top" title="disconnect">
+                            <a href="#" {{action 'disconnect'}} title="disconnect">
+                                <span class="fa fa-signal fa-2x"></span>
+                            </a>
+                        </label>
+                    {{/if}}
+                    <label data-toggle="tooltip" data-placement="top" title="Homepage" class="pull-right">
+                        <a href="#" {{action 'openExternal' EmberChat.homepageUrl}}>
+                            <i class="fa fa-info-circle fa-2x"></i>
+                        </a>
+                    </label>
+                    <label data-toggle="tooltip" data-placement="top" title="Project on github" class="pull-right">
+                        <a href="#" {{action 'openExternal' EmberChat.githubUrl}}>
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 </div>
