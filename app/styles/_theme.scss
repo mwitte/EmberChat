@@ -1,0 +1,9 @@
+// overwrite fonts path for bootstrap
+$icon-font-path: "../fonts/";
+
+@import "bower_components/twbs-bootstrap-sass/vendor/assets/stylesheets/bootstrap";
+
+@import "libs/themes/superhero";
+
+$fa-font-path: '../fonts/';
+@import "bower_components/font-awesome/scss/font-awesome";

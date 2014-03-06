@@ -54,8 +54,10 @@ EmberChat.ReceiveMsg.Conversation = EmberChat.ReceiveMsg.Abstract.extend({
      * @param {EmberChat.Conversation} conversation
      */
     doBackgroundTasks: function(conversation){
-        EmberChat.Session.get('conversations').arrayContentWillChange(0);
-        conversation.set('newMessages', parseInt(conversation.get('newMessages')) + 1);
-        EmberChat.Session.get('conversations').arrayContentDidChange(0);
+        if(!this.get('history')){
+            EmberChat.Session.get('conversations').arrayContentWillChange(0);
+            conversation.set('newMessages', parseInt(conversation.get('newMessages')) + 1);
+            EmberChat.Session.get('conversations').arrayContentDidChange(0);
+        }
     }
 });

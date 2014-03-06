@@ -1,19 +1,4 @@
-
-// overwrite fonts path for bootstrap
-$icon-font-path: "../fonts/";
-
-@import "bower_components/twbs-bootstrap-sass/vendor/assets/stylesheets/bootstrap";
-
-@import "libs/themes/superhero";
-
-$fa-font-path: '../fonts/';
-@import "bower_components/font-awesome/scss/font-awesome";
-
-
-/* Put your CSS here */
-html, body {
-    margin: 10px 0;
-}
+@import "theme";
 
 @mixin one-liner() {
   white-space: nowrap;
@@ -30,17 +15,10 @@ html, body {
   hyphens: auto;
 }
 
-.main-content{
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.col-centered{
-  float: none;
-  margin: 0 auto;
-  p.centered{
-    text-align: center;
-  }
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
 }
 
 .user-list{
@@ -55,19 +33,5 @@ html, body {
 }
 
 
-.conversation-content{
-  @include break-words();
-  max-height: 280px;
-  overflow-y: scroll;
-  // something like "user joined"
-  .info{
-    color: darkgrey;
-  }
-  // time and encryption was enabled
-  .meta-info{
-    margin-left: 10px;
-  }
-  .user-name{
-    @include one-liner();
-  }
-}
+@import "layout";
+@import "conversation";

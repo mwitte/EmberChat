@@ -1,0 +1,16 @@
+.conversation-content{
+  @include break-words();
+  max-height: 280px;
+  overflow-y: scroll;
+  // something like "user joined"
+  .info{
+    color: darkgrey;
+  }
+  // time and encryption was enabled
+  .meta-info{
+    margin-left: 10px;
+  }
+  .user-name{
+    @include one-liner();
+  }
+}

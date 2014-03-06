@@ -1,34 +1,33 @@
-<div class="container-fluid" id="main">
-    <div class="row">
-        <div class="col-sm-9 col-sm-push-3 main-content">
+<div class="container-fluid spread-v" id="main">
+    <div class="row content-wrapper spread-v">
+        <div class="col-sm-9 col-sm-push-3 main-content spread-v">
             {{partial 'partials/versionConflict'}}
-            {{outlet}}
+            {{outlet class="spread-v"}}
         </div>
         <div class="col-sm-3 col-sm-pull-9">
             {{#if EmberChat.Session.authenticated}}
                 {{conversation-list conversationsBinding="EmberChat.Session.conversationsSorted"}}
             {{/if}}
             {{session-info unAuthenticate="unAuthenticate" disconnect="disconnect"}}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-centered">
-            <p class="centered">
-                EmberChat {{EmberChat.versionWebApp}}
-                <label data-toggle="tooltip" data-placement="top" title="Homepage">
-                    <a href="#" {{action 'openExternal' EmberChat.homepageUrl}}>
-                        <i class="fa fa-home fa-2x"></i>
-                    </a>
-                </label>
-                <label data-toggle="tooltip" data-placement="top" title="Project on github">
-                    <a href="#" {{action 'openExternal' EmberChat.githubUrl}}>
-                        <i class="fa fa-github fa-2x"></i>
-                    </a>
-                </label>
-                {{#if serverUpTime}}
-                    Server started {{serverUpTime}}
-                {{/if}}
-            </p>
+            <div class="col-sm-12 col-centered">
+                <p class="centered">
+                    EmberChat {{EmberChat.versionWebApp}}
+                    <label data-toggle="tooltip" data-placement="top" title="Homepage">
+                        <a href="#" {{action 'openExternal' EmberChat.homepageUrl}}>
+                            <i class="fa fa-home fa-2x"></i>
+                        </a>
+                    </label>
+                    <label data-toggle="tooltip" data-placement="top" title="Project on github">
+                        <a href="#" {{action 'openExternal' EmberChat.githubUrl}}>
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                    </label>
+                    <br/>
+                    {{#if serverUpTime}}
+                        Server started {{serverUpTime}}
+                    {{/if}}
+                </p>
+            </div>
         </div>
     </div>
 </div>
