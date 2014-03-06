@@ -16,6 +16,7 @@ Head to the [project homepage](http://mwitte.github.io/EmberChat/). It uses
         - history
         - end-to-end encryption (RSA/AES)
     - rooms(multiple users)
+        - history
         - automated rejoin after authentication
  - notification on site on message
  - native app
@@ -33,7 +34,6 @@ Head to the [project homepage](http://mwitte.github.io/EmberChat/). It uses
  - history for sent messages(arrow up/down in textfield)
 
 ### Planned ###
- - history for room conversations
  - improved error/success messaging
  - i18n
  - quicksearch
