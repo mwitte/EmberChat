@@ -1,6 +1,7 @@
 ### v0.x
 *2014*
 
+- fix: history for user-conversation when conversation gets opened in background
 - vertical spread for conversation-, user- and room-list
 - history for room conversations
 - set end-to-end encryption key length fixed to 1024 bit

@@ -1,5 +1,6 @@
 // overwrite fonts path for bootstrap
 $icon-font-path: "../fonts/";
+$grid-gutter-width: 10px;
 
 @import "bower_components/twbs-bootstrap-sass/vendor/assets/stylesheets/bootstrap";
 

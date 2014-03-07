@@ -219,7 +219,7 @@ EmberChat.Conversation = Ember.Object.extend({
      * @method addContent
      * @param {array} contentArray
      */
-    addContent: function(contentArray){
+    addContent: function(contentArray, isHistory){
 
         // iterate all conversation elements
         for(var i=0; i<contentArray.length;i++){
@@ -254,9 +254,33 @@ EmberChat.Conversation = Ember.Object.extend({
             if(this.get('content').length >= 100){
                 this.get('content').shiftObject();
             }
-            this.get('content').pushObjects(contentArray);
+            // special case if it history content
+            if(isHistory){
+                // remove duplicate entries from history
+                var existingContent = this.get('content');
+                for(var j = 0; j < contentArray.length; j++) {
+                    for(var k = 0; k < existingContent.length; k++) {
+                        if(contentArray[j].date === existingContent[k].date &&
+                            contentArray[j].content === existingContent[k].content){
+                            contentArray.removeAt(j);
+                        }
+                    }
+                }
+                // add history prepended
+                this.get('content').unshiftObjects(contentArray);
+            }else{
+                this.get('content').pushObjects(contentArray);
+            }
+
         }else{
-            this.set('content', Ember.A(contentArray));
+            if(this.get('user')){
+                this.set('content', Ember.A(contentArray));
+                var message = EmberChat.ReceiveMsg.Settings.create({
+                    type: 'User\\RequestHistory',
+                    user: this.get('id')
+                });
+                EmberChat.MessageProcessor.processOutgoing(message);
+            }
         }
     }
 });

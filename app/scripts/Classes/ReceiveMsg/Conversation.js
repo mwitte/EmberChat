@@ -44,7 +44,7 @@ EmberChat.ReceiveMsg.Conversation = EmberChat.ReceiveMsg.Abstract.extend({
     fillConversationObject: function(conversation) {
         var content = this.get('content');
         Ember.assert('ConversationMessage contains no content!', typeof content === 'object');
-        conversation.addContent(content);
+        conversation.addContent(content, this.get('history'));
     },
 
     /**

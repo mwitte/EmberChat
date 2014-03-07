@@ -1,21 +1,20 @@
 /**
  * New methods for Window prototype
- * @class Window
+ * @class window
  */
-
 /**
  * Adds css to the dom
  *
  * Usage:
  * ```
- * Window.addCss('div.scroll-v', ['max-height: 300px'], 'screen and (min-width: 768px)');
+ * window.addCss('div.scroll-v', ['max-height: 300px'], 'screen and (min-width: 768px)');
  * ```
  * @method addCss
  * @param {string} selector
  * @param {array} styleContent
  * @param {string} mediaQuery
  */
-Window.prototype.addCss = function addCss(selector, styleContent, mediaQuery) {
+window.addCss = function addCss(selector, styleContent, mediaQuery) {
     mediaQuery = mediaQuery ? mediaQuery : false;
     var container = Ember.$('#overwrite-css-container');
     if (container.length === 0){
@@ -24,7 +23,7 @@ Window.prototype.addCss = function addCss(selector, styleContent, mediaQuery) {
         container.appendTo(Ember.$('body'));
     }
     // get unique identifier for given selector with mediaQuery
-    var identifier = Sha256.hash(selector + mediaQuery);
+    var identifier = (selector + mediaQuery).split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a;},0);
     // and we need one div for each class
     var cssContainer = container.find('div[data-class="' + identifier + '"]');
     if (cssContainer.length === 0){

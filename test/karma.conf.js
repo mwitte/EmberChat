@@ -1,4 +1,5 @@
 var bc = 'app/bower_components/';
+var twbs = bc + 'twbs-bootstrap-sass/vendor/assets/javascripts/bootstrap/';
 
 module.exports = function(config) {
     config.set({
@@ -16,6 +17,7 @@ module.exports = function(config) {
             bc + 'handlebars/handlebars.runtime.js',
             bc + 'ember/ember.js',
             bc + 'ember-data/ember-data.js',
+            twbs + 'tooltip.js',
 
             // compiled templates and combined app
             '.tmp/scripts/compiled-templates.js',
