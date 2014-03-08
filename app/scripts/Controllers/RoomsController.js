@@ -23,7 +23,6 @@ EmberChat.RoomsController = Ember.Controller.extend({
     updateServerStartTime: function(){
         var _this = this;
         this.setServerStartTime();
-        console.log(this.get('serverUpTime'));
         Ember.run.later(function(){
             _this.setServerStartTime();
             _this.updateServerStartTime();

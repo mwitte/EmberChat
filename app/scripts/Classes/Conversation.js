@@ -273,8 +273,8 @@ EmberChat.Conversation = Ember.Object.extend({
             }
 
         }else{
+            this.set('content', Ember.A(contentArray));
             if(this.get('user')){
-                this.set('content', Ember.A(contentArray));
                 var message = EmberChat.ReceiveMsg.Settings.create({
                     type: 'User\\RequestHistory',
                     user: this.get('id')
