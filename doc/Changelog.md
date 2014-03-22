@@ -1,6 +1,8 @@
-### v0.x
-*2014*
+### v0.1.0
+*2014-03-22*
 
+- fix: #6: Update button failed
+- updated server application for appserver.io 0.6beta
 - fix: history for user-conversation when conversation gets opened in background
 - vertical spread for conversation-, user- and room-list
 - history for room conversations

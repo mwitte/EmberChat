@@ -1,6 +1,6 @@
 {
   "name": "emberchat",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A websocket based chat with ember.js",
   "author": "Matthias Witte",
   "homepage": "http://mwitte.github.io/EmberChat/",

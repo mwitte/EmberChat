@@ -7,7 +7,7 @@ Head to the [project homepage](http://mwitte.github.io/EmberChat/). It uses
 ### Main Features ###
  - common chat features
  - native applications
- - end to end encryption for user-user chats with RSA(512 - 4096 bit) and AES
+ - end to end encryption for user-user chats with RSA(1024 bit) and AES
  
 ### Features ###
  - authentication
@@ -41,6 +41,7 @@ Head to the [project homepage](http://mwitte.github.io/EmberChat/). It uses
     - conversations
     - rooms
  - @mention in rooms
+ - dedicated admin backend(appliance setup, creating users etc.)
  - and lots of more(global voting/message system, file transfer, semantic rendering(code), emoticons ;-), video conversation, more test coverage, design, user state)
 
 ### Build ###
